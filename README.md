@@ -1,7 +1,7 @@
 # MyBudget
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
-To view hosted version of the project follow the link: `https://skvasnytsia.github.io/my-budget/`
+To view hosted version of the project follow the link: [DEMO](https://skvasnytsia.github.io/my-budget/)
 
 ## Development server
 
