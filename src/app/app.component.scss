@@ -1,0 +1,26 @@
+@import 'variables.scss';
+@import 'mixins.scss';
+
+app-root {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    text-align: center;
+    height: 100%;
+    min-height: 100%;
+
+    & > * {
+        flex: 1 100%;
+    }
+
+    button{
+        @include items-to-select($border-color: lighten(grey, 35%), $background-color:$color4, $text-color: $color6);
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}

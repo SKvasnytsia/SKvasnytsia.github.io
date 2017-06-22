@@ -1,0 +1,16 @@
+<div class="section-header">
+    <div class="container">
+        {{title}}
+    </div>
+</div>
+<div class="section-content">
+    <div class="container">
+        <div>
+            <span>Check your costs or </span>
+            <a [routerLink]="['/add']"><i>add new one</i></a>
+        </div>
+        <button [ngClass]="{'btn-active': activeCategory === category}" *ngFor="let category of list" (click)="getStatistics(category)">{{category}}</button>
+    </div>
+</div>
+
+

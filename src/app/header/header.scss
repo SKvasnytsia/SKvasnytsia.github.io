@@ -1,0 +1,14 @@
+@import './../variables.scss';
+
+header {
+    background-color: lighten($color4, 5%);
+    display: flex;
+    justify-content: center;
+    div.container {
+        background-color: $color4; 
+        margin: 0;
+        padding: 10px;
+    }
+    
+    
+}

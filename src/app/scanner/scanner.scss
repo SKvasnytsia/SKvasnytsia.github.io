@@ -1,0 +1,39 @@
+@import './../variables.scss';
+@import './../mixins.scss';
+
+scanner {
+    .section-header {
+        @include section-header($color1);
+        div.container {
+            background-color: $color1;
+            padding: 5px 0;
+        }
+    }
+    .section-content {
+        background-color: $color6;
+        .container {
+            background-color: $color8;
+            height: 100%;
+
+            form {
+                padding: 25px 25px 10px 20px;
+            }
+            ul {
+                flex-flow: row wrap;
+                display: flex;
+                padding:0;
+                justify-content: center;
+
+                li {
+                    @include items-to-select($border-color: lighten(grey, 35%), $background-color:$color1, $text-color: $color7);
+                    font-size: 12px;
+                    display: flex;     
+                    &:active, &:focus {
+                        background-color: $color5;
+                        color: $color6;
+                    }
+                }
+            }
+        }
+    }    
+}

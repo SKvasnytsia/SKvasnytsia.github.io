@@ -1,0 +1,14 @@
+@mixin items-to-select($border-color, $background-color, $text-color) {
+    background-color: $background-color;
+    color: $text-color;
+    padding: 10px;
+    margin: 10px 2px;
+    border: 1px solid $border-color;
+    border-radius: 2px;
+}
+
+@mixin section-header($color) {
+    background-color: lighten($color, 5%);
+    font-size: 20px;
+    margin-bottom: 2px;
+}
