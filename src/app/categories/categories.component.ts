@@ -24,9 +24,10 @@ export class CategoryComponent {
   public title: string
   public category: string
   private activeCategory: string
+  private key: string = 'categories'
  
   constructor (private budgetService: BudgetService, private translationService: TranslationService, private router: Router){
-    this.title = translationService.get('categories')
+    this.title = translationService.get(this.key)
   }
 
   setActiveCategory($event) {

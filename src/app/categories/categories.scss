@@ -7,18 +7,82 @@ categories {
     flex-direction: column;
     justify-content: center;
     background-color: $color6;
+    position: relative;
     .section-header {
         @include section-header($color1);
+        position: fixed;
+        top: 0;
+        width: 100%;
         div.container {
             background-color: $color1;
             padding: 5px 0;
         }
+                 /* Medium screens */
+        @media all and (min-width: 700px) {
+           position: static;
+        }
+
+        /* Big screens */
+        @media all and (min-width: 1200px) {
+            position: static;
+        }
     }
-    .section-content {
+    .category-content {
+        margin-top: 45%;
+        margin-bottom: 50px;
         background-color: $color6;
+        overflow-y: scroll;
+        font-size: 0.8em;
         .container {
-            background-color: $color8;
             height: 100%;
+
+            .category {
+                border-top: 1px solid $color8;
+                margin: 5px 0;
+                padding: 15px 5px;
+                clear: both;
+
+                /* highlighted, hover should work */
+                &.highlighted,
+                &.hover {
+                    color:red;
+                }
+                .category-name {
+                    width: 100%;
+                }
+                .cost-info {
+                    font-size: 0.6em;
+                    float: right;
+                }
+                
+            }
+            
+        }
+                /* Medium screens */
+        @media all and (min-width: 700px) {
+            margin-top: 10%;
+            .container .category {
+                width: 45%;
+                margin: 5px;
+                border: 1px solid $color8;
+                float: left;
+                clear: none;
+            }
+        }
+    }
+
+    .add-spent-container{
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        bottom: 0;
+        &, 
+        button {
+            width: 100%;
+        }
+                /* Medium screens */
+        @media all and (min-width: 700px) {
+            display: none;
         }
     }
 }

@@ -4,16 +4,18 @@ import {
     CategoryComponent,
     StatisticsComponent,
     ScannerComponent,
+    AuthComponent,
 
     Error404Component
 } from './index'
 
-import {CategoryRouteActivator} from './services/routeActivators/category-route-activator.service'
+import { AuthentificatedActivator, CategoryRouteActivator } from './services/routeActivators/index'
 
 export const appRoutes : Routes = [
-  { path: 'categories', component: CategoryComponent },
-  { path: 'statistics/:category', component: StatisticsComponent, canActivate: [CategoryRouteActivator] },
-  { path: 'add', component: ScannerComponent },
+  { path: 'login', component: AuthComponent },
+  { path: 'categories', component: CategoryComponent, canActivate: [AuthentificatedActivator] },
+  { path: 'statistics/:category', component: StatisticsComponent, canActivate: [AuthentificatedActivator, CategoryRouteActivator] },
+  { path: 'add', component: ScannerComponent, canActivate: [AuthentificatedActivator] },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/categories', pathMatch: 'full'}
 ]

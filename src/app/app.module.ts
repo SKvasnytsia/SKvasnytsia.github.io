@@ -12,11 +12,11 @@ import {
   AppComponent,
   HeaderComponent,
   CategoryComponent,
-  PriceListComponent,
   ScannerComponent,
   TakePictureComponent,
   StatisticsComponent,
-
+  DiagramComponent,
+  AuthComponent,
   Error404Component
 } from './index';
 
@@ -25,8 +25,11 @@ import { firebaseConfig } from './firebase.config'
 import { AngularFireModule } from 'angularfire2'
 
 import {
+  AuthService,
   BudgetService,
   TranslationService,
+
+  AuthentificatedActivator,
   CategoryRouteActivator
  } from './services/index'
 
@@ -35,10 +38,11 @@ import {
     AppComponent,
     HeaderComponent,
     CategoryComponent,
-    PriceListComponent,
     StatisticsComponent,
     ScannerComponent,
     TakePictureComponent,
+    DiagramComponent,
+    AuthComponent,
     Error404Component
   ],
   imports: [
@@ -50,8 +54,11 @@ import {
     BootstrapModalModule
   ],
   providers: [
+    AuthService,
     BudgetService,
     TranslationService,
+
+    AuthentificatedActivator,
     CategoryRouteActivator
   ],
   bootstrap: [AppComponent]

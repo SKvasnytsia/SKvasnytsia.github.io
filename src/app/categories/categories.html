@@ -2,15 +2,20 @@
     <div class="container">
         {{title}}
     </div>
+    <diagram></diagram>
 </div>
-<div class="section-content">
+
+<div class="category-content">
     <div class="container">
-        <div>
-            <span>Check your costs or </span>
-            <a [routerLink]="['/add']"><i>add new one</i></a>
+        <div class="category" [ngClass]="{'highlighted': activeCategory === category}" *ngFor="let category of list" (click)="getStatistics(category)">
+            <div class="category-name">{{category}}</div>
+            <span class="cost-info">Spent $10 per month</span>
+            
         </div>
-        <button [ngClass]="{'btn-active': activeCategory === category}" *ngFor="let category of list" (click)="getStatistics(category)">{{category}}</button>
     </div>
 </div>
+<section class="add-spent-container">
+    <button type="button" [routerLink]="['/add']"><i>Add spent</i></button>
+</section>
 
 

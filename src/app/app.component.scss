@@ -14,9 +14,9 @@ app-root {
         flex: 1 100%;
     }
 
-    button{
-        @include items-to-select($border-color: lighten(grey, 35%), $background-color:$color4, $text-color: $color6);
-    }
+    // button{
+    //     @include items-to-select($border-color: lighten(grey, 35%), $background-color:$color4, $text-color: $color6);
+    // }
 
     .content {
         display: flex;

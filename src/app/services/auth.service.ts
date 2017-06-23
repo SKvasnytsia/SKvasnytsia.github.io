@@ -1,6 +1,6 @@
 //var provider = new firebase.auth.GoogleAuthProvider();
 import { Injectable } from '@angular/core';
-import { AngularFire, AuthProviders, AuthMethods, AuthConfiguration } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 
@@ -15,21 +15,30 @@ export class AuthService {
     this.uid = afAuth.auth.map(user => user.uid);
   }
 
-  signIn(provider: firebase.auth.AuthProvider): firebase.Promise<any> {
-      const config: firebase.AuthConfiguration = {
+  isLoggedIn() {
+    return this.authenticated
+  }
+
+  signIn(provider): firebase.Promise<any> {
+      const config: any = {
             provider,
             method: AuthMethods.Popup
         }
         return this.afAuth.auth.login(config)
-        .catch(error => console.log('ERROR @ AuthService#signIn() :', error));
+        .then(result => {
+          let token = result.auth.getToken()
+          let user = result.uid
+          console.log('logged in', result)
+        })
+        .catch(error => console.error('AuthService#signIn() :', error));
   }
 
   signInWithGoogle(): firebase.Promise<any> {
-    return this.signIn(new firebase.auth.GoogleAuthProvider());
+    return this.signIn(AuthProviders.Google);
   }
 
   signInWithFacebook(): firebase.Promise<any> {
-    return this.signIn(new firebase.auth.FacebookAuthProvider());
+    return this.signIn(AuthProviders.Facebook);
   }
 
   signOut(): void {

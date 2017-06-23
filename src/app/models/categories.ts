@@ -1,1 +1,1 @@
-export const CATEGORIES: Array<string> = ['Home Payment', 'Grocery', 'Hobby', 'Gifts', 'Parties']
+export const CATEGORIES: Array<string> = ['Home Payment', 'Grocery', 'Equipment', 'Hobby', 'Parties']
