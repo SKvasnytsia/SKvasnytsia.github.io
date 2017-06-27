@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 //routes
 import { appRoutes } from './app.route'
@@ -50,8 +49,7 @@ import {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(appRoutes),
-    BootstrapModalModule
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthService,
