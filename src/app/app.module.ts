@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
+ import { Logger } from "angular2-logger/core";
 //routes
 import { appRoutes } from './app.route'
 
@@ -57,7 +57,9 @@ import {
     TranslationService,
 
     AuthentificatedActivator,
-    CategoryRouteActivator
+    CategoryRouteActivator,
+
+    Logger
   ],
   bootstrap: [AppComponent]
 })
