@@ -8,7 +8,7 @@ login {
     align-content: space-around;
     padding: 10%;
     top: 25%;
-
+    
     .sign-in-section {
         margin: 10% 0;
         font-size: 0.8em;
@@ -38,14 +38,20 @@ login {
 
 /*Update css for medium and big screens*/
     /* Medium screens */
-    @media all and (min-width: 700px) {
+    @media only screen and (min-width: 768px) {
         top: 5%;
         left: 10%;
     }
 
-    /* Big screens */
-    @media all and (min-width: 1200px) {
+    /* Laptops screens */
+    @media only screen and (min-width: 1224px) {
         left:23%;
         top: 5%;
     }
+
+    /* Large screens ----------- */
+    // @media only screen 
+    // and (min-width : 1824px) {
+    // /* Styles */
+    // }
 }

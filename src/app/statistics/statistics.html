@@ -1,36 +1,36 @@
-<div class="section-header nav-part">
-    <div class="container">
-        <a [routerLink]="['/categories']">Categories</a>
-    </div>
-</div>
 <div class="section-header">
-    <div class="container">
-        Statistics
+    <div class="moveBack">
+        <a [routerLink]="['/categories']"><i class="fa fa-arrow-left"></i></a>
+    </div>
+    <div class="title">{{title}}</div>
+    <div class="history">
+        <a (click)="getHistory()"><i class="fa fa-history"></i></a>
     </div>
 <div>
 <div class="section-content">
     <div class="container">
+        <!--<ngb-tabset>
+            <ngb-tab title="Simple">
+                <ng-template ngbTabContent>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>-->
         <button>Per month</button>
-        <button>Per season</button>
-        <button>Per year</button>
+        <button>Per previous month</button>
+        <div>
+            Total
+        </div>
         <table class="table">
-            <thead>
-                <tr>
-                    <td>Description</td>
-                    <td>Price</td>
-                    <td>Date</td>
-                </tr>
-            </thead>
             <tbody>
                 <tr *ngFor="let item of spends">
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.price }}</td>
                     <td>{{ item.date }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>picture</td>
                 </tr>
                 <tr>
-                    <td>Fruits</td>
-                    <td>30.42</td>
                     <td>20.03.2017</td>
+                    <td>30.42</td>
+                    <td>picture</td>
                 </tr>
             </tbody>
         </table>

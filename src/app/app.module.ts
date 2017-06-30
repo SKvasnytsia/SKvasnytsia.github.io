@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
- import { Logger } from "angular2-logger/core";
+//import { Logger } from "angular2-logger/core";
+//import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 //routes
 import { appRoutes } from './app.route'
 
@@ -14,6 +15,7 @@ import {
   ScannerComponent,
   TakePictureComponent,
   StatisticsComponent,
+  StatisticsListComponent,
   DiagramComponent,
   AuthComponent,
   Error404Component
@@ -22,6 +24,8 @@ import {
 
 import { firebaseConfig } from './firebase.config'
 import { AngularFireModule } from 'angularfire2'
+import { AngularFireDatabaseModule } from 'angularfire2/database'
+import { AngularFireAuthModule } from 'angularfire2/auth'
 
 import {
   AuthService,
@@ -38,6 +42,7 @@ import {
     HeaderComponent,
     CategoryComponent,
     StatisticsComponent,
+    StatisticsListComponent,
     ScannerComponent,
     TakePictureComponent,
     DiagramComponent,
@@ -49,7 +54,10 @@ import {
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    RouterModule.forRoot(appRoutes)
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    RouterModule.forRoot(appRoutes),
+   // BrowserAnimationsModule
   ],
   providers: [
     AuthService,
@@ -59,7 +67,7 @@ import {
     AuthentificatedActivator,
     CategoryRouteActivator,
 
-    Logger
+  //  Logger
   ],
   bootstrap: [AppComponent]
 })

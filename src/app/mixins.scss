@@ -12,3 +12,7 @@
     font-size: 20px;
     margin-bottom: 2px;
 }
+
+@mixin set-category-border-color($color) {
+    border-left: 3px solid $color;
+}

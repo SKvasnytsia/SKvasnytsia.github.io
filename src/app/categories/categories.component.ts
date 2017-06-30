@@ -17,7 +17,6 @@ import {CATEGORIES} from '../models/categories'
   styleUrls: ['./categories.scss']
 })
 
-@Injectable()
 export class CategoryComponent {
 
   public list: Array<string> = CATEGORIES

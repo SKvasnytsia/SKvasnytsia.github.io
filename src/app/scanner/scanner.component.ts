@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, Injectable } from '@angular/core';
-import { DialogComponent, DialogService } from "ng2-bootstrap-modal"
+//import { DialogComponent, DialogService } from "ng2-bootstrap-modal"
 ///////models///////
 import BuyingItem from './../models/buyingItem'
-import {CATEGORIES} from '../models/categories'
+import { CATEGORIES } from '../models/categories'
 
 import { TranslationService } from './../services/index'
 
@@ -13,7 +13,6 @@ import { TranslationService } from './../services/index'
   styleUrls: ['./scanner.scss']
 })
 
-@Injectable()
 export class ScannerComponent {
     list = CATEGORIES
     title: string

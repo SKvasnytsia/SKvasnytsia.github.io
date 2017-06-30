@@ -10,7 +10,6 @@ import { TranslationService } from './../services/index'
   styleUrls: ['./takePicture.scss']
 })
 
-@Injectable()
 export class TakePictureComponent {
 
     constructor(private translateService: TranslationService) {

@@ -18,13 +18,13 @@ categories {
             padding: 5px 0;
         }
                  /* Medium screens */
-        @media all and (min-width: 700px) {
-           position: static;
+        @media only screen and (min-width: 768px) {
+            position:static;
         }
 
-        /* Big screens */
-        @media all and (min-width: 1200px) {
-            position: static;
+        /* Laptops screens */
+        @media only screen and (min-width: 1224px) {
+            position:static;
         }
     }
     .category-content {
@@ -54,12 +54,28 @@ categories {
                     font-size: 0.6em;
                     float: right;
                 }
+
+                &.hp {
+                    @include set-category-border-color($color1);
+                }
+                &.gr {
+                    @include set-category-border-color($color2);
+                }
+                &.eq {
+                    @include set-category-border-color($color3);
+                }
+                &.hb {
+                    @include set-category-border-color($color4);
+                }
+                &.pt {
+                    @include set-category-border-color($color5);
+                }
                 
             }
             
         }
                 /* Medium screens */
-        @media all and (min-width: 700px) {
+        @media only screen and (min-width: 768px) {
             margin-top: 10%;
             .container .category {
                 width: 45%;
@@ -67,11 +83,13 @@ categories {
                 border: 1px solid $color8;
                 float: left;
                 clear: none;
+                padding: 25px 5px;
             }
         }
     }
 
     .add-spent-container{
+        background: $color1;
         position: fixed;
         display: flex;
         justify-content: center;
@@ -81,7 +99,7 @@ categories {
             width: 100%;
         }
                 /* Medium screens */
-        @media all and (min-width: 700px) {
+        @media only screen and (min-width: 768px) {
             display: none;
         }
     }

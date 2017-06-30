@@ -9,7 +9,6 @@ import { AuthService, TranslationService } from '../services/index'
   styleUrls: ['./login.scss']
 })
 
-@Injectable()
 export class AuthComponent {
     private key = 'login'
     public login: Object

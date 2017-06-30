@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, Injectable } from '@angular/core'
-import {FirebaseListObservable } from 'angularfire2'
 import BuyingItem from './models/buyingItem'
 
 import { TranslationService } from "app/services/index"

@@ -1,5 +1,5 @@
 import { BudgetService } from './index'
-import { AngularFire, FirebaseListObservable } from 'angularfire2'
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 
 import BuyingItem from '../models/buyingItem'
 

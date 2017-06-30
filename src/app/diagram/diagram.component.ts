@@ -7,7 +7,6 @@ import { Component, ViewEncapsulation, Injectable } from '@angular/core'
   styleUrls: ['./diagram.scss']
 })
 
-@Injectable()
 export class DiagramComponent {
   constructor (){
 
