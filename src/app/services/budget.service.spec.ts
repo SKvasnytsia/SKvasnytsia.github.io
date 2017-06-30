@@ -1,7 +1,7 @@
 import { BudgetService } from './index'
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 
-import BuyingItem from '../models/buyingItem'
+import BuyingItem from '../components/models/buyingItem'
 
 describe('BudgetService', () => {
     let budgetService: BudgetService,

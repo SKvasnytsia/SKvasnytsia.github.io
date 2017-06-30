@@ -4,9 +4,12 @@ import { RouterModule } from '@angular/router'
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { Logger } from "angular2-logger/core";
-//import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ExtendedMaterialModule } from './material/material.module'
 //routes
 import { appRoutes } from './app.route'
+
+import 'hammerjs'
 
 import {
   AppComponent,
@@ -31,7 +34,6 @@ import {
   AuthService,
   BudgetService,
   TranslationService,
-
   AuthentificatedActivator,
   CategoryRouteActivator
  } from './services/index'
@@ -57,7 +59,8 @@ import {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
-   // BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ExtendedMaterialModule
   ],
   providers: [
     AuthService,

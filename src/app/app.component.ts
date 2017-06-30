@@ -1,6 +1,4 @@
 import { Component, ViewEncapsulation, Injectable } from '@angular/core'
-import BuyingItem from './models/buyingItem'
-
 import { TranslationService } from "app/services/index"
 
 @Component({

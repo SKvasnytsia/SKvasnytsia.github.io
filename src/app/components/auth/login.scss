@@ -1,0 +1,57 @@
+@import '../../variables.scss';
+
+login {
+    position: absolute;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-content: space-around;
+    padding: 10%;
+    top: 25%;
+    
+    .sign-in-section {
+        margin: 10% 0;
+        font-size: 0.8em;
+        button {
+            position:relative;
+            width: 100%;
+            border: 1px solid $color9;
+            background-color: $color8;
+            margin: 5px;
+            height: 70px;
+            .google-icon,
+            .facebook-icon {
+                position: absolute;
+                max-height: 50px;
+                left: 5%;
+                top: 15%;
+            }
+            em {
+                margin-left: 40px;
+            }
+        }
+        .section-info {
+            font-size: 0.8em;
+            color: $color9;
+        }
+    }
+
+/*Update css for medium and big screens*/
+    /* Medium screens */
+    @media only screen and (min-width: 768px) {
+        top: 5%;
+        left: 10%;
+    }
+
+    /* Laptops screens */
+    @media only screen and (min-width: 1224px) {
+        left:23%;
+        top: 5%;
+    }
+
+    /* Large screens ----------- */
+    // @media only screen 
+    // and (min-width : 1824px) {
+    // /* Styles */
+    // }
+}

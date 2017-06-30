@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 //models
-import BuyingItem from '../models/buyingItem'
+import BuyingItem from '../components/models/buyingItem'
 
 //translators
 import {TRANSLATE} from '../translators/translate.en'

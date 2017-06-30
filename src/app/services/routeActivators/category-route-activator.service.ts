@@ -1,7 +1,7 @@
 import { CanActivate, ActivatedRouteSnapshot, Router } from '@angular/router'
 import { Injectable } from '@angular/core'
 
-import { CATEGORIES } from '../../models/categories'
+import { CATEGORIES } from '../../components/models/categories'
 
 @Injectable()
 export class CategoryRouteActivator implements CanActivate {

@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+header {
+    display: none;
+    
+     /* Medium screens */
+    @media all and (min-width: 700px) {
+        background-color: lighten($color4, 5%);
+        display: flex;
+        justify-content: center;
+        div.container {
+            background-color: $color4; 
+            margin: 0;
+            padding: 10px;
+        }
+    }
+
+    
+}

@@ -1,0 +1,21 @@
+<div class="section-header">
+    <div class="container">
+        {{title}}
+    </div>
+    <diagram></diagram>
+</div>
+
+<div class="category-content">
+    <div class="container">
+        <div class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
+            <div class="category-name">{{category.value}}</div>
+            <span class="cost-info">Spent $10 per month</span>
+            
+        </div>
+    </div>
+</div>
+<section class="add-spent-container">
+    <button md-button type="button" [routerLink]="['/add']"><i>Add spent</i></button>
+</section>
+
+
