@@ -16,8 +16,10 @@ import {CATEGORIES} from '../../models/categories'
 })
 
 export class CurrentComponent {
-
-    constructor(private route: ActivatedRoute){
-
+    title: string
+    constructor(private route: ActivatedRoute) {
+        const category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
+        
+        this.title = category.value
     }
 }

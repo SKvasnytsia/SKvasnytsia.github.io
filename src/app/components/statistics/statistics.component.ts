@@ -16,14 +16,7 @@ import {CATEGORIES} from '../models/categories'
 })
 
 export class StatisticsComponent {
-  @Input() spends:any
-  public title: string
-
   constructor(private budgetService: BudgetService, private translationService: TranslationService, private router: Router){
-    this.title = 'Title'
-  }
-
-  getHistory() {
-
+  
   }
 }
