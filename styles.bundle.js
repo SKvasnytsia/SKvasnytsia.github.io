@@ -1,4 +1,4 @@
-webpackJsonp([2,4],{
+webpackJsonp([3,5],{
 
 /***/ 124:
 /***/ (function(module, exports, __webpack_require__) {
@@ -6,10 +6,10 @@ webpackJsonp([2,4],{
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(209);
+var content = __webpack_require__(207);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(280)(content, {});
+var update = __webpack_require__(274)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -27,22 +27,22 @@ if(false) {
 
 /***/ }),
 
-/***/ 209:
+/***/ 207:
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(7)();
+exports = module.exports = __webpack_require__(9)();
 // imports
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  font-size: 1.8em; }\n\n@media (min-width: 1000px) {\n  div.container {\n    max-width: 900px; } }\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  font-size: 1.8em; }\n\n@media (min-width: 1000px) {\n  div.container {\n    max-width: 900px; } }\n\nmd-calendar {\n  font-size: 0.5em; }\n  md-calendar .mat-calendar-body-cell-content {\n    border: none; }\n", ""]);
 
 // exports
 
 
 /***/ }),
 
-/***/ 280:
+/***/ 274:
 /***/ (function(module, exports) {
 
 /*
@@ -295,7 +295,7 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 284:
+/***/ 278:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(124);
@@ -303,7 +303,7 @@ module.exports = __webpack_require__(124);
 
 /***/ }),
 
-/***/ 7:
+/***/ 9:
 /***/ (function(module, exports) {
 
 /*
@@ -360,5 +360,5 @@ module.exports = function() {
 
 /***/ })
 
-},[284]);
+},[278]);
 //# sourceMappingURL=styles.bundle.js.map
