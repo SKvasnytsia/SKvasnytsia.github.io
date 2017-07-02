@@ -1,0 +1,28 @@
+<div class="section-header">
+    <div class="moveBack">
+        <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div class="title">{{title}}</div>
+    <div class="history">
+        <a [routerLink]="['history']"><i class="material-icons">history</i></a>
+    </div>
+</div>
+<div class="section-content">
+    <div class="container">
+        <md-tab-group>
+            <md-tab label="Current Month">
+                <div>
+                    Total
+                </div>
+                <statistics-list></statistics-list>
+            </md-tab>
+            <md-tab label="Previous Month">
+                <div>
+                    Total
+                </div>
+                <statistics-list></statistics-list>
+            </md-tab>
+        </md-tab-group>        
+        
+    </div>
+</div>

@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ExtendedMaterialModule } from './material/material.module'
 //routes
-import { appRoutes } from './app.route'
+import { appRoutes } from './app.routes'
 
 import 'hammerjs'
 
@@ -17,13 +17,10 @@ import {
   CategoryComponent,
   ScannerComponent,
   TakePictureComponent,
-  StatisticsComponent,
-  StatisticsListComponent,
   DiagramComponent,
   AuthComponent,
   Error404Component
 } from './index';
-
 
 import { firebaseConfig } from './firebase.config'
 import { AngularFireModule } from 'angularfire2'
@@ -40,11 +37,10 @@ import {
 
 @NgModule({
   declarations: [
+    // Components / Directives/ Pipes
     AppComponent,
     HeaderComponent,
     CategoryComponent,
-    StatisticsComponent,
-    StatisticsListComponent,
     ScannerComponent,
     TakePictureComponent,
     DiagramComponent,

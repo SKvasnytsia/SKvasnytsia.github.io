@@ -1,0 +1,14 @@
+history {
+    font-size: 0.8em;
+    .datepicker-container {
+        font-size: 0.8em;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        md-input-container {
+            width: 50%;
+        }
+
+    }
+}
+

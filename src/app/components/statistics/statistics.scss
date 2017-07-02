@@ -4,6 +4,7 @@
 statistics {
     .section-header {
         @include section-header($color1);
+        
         padding: 10px;
         display: flex;
         flex-flow: row wrap;
@@ -15,6 +16,7 @@ statistics {
     }
     .section-content {
         background-color: $color6;
+        font-size: 0.8em;
         div.container {
             background-color: $color8;
             height: 100%;

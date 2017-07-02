@@ -11,9 +11,9 @@ export class CategoryRouteActivator implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot): boolean {
         const categoryExists = CATEGORIES.some(category => category.value.toLowerCase() === route.params['category'].toLowerCase())
-
-        if (!categoryExists)
-            this.router.navigate(['/404'])
+        console.log(route.params['category'])
+        // if (!categoryExists)
+        //     this.router.navigate(['/404'])
         return categoryExists
     }
 }

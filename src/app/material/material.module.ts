@@ -4,12 +4,28 @@ import {
     MaterialModule,
     MdTabsModule,
     MdButtonModule,
-    MdSelectModule
+    MdSelectModule,
+    MdDatepickerModule,
+    MdNativeDateModule
 } from '@angular/material'
 
 @NgModule({
-    imports: [ MaterialModule, MdTabsModule, MdButtonModule, MdSelectModule ],
-    exports: [ MaterialModule, MdTabsModule, MdButtonModule, MdSelectModule ]
+    imports: [ 
+        MaterialModule,
+        MdTabsModule,
+        MdButtonModule,
+        MdSelectModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
+     ],
+    exports: [ 
+        MaterialModule,
+        MdTabsModule,
+        MdButtonModule,
+        MdSelectModule,
+        MdDatepickerModule,
+        MdNativeDateModule,
+     ]
 })
 
 export class ExtendedMaterialModule {}

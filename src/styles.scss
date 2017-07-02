@@ -7,3 +7,12 @@ div.container {
         max-width: 900px;
     }
 }
+
+//calendar part
+
+md-calendar {
+    font-size: 0.5em;
+    .mat-calendar-body-cell-content {
+        border: none;
+    }
+}
