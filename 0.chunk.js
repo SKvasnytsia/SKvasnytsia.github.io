@@ -160,6 +160,7 @@ var DATE_FORMATS = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_categories__ = __webpack_require__(47);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -172,9 +173,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var CurrentComponent = (function () {
     function CurrentComponent(route) {
         this.route = route;
+        var category = __WEBPACK_IMPORTED_MODULE_2__models_categories__["a" /* CATEGORIES */].find(function (category) { return category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase(); });
+        this.title = category.value;
     }
     CurrentComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["q" /* Component */])({
@@ -198,7 +202,9 @@ var CurrentComponent = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_categories__ = __webpack_require__(47);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HistoryComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -211,11 +217,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 var HistoryComponent = (function () {
-    function HistoryComponent(_location) {
+    function HistoryComponent(_location, route) {
         this._location = _location;
+        this.route = route;
         this.fromDate = new Date();
         this.toDate = new Date();
+        var category = __WEBPACK_IMPORTED_MODULE_3__models_categories__["a" /* CATEGORIES */].find(function (category) { return category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase(); });
+        this.title = category.value;
     }
     HistoryComponent.prototype.backClicked = function () {
         this._location.back();
@@ -227,10 +238,10 @@ var HistoryComponent = (function () {
             template: __webpack_require__(294),
             styles: [__webpack_require__(290)]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* Location */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_common__["b" /* Location */]) === "function" && _a || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* Location */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["b" /* Location */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["c" /* ActivatedRoute */]) === "function" && _b || Object])
     ], HistoryComponent);
     return HistoryComponent;
-    var _a;
+    var _a, _b;
 }());
 
 //# sourceMappingURL=history.component.js.map
@@ -297,14 +308,7 @@ var StatisticsComponent = (function () {
         this.budgetService = budgetService;
         this.translationService = translationService;
         this.router = router;
-        this.title = 'Title';
     }
-    StatisticsComponent.prototype.getHistory = function () {
-    };
-    __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* Input */])(),
-        __metadata("design:type", Object)
-    ], StatisticsComponent.prototype, "spends", void 0);
     StatisticsComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["q" /* Component */])({
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["r" /* ViewEncapsulation */].None,
@@ -345,7 +349,7 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "current .section-header {\n  background-color: #f1f6f5;\n  font-size: 20px;\n  margin-bottom: 2px;\n  padding: 10px 25px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  current .section-header div.container {\n    background-color: #E1ECEB;\n    padding: 5px 0; }\n\ncurrent .section-content {\n  background-color: #FEFEFF;\n  font-size: 0.8em; }\n  current .section-content div.container {\n    background-color: #f9f9f9;\n    height: 100%; }\n  current .section-content md-tab-header {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    width: 100%; }\n\ncurrent button {\n  background-color: #EDE9CF;\n  color: grey; }\n", ""]);
 
 // exports
 
@@ -363,7 +367,7 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "history {\n  font-size: 0.8em; }\n  history .datepicker-container {\n    font-size: 0.8em;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between; }\n    history .datepicker-container md-input-container {\n      width: 50%; }\n", ""]);
+exports.push([module.i, "history {\n  font-size: 0.8em; }\n  history .datepicker-container {\n    font-size: 0.8em;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between; }\n    history .datepicker-container md-input-container {\n      width: 50%; }\n  history .section-header {\n    background-color: #f1f6f5;\n    font-size: 20px;\n    margin-bottom: 2px;\n    padding: 10px 25px;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    -webkit-box-pack: justify;\n        -ms-flex-pack: justify;\n            justify-content: space-between; }\n    history .section-header div.container {\n      background-color: #E1ECEB;\n      padding: 5px 0; }\n", ""]);
 
 // exports
 
@@ -399,7 +403,7 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "statistics .section-header {\n  background-color: #f1f6f5;\n  font-size: 20px;\n  margin-bottom: 2px;\n  padding: 10px;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: horizontal;\n  -webkit-box-direction: normal;\n      -ms-flex-flow: row wrap;\n          flex-flow: row wrap;\n  -webkit-box-pack: justify;\n      -ms-flex-pack: justify;\n          justify-content: space-between; }\n  statistics .section-header div.container {\n    background-color: #E1ECEB;\n    padding: 5px 0; }\n\nstatistics .section-content {\n  background-color: #FEFEFF;\n  font-size: 0.8em; }\n  statistics .section-content div.container {\n    background-color: #f9f9f9;\n    height: 100%; }\n  statistics .section-content md-tab-header {\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    -webkit-box-pack: center;\n        -ms-flex-pack: center;\n            justify-content: center;\n    -webkit-box-orient: horizontal;\n    -webkit-box-direction: normal;\n        -ms-flex-flow: row wrap;\n            flex-flow: row wrap;\n    width: 100%; }\n\nstatistics button {\n  background-color: #EDE9CF;\n  color: grey; }\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -419,7 +423,7 @@ module.exports = "<div class=\"section-header\">\n    <div class=\"moveBack\">\n
 /***/ 294:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"section-header\">\n    <div class=\"moveBack\">\n        <a (click)=\"backClicked()\"><i class=\"material-icons\">arrow_back</i></a>\n    </div>\n    <div class=\"title\">{{title}}</div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <div class=\"datepicker-container\">\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"fromDate\">\n                <button mdSuffix [mdDatepickerToggle]=\"fromDate\"></button>\n                <md-datepicker #fromDate \n                    md-current-view=\"month\" \n                    md-mode=\"month\" \n                    md-placeholder=\"Enter date\">\n                </md-datepicker>\n            </md-input-container>\n            \n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"toDate\">\n                <button mdSuffix [mdDatepickerToggle]=\"toDate\"></button>\n                <md-datepicker #toDate \n                    md-current-view=\"year\" \n                    md-mode=\"month\" \n                    md-placeholder=\"Enter date\">\n                </md-datepicker>\n            </md-input-container>\n            \n        </div>\n        <statistics-list></statistics-list>\n    </div>\n</div>"
+module.exports = "<div class=\"section-header\">\n    <div class=\"moveBack\">\n        <a (click)=\"backClicked()\"><i class=\"material-icons\">arrow_back</i></a>\n    </div>\n    <div class=\"title\">{{title}}</div>\n    <div></div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <div class=\"datepicker-container\">\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"fromDate\">\n                <button mdSuffix [mdDatepickerToggle]=\"fromDate\"></button>\n                <md-datepicker #fromDate \n                    md-current-view=\"month\" \n                    md-mode=\"month\" \n                    md-placeholder=\"Enter date\">\n                </md-datepicker>\n            </md-input-container>\n            \n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"toDate\">\n                <button mdSuffix [mdDatepickerToggle]=\"toDate\"></button>\n                <md-datepicker #toDate \n                    md-current-view=\"year\" \n                    md-mode=\"month\" \n                    md-placeholder=\"Enter date\">\n                </md-datepicker>\n            </md-input-container>\n            \n        </div>\n        <statistics-list></statistics-list>\n    </div>\n</div>"
 
 /***/ }),
 
