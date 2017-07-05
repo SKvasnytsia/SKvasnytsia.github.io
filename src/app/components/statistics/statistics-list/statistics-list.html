@@ -5,7 +5,8 @@
             {{ item.dateString}} - ${{item.price}}
         </expansion-panel-title>
         <expansion-panel-content>
-            <img src="{{item.picture}}" alt="here should be a picture"/>
+            <img *ngIf="item.picture" src="{{item.picture}}" alt=""/>
+            <img *ngIf="!item.picture" src="/assets/chek.png"/>
         </expansion-panel-content>
     </expansion-panel>
 

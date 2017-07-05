@@ -9,4 +9,10 @@ statistics-list {
         display: flex;
         padding-right: 10px;
     }
+    div.expansion-panel__content {
+        margin-left: auto !important;
+    }
+    expansion-panel-content img{
+        max-height: 150px;
+    }
 }
