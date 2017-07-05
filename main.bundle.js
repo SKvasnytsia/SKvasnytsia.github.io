@@ -68,20 +68,20 @@ var ExtendedMaterialModule = (function () {
     ExtendedMaterialModule = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MaterialModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MdButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MdSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MdDatepickerModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MdNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MaterialModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MdTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MdButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MdSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MdDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MdNativeDateModule */],
             ],
             exports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["d" /* MaterialModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MdTabsModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MdButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MdSelectModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MdDatepickerModule */],
-                __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MdNativeDateModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["e" /* MaterialModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["f" /* MdTabsModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["g" /* MdButtonModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["h" /* MdSelectModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["i" /* MdDatepickerModule */],
+                __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MdNativeDateModule */],
             ]
         })
     ], ExtendedMaterialModule);
