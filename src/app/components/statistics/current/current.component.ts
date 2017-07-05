@@ -35,9 +35,8 @@ export class CurrentComponent {
 
     getAllSpendsPerCurrentMonth() : BuyingItem[] {
         if (this.category === null) return []
-        let { from, to } = this._getStartAndEndDatesPerMonth(new Date())
+        const { from, to } = this._getStartAndEndDatesPerMonth(new Date())
 
-        console.log('getAllSpendsPerCurrentMonth')
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', result => {
             const value = result.val()
 
@@ -47,9 +46,8 @@ export class CurrentComponent {
 
     getAllSpendsPerPreviousMonth() : BuyingItem[] {
         if (this.category === null) return []
-        let { from, to } = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate())
+        const { from, to } = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate())
 
-        console.log('getAllSpendsPerPreviousMonth')
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', result => {
             const value = result.val()
 

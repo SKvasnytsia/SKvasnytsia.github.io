@@ -27,7 +27,7 @@ import {
         CommonModule,
         RouterModule.forChild(statisticsRoutes),
         ExtendedMaterialModule,
-        ExpansionPanelsModule
+        ExpansionPanelsModule       
     ],
     declarations: [
         StatisticsComponent,

@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
-import { Location } from '@angular/common';
+import { Location } from '@angular/common'
+import { MdDatepicker } from '@angular/material'
 
 import { 
     BudgetService,
@@ -16,12 +17,15 @@ import { BuyingItem, CATEGORIES } from '../../../common/models/index'
   styleUrls: ['./history.scss']
 })
 
-export class HistoryComponent {
+export class HistoryComponent implements OnInit{
     from: Date = new Date()
     to: Date = new Date()
     title: string
     category: any
     spends: any = []
+
+    @ViewChild('fromDate') fromDate: MdDatepicker<Date>
+    @ViewChild('toDate') toDate: MdDatepicker<Date>
 
     constructor(private budgetService: BudgetService, private _location: Location, private route: ActivatedRoute) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
@@ -29,10 +33,19 @@ export class HistoryComponent {
         this.title = this.category.value
     }
 
-    //allow only monthly view
+    ngOnInit() {
+        this.toDate.selectedChanged.subscribe(date => {
+            this.to = date
+            this.getAllSpendsPerPeriod()
+        })
+        this.fromDate.selectedChanged.subscribe(date => {
+            this.from = date
+            this.getAllSpendsPerPeriod()
+        })
+    }
     //disable dates bigger or lower than  ---- smth like validate range
-    //when date is changed update period
     getAllSpendsPerPeriod() : BuyingItem[] {
+        console.log('getAllSpendsPerPeriod', this.from, this.to, this.category)
         if (this.category === null) return []
         if (!this.from || !this.to) return []
 

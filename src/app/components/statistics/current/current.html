@@ -20,6 +20,6 @@
                 <statistics-list [spends]="spendsForPreviousMonth" [totals]="previousSpendTotals"></statistics-list>
             </md-tab>
         </md-tab-group>        
-        <button class="add-spent" md-button type="button"><em>Add new spent item</em></button>
+        <button class="add-spent" md-button type="button" [routerLink]="['/add']"><em>Add new spent item</em></button>
     </div>
 </div>

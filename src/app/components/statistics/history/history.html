@@ -11,30 +11,23 @@
     <div class="container">
         <div class="datepicker-container">
             <md-input-container>
-                <input mdInput [mdDatepicker]="fromDate">
+                <input mdInput [mdDatepicker]="fromDate"/>
                 <button mdSuffix [mdDatepickerToggle]="fromDate"></button>
-                <md-datepicker #fromDate 
-                    ng-model="from"
-                    md-current-view="month" 
-                    md-mode="month" 
-                    ng-change="getAllSpendsPerPeriod()"
-                    md-placeholder="Enter date">
-                </md-datepicker>
-            </md-input-container>
-            
+            </md-input-container>    
+            <md-datepicker #fromDate                   
+                md-current-view="month" 
+                md-mode="month">
+            </md-datepicker>
             <md-input-container>
-                <input mdInput [mdDatepicker]="toDate">
+                <input mdInput [mdDatepicker]="toDate"/>
                 <button mdSuffix [mdDatepickerToggle]="toDate"></button>
-                <md-datepicker #toDate 
-                    ng-model="to"
-                    ng-change="getAllSpendsPerPeriod()"
-                    md-current-view="year" 
-                    md-mode="month" 
-                    md-placeholder="Enter date">
-                </md-datepicker>
-            </md-input-container>
-            
+            </md-input-container>    
+            <md-datepicker #toDate  
+                [startAt]="to"                 
+                startView="month">
+            </md-datepicker>     
         </div>
+        <em class="spends-info" *ngIf="spends && spends.length">Here is a list of spends:</em>
         <statistics-list [spends]="spends"></statistics-list>
     </div>
 </div>
