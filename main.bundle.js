@@ -254,6 +254,9 @@ var BuyingItem = (function () {
         this.date = date;
         this.price = price;
         this.date = date;
+        if (this.date) {
+            this.dateString = this.date.toDateString();
+        }
     }
     return BuyingItem;
 }());
@@ -372,7 +375,8 @@ var CategoryComponent = (function () {
         this.router = router;
         this.list = __WEBPACK_IMPORTED_MODULE_3__common_models_index__["a" /* CATEGORIES */];
         this.key = 'categories';
-        this.title = translationService.get(this.key);
+        var translations = translationService.getAllForComponent(this.key);
+        this.title = translations.title;
     }
     CategoryComponent.prototype.getStatistics = function (category) {
         this.activeCategory = category;
@@ -903,13 +907,23 @@ var TranslationService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TRANSLATE; });
 var TRANSLATE = {
     'title': 'My budget',
-    'categories': 'Categories',
     'addGoods': 'Add good\'s information',
     'login': {
         'title': 'Calculate your personal budget',
         'signInInfo': 'Please sign in with',
         'googleSignIn': 'Sign in with Google',
         'facebookSignIn': 'Sign in with Facebook'
+    },
+    'categories': {
+        'title': 'Categories'
+    },
+    'statistics': {
+        'current': 'Current Month',
+        'previous': 'Previous Month',
+        'loading': 'Getting data from database...',
+        'addNew': 'Add new spent item',
+        'total': 'Total',
+        'spend-title': 'Here is a list of spends:'
     }
 };
 //# sourceMappingURL=translate.en.js.map
