@@ -503,7 +503,7 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "statistics-list {\n  font-size: 0.8em; }\n  statistics-list .spend-info {\n    font-size: 0.8em;\n    white-space: nowrap; }\n  statistics-list .summary {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    padding-right: 10px; }\n", ""]);
+exports.push([module.i, "statistics-list {\n  font-size: 0.8em; }\n  statistics-list .spend-info {\n    font-size: 0.8em;\n    white-space: nowrap; }\n  statistics-list .summary {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    padding-right: 10px; }\n  statistics-list div.expansion-panel__content {\n    margin-left: auto !important; }\n  statistics-list expansion-panel-content img {\n    max-height: 150px; }\n", ""]);
 
 // exports
 
@@ -886,7 +886,7 @@ module.exports = "<div class=\"section-header\">\n    <div class=\"container\">\
 /***/ 297:
 /***/ (function(module, exports) {
 
-module.exports = "<em *ngIf=\"totals\" class=\"summary\"> {{totalLabel}} {{totals}}</em>\n<expansion-panels-container *ngIf=\"spends && spends.length\">\n    <expansion-panel *ngFor=\"let item of spends\">\n        <expansion-panel-title class=\"spend-info\">         \n            {{ item.dateString}} - ${{item.price}}\n        </expansion-panel-title>\n        <expansion-panel-content>\n            <img src=\"{{item.picture}}\" alt=\"here should be a picture\"/>\n        </expansion-panel-content>\n    </expansion-panel>\n\n</expansion-panels-container>"
+module.exports = "<em *ngIf=\"totals\" class=\"summary\"> {{totalLabel}} {{totals}}</em>\n<expansion-panels-container *ngIf=\"spends && spends.length\">\n    <expansion-panel *ngFor=\"let item of spends\">\n        <expansion-panel-title class=\"spend-info\">         \n            {{ item.dateString}} - ${{item.price}}\n        </expansion-panel-title>\n        <expansion-panel-content>\n            <img *ngIf=\"item.picture\" src=\"{{item.picture}}\" alt=\"\"/>\n            <img *ngIf=\"!item.picture\" src=\"/assets/chek.png\"/>\n        </expansion-panel-content>\n    </expansion-panel>\n\n</expansion-panels-container>"
 
 /***/ }),
 
