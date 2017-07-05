@@ -201,6 +201,7 @@ var CurrentComponent = (function () {
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', function (result) {
             var value = result.val();
             _this.spendsForCurrentMonth = _this._getValidSpendsArray(value);
+            _this.currentSpendTotals = _this._getTotals(_this.spendsForCurrentMonth);
         });
     };
     CurrentComponent.prototype.getAllSpendsPerPreviousMonth = function () {
@@ -211,7 +212,12 @@ var CurrentComponent = (function () {
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', function (result) {
             var value = result.val();
             _this.spendsForPreviousMonth = _this._getValidSpendsArray(value);
+            _this.previousSpendTotals = _this._getTotals(_this.spendsForPreviousMonth);
         });
+    };
+    CurrentComponent.prototype._getTotals = function (value) {
+        return value.reduce(function (previous, current) { return previous +=
+            +current.price; }, 0);
     };
     CurrentComponent.prototype._getValidSpendsArray = function (value) {
         var _this = this;
@@ -490,7 +496,7 @@ exports = module.exports = __webpack_require__(9)();
 
 
 // module
-exports.push([module.i, "statistics-list {\n  font-size: 0.8em; }\n  statistics-list .spend-info {\n    font-size: 0.8em;\n    white-space: nowrap; }\n", ""]);
+exports.push([module.i, "statistics-list {\n  font-size: 0.8em; }\n  statistics-list .spend-info {\n    font-size: 0.8em;\n    white-space: nowrap; }\n  statistics-list .summary {\n    -webkit-box-pack: end;\n        -ms-flex-pack: end;\n            justify-content: flex-end;\n    display: -webkit-box;\n    display: -ms-flexbox;\n    display: flex;\n    padding-right: 10px; }\n", ""]);
 
 // exports
 

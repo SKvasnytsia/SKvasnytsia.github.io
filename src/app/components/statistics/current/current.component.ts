@@ -41,6 +41,7 @@ export class CurrentComponent {
             const value = result.val()
 
             this.spendsForCurrentMonth = this._getValidSpendsArray(value)
+            this.currentSpendTotals = this._getTotals(this.spendsForCurrentMonth)
         })
     }
 
@@ -52,7 +53,13 @@ export class CurrentComponent {
             const value = result.val()
 
             this.spendsForPreviousMonth = this._getValidSpendsArray(value)
+            this.previousSpendTotals = this._getTotals(this.spendsForPreviousMonth)
         })
+    }
+
+    private _getTotals(value) {
+        return value.reduce((previous, current) => previous += 
+        +current.price, 0)
     }
 
     private _getValidSpendsArray(value) {

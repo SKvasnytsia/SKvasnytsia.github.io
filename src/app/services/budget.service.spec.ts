@@ -8,13 +8,25 @@ describe('BudgetService', () => {
         mockFireBase
 
     beforeEach(() => {
-        mockFireBase = jasmine.createSpyObj('mockFireBase', ['list'])
+        mockFireBase = jasmine.createSpyObj('mockFireBase', ['app.database'])
         budgetService = new BudgetService(mockFireBase)
     })
 
+    //todo: chain functions <= how to test
     describe('getAllSpends', () => {
         it('should get all the spends per group', () => {
             const groupName = 'fakeGroup'
+            mockFireBase.app = {
+                database: function () { 
+                    return {
+                        ref: function() {
+                            return {
+                                orderByChild: function() {}
+                            }
+                        }
+                    }
+                }
+            }
             const result = budgetService.getAllSpends(groupName, new Date(), new Date())
 
             expect(result).toBe(void 0)

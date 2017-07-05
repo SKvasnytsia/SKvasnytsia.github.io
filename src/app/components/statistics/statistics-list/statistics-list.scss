@@ -4,4 +4,9 @@ statistics-list {
         font-size: 0.8em;
         white-space: nowrap;
     }
+    .summary {
+        justify-content: flex-end;
+        display: flex;
+        padding-right: 10px;
+    }
 }
