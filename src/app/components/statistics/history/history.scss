@@ -16,14 +16,13 @@ history {
 
     .section-header {
         @include section-header($color1);
-        
-        padding: 10px 25px;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
         div.container {
             background-color: $color1;
             padding: 5px 0;
+            padding: 10px 25px;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
         }
     }
 }

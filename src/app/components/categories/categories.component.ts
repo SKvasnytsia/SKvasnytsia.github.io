@@ -1,14 +1,11 @@
 import { Component, ViewEncapsulation, EventEmitter, Input, Output, Injectable } from '@angular/core'
 import { Router } from '@angular/router'
 
-import {ScannerComponent} from '../scanner/scanner.component';
-
 import { 
-    BudgetService,
     TranslationService
  } from "app/services/index"
 
-import {CATEGORIES} from '../models/categories'
+import { CATEGORIES } from '../../common/models/index'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -25,25 +22,12 @@ export class CategoryComponent {
   private activeCategory: string
   private key: string = 'categories'
  
-  constructor (private budgetService: BudgetService, private translationService: TranslationService, private router: Router){
+  constructor (private translationService: TranslationService, private router: Router){
     this.title = translationService.get(this.key)
-  }
-
-  setActiveCategory($event) {
-    this.category = $event.category
   }
 
   getStatistics(category: string) {
     this.activeCategory = category
     this.router.navigate([`/statistics/${category}`])
-  }
-
-    //todo: add sorting by groups, time....
-  getAllSpends(): any {
-    if (this.category === null) return []
-    let result = this.budgetService.getAllSpends(this.category)
-
-    console.log('dataList', result)
-    return result
   }
 }

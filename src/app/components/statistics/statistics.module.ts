@@ -6,6 +6,7 @@ import {
     DateAdapter,
     MD_DATE_FORMATS
 } from '@angular/material'
+import { ExpansionPanelsModule } from 'ng2-expansion-panels'
 
 import { statisticsRoutes } from './statistics.routes'
 
@@ -25,7 +26,8 @@ import {
     imports: [
         CommonModule,
         RouterModule.forChild(statisticsRoutes),
-        ExtendedMaterialModule
+        ExtendedMaterialModule,
+        ExpansionPanelsModule
     ],
     declarations: [
         StatisticsComponent,

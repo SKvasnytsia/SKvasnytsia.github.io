@@ -1,28 +1,25 @@
 <div class="section-header">
-    <div class="moveBack">
-        <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
-    </div>
-    <div class="title">{{title}}</div>
-    <div class="history">
-        <a [routerLink]="['history']"><i class="material-icons">history</i></a>
+    <div class="container">
+        <div class="moveBack">
+            <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
+        </div>
+        <div class="title">{{title}}</div>
+        <div class="history">
+            <a [routerLink]="['history']"><i class="material-icons">history</i></a>
+        </div>
     </div>
 </div>
 <div class="section-content">
     <div class="container">
         <md-tab-group>
             <md-tab label="Current Month">
-                <div>
-                    Total
-                </div>
-                <statistics-list></statistics-list>
+                <sub class="loading-info" *ngIf="!spendsForCurrentMonth.length">Getting data from database...</sub>
+                <statistics-list [spends]="spendsForCurrentMonth" [totals]="currentSpendTotals"></statistics-list>
             </md-tab>
             <md-tab label="Previous Month">
-                <div>
-                    Total
-                </div>
-                <statistics-list></statistics-list>
+                <statistics-list [spends]="spendsForPreviousMonth" [totals]="previousSpendTotals"></statistics-list>
             </md-tab>
         </md-tab-group>        
-        
+        <button class="add-spent" md-button type="button"><em>Add new spent item</em></button>
     </div>
 </div>

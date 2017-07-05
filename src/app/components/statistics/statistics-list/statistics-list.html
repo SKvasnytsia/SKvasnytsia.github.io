@@ -1,15 +1,12 @@
-     
-        <table class="table">
-            <tbody>
-                <tr *ngFor="let item of spends">
-                    <td>{{ item.date }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>picture</td>
-                </tr>
-                <tr>
-                    <td>20.03.2017</td>
-                    <td>$30.42</td>
-                    <td>picture</td>
-                </tr>
-            </tbody>
-        </table>
+<em *ngIf="totals" class="summary"> Total {{totals}}</em>
+<expansion-panels-container *ngIf="spends && spends.length">
+    <expansion-panel *ngFor="let item of spends">
+        <expansion-panel-title class="spend-info">         
+            {{ item.dateString}} - ${{item.price}}
+        </expansion-panel-title>
+        <expansion-panel-content>
+            <img src="{{item.picture}}" alt="here should be a picture"/>
+        </expansion-panel-content>
+    </expansion-panel>
+
+</expansion-panels-container>

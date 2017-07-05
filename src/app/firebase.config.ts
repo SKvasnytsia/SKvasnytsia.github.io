@@ -5,6 +5,4 @@ export const firebaseConfig : Object= {
     projectId: 'mybudget-4202c',
     storageBucket: 'mybudget-4202c.appspot.com',
     messagingSenderId: '584037351620'
-  //  identifier: '584037351620-dv77dkjetdaikndp8vocut4vc0blmetu.apps.googleusercontent.com',
-  //  secret: '9Uabkm9qvHyKKph91UlV1752'
 }

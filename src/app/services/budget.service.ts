@@ -1,36 +1,49 @@
 import { Injectable } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth'
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 //models
-import BuyingItem from '../components/models/buyingItem'
+import { BuyingItem } from '../common/models/index'
 
 //translators
 import {TRANSLATE} from '../translators/translate.en'
 
 //constants
-const item = new BuyingItem("Fruits","30$",new Date())
+const item = new BuyingItem("30",new Date())
 
 @Injectable()
 export class BudgetService {
-        spends: FirebaseListObservable<BuyingItem[]>
-        constructor(public af: AngularFireDatabase) {
-        }
-        getAllSpends(group: string): FirebaseListObservable<BuyingItem[]>{
-            this.spends =  this.af.list('/spends', { query: { orderByChild: 'group', equalTo: group } })       
-            return this.spends
-        }
+        private spends: BuyingItem[] = []
+        private uid
 
-        addItem(item: BuyingItem): any {
-            const id : string = '123' //autogenerate guid
-            
-            item.id = id
-            //return this.spends.push(item)
-        }
+    constructor(public af: AngularFireDatabase) {
+        // auth.authState.subscribe(user => {
+        //     this.uid = user ? user.uid : null
+        // })
+    }
 
-        updateItem(item: BuyingItem) : any {
-            //return this.spends.update(item.id, item)
-        }
+    //todo: get spends per user that is authorized
+    //filtering
 
-        deleteItem(item: BuyingItem) : any {
-            //return this.spends.remove(item.id)
-        }
+    getAllSpends(group: string, dateFrom: Date, dateTo: Date){
+        console.log('getAllSpends',this.uid)
+        let ref =  this.af.app.database().ref(`/users/yKxxSL7CRVVPr3TwmKj0eeikIiO2/spends`)
+        let query = ref.orderByChild('date').startAt(dateFrom.getTime()).endAt(dateTo.getTime())
+    
+        return query
+    }
+
+    addItem(item: BuyingItem): any {
+        const id : string = '123' //autogenerate guid
+        
+        item.id = id
+        //return this.spends.push(item)
+    }
+
+    updateItem(item: BuyingItem) : any {
+        //return this.spends.update(item.id, item)
+    }
+
+    deleteItem(item: BuyingItem) : any {
+        //return this.spends.remove(item.id)
+    }
 }

@@ -1,8 +1,7 @@
 import { Component, ViewEncapsulation, Injectable } from '@angular/core';
 //import { DialogComponent, DialogService } from "ng2-bootstrap-modal"
 ///////models///////
-import BuyingItem from './../models/buyingItem'
-import { CATEGORIES } from '../models/categories'
+import { BuyingItem, CATEGORIES } from '../../common/models/index'
 
 import { TranslationService } from '../../services/index'
 
@@ -25,7 +24,7 @@ export class ScannerComponent {
      * Save Buying Item
      */
     saveBuyingItem() {
-        let item = new BuyingItem('', '', new Date())
+        let item = new BuyingItem('', new Date())
         //category add item
     }
 

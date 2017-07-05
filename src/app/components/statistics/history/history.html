@@ -1,9 +1,11 @@
 <div class="section-header">
-    <div class="moveBack">
-        <a (click)="backClicked()"><i class="material-icons">arrow_back</i></a>
+    <div class="container">
+        <div class="moveBack">
+            <a (click)="backClicked()"><i class="material-icons">arrow_back</i></a>
+        </div>
+        <div class="title">{{title}}</div>
+        <div></div>
     </div>
-    <div class="title">{{title}}</div>
-    <div></div>
 </div>
 <div class="section-content">
     <div class="container">
@@ -12,8 +14,10 @@
                 <input mdInput [mdDatepicker]="fromDate">
                 <button mdSuffix [mdDatepickerToggle]="fromDate"></button>
                 <md-datepicker #fromDate 
+                    ng-model="from"
                     md-current-view="month" 
                     md-mode="month" 
+                    ng-change="getAllSpendsPerPeriod()"
                     md-placeholder="Enter date">
                 </md-datepicker>
             </md-input-container>
@@ -22,6 +26,8 @@
                 <input mdInput [mdDatepicker]="toDate">
                 <button mdSuffix [mdDatepickerToggle]="toDate"></button>
                 <md-datepicker #toDate 
+                    ng-model="to"
+                    ng-change="getAllSpendsPerPeriod()"
                     md-current-view="year" 
                     md-mode="month" 
                     md-placeholder="Enter date">
@@ -29,6 +35,6 @@
             </md-input-container>
             
         </div>
-        <statistics-list></statistics-list>
+        <statistics-list [spends]="spends"></statistics-list>
     </div>
 </div>

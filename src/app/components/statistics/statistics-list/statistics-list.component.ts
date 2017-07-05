@@ -6,7 +6,7 @@ import {
     TranslationService
  } from "app/services/index"
 
-import {CATEGORIES} from '../../models/categories'
+import { BuyingItem, CATEGORIES } from '../../../common/models/index'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -16,8 +16,11 @@ import {CATEGORIES} from '../../models/categories'
 })
 
 export class StatisticsListComponent {
-    constructor(){
+    @Input() spends: any[]
+    @Input() totals: number
 
+    constructor(){
+        console.log('StatisticsListComponent', this.spends)
     }
 
 

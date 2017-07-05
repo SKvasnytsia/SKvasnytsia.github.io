@@ -1,9 +1,28 @@
-//for statistics
-[{
-    "name": "",
-    "price": "",
-    "date": "",
-    "group": ""
-}]
-
+{
+    "users": {
+        "yKxxSL7CRVVPr3TwmKj0eeikIiO2" : {
+            "spends" : [{
+                "id": "1",
+                "price": "12",
+                "date": 1496707200000,
+                "picture": "",
+                "group": "Equipment"
+            },
+            {
+                "id": "2",
+                "price": "13",
+                "date": 1499385600000,
+                "picture": "",
+                "group": "Hobby"
+            },
+            {
+                "id": "3",
+                "price": "5",
+                "date": 1497657600000,
+                "picture": "",
+                "group": "Hobby"
+            }]
+        }
+    }
+}
 
