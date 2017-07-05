@@ -23,7 +23,9 @@ export class CategoryComponent {
   private key: string = 'categories'
  
   constructor (private translationService: TranslationService, private router: Router){
-    this.title = translationService.get(this.key)
+    const translations = translationService.getAllForComponent(this.key)
+    
+    this.title = translations.title
   }
 
   getStatistics(category: string) {

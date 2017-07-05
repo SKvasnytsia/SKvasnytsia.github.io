@@ -1,4 +1,4 @@
-<em *ngIf="totals" class="summary"> Total {{totals}}</em>
+<em *ngIf="totals" class="summary"> {{totalLabel}} {{totals}}</em>
 <expansion-panels-container *ngIf="spends && spends.length">
     <expansion-panel *ngFor="let item of spends">
         <expansion-panel-title class="spend-info">         

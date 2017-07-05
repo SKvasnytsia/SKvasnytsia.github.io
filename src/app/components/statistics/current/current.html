@@ -12,14 +12,14 @@
 <div class="section-content">
     <div class="container">
         <md-tab-group>
-            <md-tab label="Current Month">
-                <sub class="loading-info" *ngIf="!spendsForCurrentMonth.length">Getting data from database...</sub>
-                <statistics-list [spends]="spendsForCurrentMonth" [totals]="currentSpendTotals"></statistics-list>
+            <md-tab label="{{statisticsTranslation.current}}">
+                <sub class="loading-info" *ngIf="!spendsForCurrentMonth.length">{{statisticsTranslation.loading}}</sub>
+                <statistics-list [spends]="spendsForCurrentMonth" [totals]="currentSpendTotals" [totalLabel]="statisticsTranslation.total"></statistics-list>
             </md-tab>
-            <md-tab label="Previous Month">
-                <statistics-list [spends]="spendsForPreviousMonth" [totals]="previousSpendTotals"></statistics-list>
+            <md-tab label="{{statisticsTranslation.previous}}">
+                <statistics-list [spends]="spendsForPreviousMonth" [totals]="previousSpendTotals" [totalLabel]="statisticsTranslation.total"></statistics-list>
             </md-tab>
         </md-tab-group>        
-        <button class="add-spent" md-button type="button" [routerLink]="['/add']"><em>Add new spent item</em></button>
+        <button class="add-spent" md-button type="button" [routerLink]="['/add']"><em>{{statisticsTranslation.addNew}}</em></button>
     </div>
 </div>

@@ -181,13 +181,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CurrentComponent = (function () {
-    function CurrentComponent(budgetService, route) {
+    function CurrentComponent(budgetService, route, translationService) {
         this.budgetService = budgetService;
         this.route = route;
+        this.translationService = translationService;
         this.spendsForCurrentMonth = [];
         this.spendsForPreviousMonth = [];
         this.category = __WEBPACK_IMPORTED_MODULE_3__common_models_index__["a" /* CATEGORIES */].find(function (category) { return category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase(); });
         this.title = this.category.value;
+        this.statisticsTranslation = translationService.getAllForComponent('statistics');
     }
     CurrentComponent.prototype.ngOnInit = function () {
         this.getAllSpendsPerCurrentMonth();
@@ -208,7 +210,7 @@ var CurrentComponent = (function () {
         var _this = this;
         if (this.category === null)
             return [];
-        var _a = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate()), from = _a.from, to = _a.to;
+        var _a = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date())), from = _a.from, to = _a.to;
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', function (result) {
             var value = result.val();
             _this.spendsForPreviousMonth = _this._getValidSpendsArray(value);
@@ -237,8 +239,7 @@ var CurrentComponent = (function () {
         };
     };
     //add test to this method
-    CurrentComponent.prototype._getPreviousMonthDate = function () {
-        var date = new Date();
+    CurrentComponent.prototype._getPreviousMonthDate = function (date) {
         date.setDate(1);
         date.setMonth(date.getMonth() - 1);
         return date;
@@ -250,10 +251,10 @@ var CurrentComponent = (function () {
             template: __webpack_require__(295),
             styles: [__webpack_require__(290)]
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_services_index__["b" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_services_index__["b" /* BudgetService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2_app_services_index__["b" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_services_index__["b" /* BudgetService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2_app_services_index__["c" /* TranslationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_app_services_index__["c" /* TranslationService */]) === "function" && _c || Object])
     ], CurrentComponent);
     return CurrentComponent;
-    var _a, _b;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=current.component.js.map
@@ -287,15 +288,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HistoryComponent = (function () {
-    function HistoryComponent(budgetService, _location, route) {
+    function HistoryComponent(budgetService, _location, route, translationService) {
         this.budgetService = budgetService;
         this._location = _location;
         this.route = route;
+        this.translationService = translationService;
         this.from = new Date();
         this.to = new Date();
         this.spends = [];
         this.category = __WEBPACK_IMPORTED_MODULE_5__common_models_index__["a" /* CATEGORIES */].find(function (category) { return category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase(); });
         this.title = this.category.value;
+        this.statisticsTranslation = translationService.getAllForComponent('statistics');
     }
     HistoryComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -348,10 +351,10 @@ var HistoryComponent = (function () {
             template: __webpack_require__(296),
             styles: [__webpack_require__(291)]
         }),
-        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_services_index__["b" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_services_index__["b" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4_app_services_index__["b" /* BudgetService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_services_index__["b" /* BudgetService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_common__["Location"]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* ActivatedRoute */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4_app_services_index__["c" /* TranslationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4_app_services_index__["c" /* TranslationService */]) === "function" && _f || Object])
     ], HistoryComponent);
     return HistoryComponent;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=history.component.js.map
@@ -386,6 +389,10 @@ var StatisticsListComponent = (function () {
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
         __metadata("design:type", Number)
     ], StatisticsListComponent.prototype, "totals", void 0);
+    __decorate([
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"])(),
+        __metadata("design:type", String)
+    ], StatisticsListComponent.prototype, "totalLabel", void 0);
     StatisticsListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ViewEncapsulation"].None,
@@ -865,21 +872,21 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 295:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"section-header\">\n    <div class=\"container\">\n        <div class=\"moveBack\">\n            <a [routerLink]=\"['/categories']\"><i class=\"material-icons\">arrow_back</i></a>\n        </div>\n        <div class=\"title\">{{title}}</div>\n        <div class=\"history\">\n            <a [routerLink]=\"['history']\"><i class=\"material-icons\">history</i></a>\n        </div>\n    </div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <md-tab-group>\n            <md-tab label=\"Current Month\">\n                <sub class=\"loading-info\" *ngIf=\"!spendsForCurrentMonth.length\">Getting data from database...</sub>\n                <statistics-list [spends]=\"spendsForCurrentMonth\" [totals]=\"currentSpendTotals\"></statistics-list>\n            </md-tab>\n            <md-tab label=\"Previous Month\">\n                <statistics-list [spends]=\"spendsForPreviousMonth\" [totals]=\"previousSpendTotals\"></statistics-list>\n            </md-tab>\n        </md-tab-group>        \n        <button class=\"add-spent\" md-button type=\"button\" [routerLink]=\"['/add']\"><em>Add new spent item</em></button>\n    </div>\n</div>"
+module.exports = "<div class=\"section-header\">\n    <div class=\"container\">\n        <div class=\"moveBack\">\n            <a [routerLink]=\"['/categories']\"><i class=\"material-icons\">arrow_back</i></a>\n        </div>\n        <div class=\"title\">{{title}}</div>\n        <div class=\"history\">\n            <a [routerLink]=\"['history']\"><i class=\"material-icons\">history</i></a>\n        </div>\n    </div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <md-tab-group>\n            <md-tab label=\"{{statisticsTranslation.current}}\">\n                <sub class=\"loading-info\" *ngIf=\"!spendsForCurrentMonth.length\">{{statisticsTranslation.loading}}</sub>\n                <statistics-list [spends]=\"spendsForCurrentMonth\" [totals]=\"currentSpendTotals\" [totalLabel]=\"statisticsTranslation.total\"></statistics-list>\n            </md-tab>\n            <md-tab label=\"{{statisticsTranslation.previous}}\">\n                <statistics-list [spends]=\"spendsForPreviousMonth\" [totals]=\"previousSpendTotals\" [totalLabel]=\"statisticsTranslation.total\"></statistics-list>\n            </md-tab>\n        </md-tab-group>        \n        <button class=\"add-spent\" md-button type=\"button\" [routerLink]=\"['/add']\"><em>{{statisticsTranslation.addNew}}</em></button>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 296:
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"section-header\">\n    <div class=\"container\">\n        <div class=\"moveBack\">\n            <a (click)=\"backClicked()\"><i class=\"material-icons\">arrow_back</i></a>\n        </div>\n        <div class=\"title\">{{title}}</div>\n        <div></div>\n    </div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <div class=\"datepicker-container\">\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"fromDate\"/>\n                <button mdSuffix [mdDatepickerToggle]=\"fromDate\"></button>\n            </md-input-container>    \n            <md-datepicker #fromDate                   \n                md-current-view=\"month\" \n                md-mode=\"month\">\n            </md-datepicker>\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"toDate\"/>\n                <button mdSuffix [mdDatepickerToggle]=\"toDate\"></button>\n            </md-input-container>    \n            <md-datepicker #toDate  \n                [startAt]=\"to\"                 \n                startView=\"month\">\n            </md-datepicker>     \n        </div>\n        <em class=\"spends-info\" *ngIf=\"spends && spends.length\">Here is a list of spends:</em>\n        <statistics-list [spends]=\"spends\"></statistics-list>\n    </div>\n</div>"
+module.exports = "<div class=\"section-header\">\n    <div class=\"container\">\n        <div class=\"moveBack\">\n            <a (click)=\"backClicked()\"><i class=\"material-icons\">arrow_back</i></a>\n        </div>\n        <div class=\"title\">{{title}}</div>\n        <div></div>\n    </div>\n</div>\n<div class=\"section-content\">\n    <div class=\"container\">\n        <div class=\"datepicker-container\">\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"fromDate\"/>\n                <button mdSuffix [mdDatepickerToggle]=\"fromDate\"></button>\n            </md-input-container>    \n            <md-datepicker #fromDate                   \n                md-current-view=\"month\" \n                md-mode=\"month\">\n            </md-datepicker>\n            <md-input-container>\n                <input mdInput [mdDatepicker]=\"toDate\"/>\n                <button mdSuffix [mdDatepickerToggle]=\"toDate\"></button>\n            </md-input-container>    \n            <md-datepicker #toDate  \n                [startAt]=\"to\"                 \n                startView=\"month\">\n            </md-datepicker>     \n        </div>\n        <em class=\"spends-info\" *ngIf=\"spends && spends.length\">{{statisticsTranslation['spend-title']}}</em>\n        <statistics-list [spends]=\"spends\"></statistics-list>\n    </div>\n</div>"
 
 /***/ }),
 
 /***/ 297:
 /***/ (function(module, exports) {
 
-module.exports = "<em *ngIf=\"totals\" class=\"summary\"> Total {{totals}}</em>\n<expansion-panels-container *ngIf=\"spends && spends.length\">\n    <expansion-panel *ngFor=\"let item of spends\">\n        <expansion-panel-title class=\"spend-info\">         \n            {{ item.dateString}} - ${{item.price}}\n        </expansion-panel-title>\n        <expansion-panel-content>\n            <img src=\"{{item.picture}}\" alt=\"here should be a picture\"/>\n        </expansion-panel-content>\n    </expansion-panel>\n\n</expansion-panels-container>"
+module.exports = "<em *ngIf=\"totals\" class=\"summary\"> {{totalLabel}} {{totals}}</em>\n<expansion-panels-container *ngIf=\"spends && spends.length\">\n    <expansion-panel *ngFor=\"let item of spends\">\n        <expansion-panel-title class=\"spend-info\">         \n            {{ item.dateString}} - ${{item.price}}\n        </expansion-panel-title>\n        <expansion-panel-content>\n            <img src=\"{{item.picture}}\" alt=\"here should be a picture\"/>\n        </expansion-panel-content>\n    </expansion-panel>\n\n</expansion-panels-container>"
 
 /***/ }),
 

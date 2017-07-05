@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 
 import { 
@@ -22,10 +22,12 @@ export class CurrentComponent {
     spendsForPreviousMonth: any[] = []
     currentSpendTotals: number
     previousSpendTotals: number
+    statisticsTranslation: any
 
-    constructor(private budgetService: BudgetService, private route: ActivatedRoute) {
+    constructor(private budgetService: BudgetService, private route: ActivatedRoute, private translationService: TranslationService) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
         this.title = this.category.value
+        this.statisticsTranslation = translationService.getAllForComponent('statistics')
     }
 
     ngOnInit() {
@@ -47,7 +49,7 @@ export class CurrentComponent {
 
     getAllSpendsPerPreviousMonth() : BuyingItem[] {
         if (this.category === null) return []
-        const { from, to } = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate())
+        const { from, to } = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date()))
 
         this.budgetService.getAllSpends(this.category.value, from, to).on('value', result => {
             const value = result.val()
@@ -72,7 +74,7 @@ export class CurrentComponent {
     }
 
     //add test to this method
-    private _getStartAndEndDatesPerMonth(date: Date) {
+    _getStartAndEndDatesPerMonth(date: Date) {
         const year = date.getFullYear(),
             month = date.getMonth()
 
@@ -83,12 +85,9 @@ export class CurrentComponent {
     }
 
     //add test to this method
-    private _getPreviousMonthDate() {
-        let date = new Date()
-
+    _getPreviousMonthDate(date: Date) {
         date.setDate(1)
         date.setMonth(date.getMonth() - 1)
-
         return date
     }
 }

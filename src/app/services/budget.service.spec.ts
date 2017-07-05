@@ -21,7 +21,15 @@ describe('BudgetService', () => {
                     return {
                         ref: function() {
                             return {
-                                orderByChild: function() {}
+                                orderByChild: function() {
+                                    return {
+                                        startAt: function() {
+                                            return {
+                                                endAt : function() {}
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

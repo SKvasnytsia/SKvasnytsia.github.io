@@ -23,14 +23,15 @@ export class HistoryComponent implements OnInit{
     title: string
     category: any
     spends: any = []
+    statisticsTranslation: any
 
     @ViewChild('fromDate') fromDate: MdDatepicker<Date>
     @ViewChild('toDate') toDate: MdDatepicker<Date>
 
-    constructor(private budgetService: BudgetService, private _location: Location, private route: ActivatedRoute) {
+    constructor(private budgetService: BudgetService, private _location: Location, private route: ActivatedRoute, private translationService: TranslationService) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
-        
         this.title = this.category.value
+        this.statisticsTranslation = translationService.getAllForComponent('statistics')
     }
 
     ngOnInit() {

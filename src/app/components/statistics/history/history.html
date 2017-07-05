@@ -27,7 +27,7 @@
                 startView="month">
             </md-datepicker>     
         </div>
-        <em class="spends-info" *ngIf="spends && spends.length">Here is a list of spends:</em>
+        <em class="spends-info" *ngIf="spends && spends.length">{{statisticsTranslation['spend-title']}}</em>
         <statistics-list [spends]="spends"></statistics-list>
     </div>
 </div>

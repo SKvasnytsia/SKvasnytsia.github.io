@@ -18,6 +18,7 @@ import { BuyingItem, CATEGORIES } from '../../../common/models/index'
 export class StatisticsListComponent {
     @Input() spends: any[]
     @Input() totals: number
+    @Input() totalLabel: string
 
     constructor(){
         console.log('StatisticsListComponent', this.spends)
