@@ -19,6 +19,6 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/",
+  "start_url": "index.html",
   "display": "standalone"
 }

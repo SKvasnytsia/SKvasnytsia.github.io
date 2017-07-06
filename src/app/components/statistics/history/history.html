@@ -11,7 +11,7 @@
     <div class="container">
         <div class="datepicker-container">
             <md-input-container>
-                <input mdInput [mdDatepicker]="fromDate"/>
+                <input mdInput [mdDatepicker]="fromDate" value="{{from}}"/>
                 <button mdSuffix [mdDatepickerToggle]="fromDate"></button>
             </md-input-container>    
             <md-datepicker #fromDate                   
@@ -19,11 +19,10 @@
                 md-mode="month">
             </md-datepicker>
             <md-input-container>
-                <input mdInput [mdDatepicker]="toDate"/>
+                <input mdInput [mdDatepicker]="toDate" value="{{to}}"/>
                 <button mdSuffix [mdDatepickerToggle]="toDate"></button>
             </md-input-container>    
-            <md-datepicker #toDate  
-                [startAt]="to"                 
+            <md-datepicker #toDate                 
                 startView="month">
             </md-datepicker>     
         </div>

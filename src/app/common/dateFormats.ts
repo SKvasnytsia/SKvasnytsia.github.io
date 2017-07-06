@@ -1,6 +1,6 @@
 export const DATE_FORMATS = {
     parse: {
-       dateInput: {month: 'short', year: 'numeric'}
+       dateInput: {month: 'short', year: 'numeric', day: 'numeric'}
     },
     display: {// dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
         dateInput: 'input',

@@ -2,7 +2,6 @@ import { Routes } from '@angular/router'
 
 import {
     CategoryComponent,
-    //StatisticsComponent,
     ScannerComponent,
     AuthComponent,
 
@@ -11,12 +10,12 @@ import {
 
 import { AuthentificatedActivator, CategoryRouteActivator } from './services/routeActivators/index'
 
+//todo: do we need authorization for each statistics children route?
 export const appRoutes : Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'categories', component: CategoryComponent, canActivate: [AuthentificatedActivator] },
- // { path: 'statistics/:category', component: StatisticsComponent, canActivate: [AuthentificatedActivator, CategoryRouteActivator] },
   { path: 'add', component: ScannerComponent, canActivate: [AuthentificatedActivator] },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/categories', pathMatch: 'full'},
-  { path: 'statistics/:category', loadChildren: 'app/components/statistics/statistics.module#StatisticsModule', canActivate: [AuthentificatedActivator, CategoryRouteActivator] },
+  { path: 'statistics/:category', loadChildren: 'app/components/statistics/statistics.module#StatisticsModule', canActivate: [AuthentificatedActivator, CategoryRouteActivator] }
 ]
