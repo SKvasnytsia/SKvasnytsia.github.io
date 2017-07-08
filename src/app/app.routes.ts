@@ -10,7 +10,7 @@ import {
 
 import { AuthentificatedActivator, CategoryRouteActivator } from './services/routeActivators/index'
 
-//todo: do we need authorization for each statistics children route?
+//TODO: do we need authorization for each statistics children route?
 export const appRoutes : Routes = [
   { path: 'login', component: AuthComponent },
   { path: 'categories', component: CategoryComponent, canActivate: [AuthentificatedActivator] },

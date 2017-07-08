@@ -12,7 +12,7 @@ import { AuthService, TranslationService } from '../../services/index'
 
 export class AuthComponent {
     private key = 'login'
-    public login: Object
+    public login: any
 
     constructor(public router: Router, public auth: AuthService, public translationService: TranslationService, private firebaseAuth: AngularFireAuth) {
         this.login = translationService.getAllForComponent(this.key)

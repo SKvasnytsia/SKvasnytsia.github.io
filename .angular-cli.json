@@ -9,6 +9,8 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "manifest.json",
+        "service-worker-registration.js",
         "service-worker.js"
       ],
       "index": "index.html",
