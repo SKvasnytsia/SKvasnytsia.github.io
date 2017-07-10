@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --port=4200",
     "build": "webpack",
-    "build--prod": "webpack -p",
+    "build--prod": "NODE_ENV='prod' webpack -p",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",
     "e2e": "protractor ./protractor.conf.js",
@@ -72,7 +72,6 @@
     "ts-node": "^3.1.0",
     "tslint": "^5.4.3",
     "typescript": "^2.4.0",
-    "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.5.7",
     "webpack": "~2.4.0",
     "webpack-dev-server": "~2.4.5",
