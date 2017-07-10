@@ -26,10 +26,10 @@ module.exports = function (env) {
   return webpackMerge(commonConfig({
     env: ENV
   }), {
-    devtool: 'cheap-module-source-map',
+    devtool: false,
     output: {
       path: helpers.root('dist'),
-      filename: '[name].[chunkhash].bundle.js',
+      filename: '[name].[chunkhash].bundle.min.js',
       sourceMapFilename: '[file].map',
       chunkFilename: '[name].[chunkhash].chunk.js'
     },
@@ -43,9 +43,9 @@ module.exports = function (env) {
           'HMR': METADATA.HMR,
         }
       }),
-      new UglifyJsPlugin({
-        include: /\.min\.js$/,
-        minimize: true
+      new UglifyJsPlugin({ 
+          mangle: false, 
+          sourcemap: false 
       }),
     ]
   })
