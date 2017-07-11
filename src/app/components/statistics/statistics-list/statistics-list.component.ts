@@ -4,15 +4,15 @@ import { Router } from '@angular/router'
 import { 
     BudgetService,
     TranslationService
- } from "app/services/index"
+ } from "../../../services/index"
 
 import { BuyingItem, CATEGORIES } from '../../../common/models/index'
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'statistics-list',
-  templateUrl: './statistics-list.html',
-  styleUrls: ['./statistics-list.scss']
+    encapsulation: ViewEncapsulation.None,
+    selector: 'statistics-list',
+    templateUrl: './statistics-list.html',
+    styleUrls: ['./statistics-list.scss']
 })
 
 export class StatisticsListComponent {

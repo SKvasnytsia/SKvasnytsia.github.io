@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router'
+import { statisticsRoutes } from './components/statistics/statistics.routes'
 
 import {
     CategoryComponent,
@@ -17,5 +18,8 @@ export const appRoutes : Routes = [
   { path: 'add', component: ScannerComponent, canActivate: [AuthentificatedActivator] },
   { path: '404', component: Error404Component },
   { path: '', redirectTo: '/categories', pathMatch: 'full'},
-  { path: 'statistics/:category', loadChildren: 'app/components/statistics/statistics.module#StatisticsModule', canActivate: [AuthentificatedActivator, CategoryRouteActivator] }
+  { 
+    path: 'statistics/:category', 
+    children: statisticsRoutes, 
+    canActivate: [AuthentificatedActivator, CategoryRouteActivator] }
 ]

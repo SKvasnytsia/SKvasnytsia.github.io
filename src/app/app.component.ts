@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation, Injectable } from '@angular/core'
-import { TranslationService } from "app/services/index"
+import { TranslationService } from "./services/index"
 
 @Component({
   encapsulation: ViewEncapsulation.None,

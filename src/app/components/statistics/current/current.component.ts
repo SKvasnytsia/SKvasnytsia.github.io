@@ -4,15 +4,15 @@ import { ActivatedRoute } from '@angular/router'
 import { 
     BudgetService,
     TranslationService
- } from "app/services/index"
+ } from "../../../services/index"
 
 import { BuyingItem, CATEGORIES } from '../../../common/models/index'
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'current',
-  templateUrl: './current.html',
-  styleUrls: ['./current.scss']
+    encapsulation: ViewEncapsulation.None,
+    selector: 'current',
+    templateUrl: './current.html',
+    styleUrls: ['./current.scss']
 })
 
 export class CurrentComponent {

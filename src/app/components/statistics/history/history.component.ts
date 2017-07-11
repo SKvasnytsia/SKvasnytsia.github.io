@@ -6,15 +6,15 @@ import { MdDatepicker } from '@angular/material'
 import { 
     BudgetService,
     TranslationService
- } from "app/services/index"
+ } from "../../../services/index"
 
 import { BuyingItem, CATEGORIES } from '../../../common/models/index'
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'history',
-  templateUrl: './history.html',
-  styleUrls: ['./history.scss']
+    encapsulation: ViewEncapsulation.None,
+    selector: 'history',
+    templateUrl: './history.html',
+    styleUrls: ['./history.scss']
 })
 
 export class HistoryComponent implements OnInit{

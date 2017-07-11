@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const helpers = require('./helpers');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
@@ -427,7 +428,7 @@ module.exports = function(options) {
             "environments/environment.ts": "environments/environment.ts"
         },
         "exclude": [],
-        "tsConfigPath": "src/tsconfig.app.json",
+        "tsConfigPath": helpers.root("src/tsconfig.app.json"),
         "skipCodeGeneration": true
         })
     ],

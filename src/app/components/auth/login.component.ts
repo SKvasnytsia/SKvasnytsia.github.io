@@ -4,10 +4,10 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { AuthService, TranslationService } from '../../services/index'
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'login',
-  templateUrl: './login.html',
-  styleUrls: ['./login.scss']
+    encapsulation: ViewEncapsulation.None,
+    selector: 'login',
+    templateUrl: './login.html',
+    styleUrls: ['./login.scss']
 })
 
 export class AuthComponent {

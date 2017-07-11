@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core'
 import { TestBed, async } from '@angular/core/testing';
 import { StatisticsComponent } from './statistics.component'
-import { TranslationService } from "app/services/index"
+import { TranslationService } from "../../services/index"
 
 describe('Statistics', () => {
   beforeEach(async(() => {

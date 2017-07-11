@@ -6,6 +6,8 @@ const commonConfig = require('./webpack.common.js');
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 /**
  * Webpack Constants
@@ -34,19 +36,24 @@ module.exports = function (env) {
       chunkFilename: '[name].[chunkhash].chunk.js'
     },
     plugins: [
-      new DefinePlugin({
-        'ENV': JSON.stringify(METADATA.ENV),
-        'HMR': METADATA.HMR,
-        'process.env': {
-          'ENV': JSON.stringify(METADATA.ENV),
-          'NODE_ENV': JSON.stringify(METADATA.ENV),
-          'HMR': METADATA.HMR,
-        }
-      }),
-      new UglifyJsPlugin({ 
-          mangle: false, 
-          sourcemap: false 
-      }),
+        new DefinePlugin({
+            'ENV': JSON.stringify(METADATA.ENV),
+            'HMR': METADATA.HMR,
+            'process.env': {
+            'ENV': JSON.stringify(METADATA.ENV),
+            'NODE_ENV': JSON.stringify(METADATA.ENV),
+            'HMR': METADATA.HMR,
+            }
+        }),
+        new UglifyJsPlugin({ 
+            mangle: false, 
+            sourcemap: false 
+        }),
+        new LoaderOptionsPlugin({
+            minimize: true,
+            debug: false,
+        }),
+        new BundleAnalyzerPlugin()
     ]
   })
 }

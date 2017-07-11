@@ -6,10 +6,10 @@ import { BuyingItem, CATEGORIES } from '../../common/models/index'
 import { TranslationService } from '../../services/index'
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
-  selector: 'scanner',
-  templateUrl: './scanner.html',
-  styleUrls: ['./scanner.scss']
+    encapsulation: ViewEncapsulation.None,
+    selector: 'scanner',
+    templateUrl: './scanner.html',
+    styleUrls: ['./scanner.scss']
 })
 
 export class ScannerComponent {

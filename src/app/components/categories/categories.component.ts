@@ -3,7 +3,7 @@ import { Router } from '@angular/router'
 
 import { 
     TranslationService
- } from "app/services/index"
+ } from "../../services/index"
 
 import { CATEGORIES } from '../../common/models/index'
 

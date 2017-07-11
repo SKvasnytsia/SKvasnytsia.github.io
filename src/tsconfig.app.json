@@ -5,12 +5,17 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noEmit": true,
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "strictNullChecks": false,
     "target": "es5",
     "lib": [
       "es2016",
       "dom"
     ],
     "outDir": "../out-tsc/app",
+
     "module": "es2015",
     "baseUrl": "",
     "types": [
@@ -20,5 +25,15 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+ 
+  "angularCompilerOptions": {
+    "genDir": "./../compiled",
+    "skipMetadataEmit": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }
