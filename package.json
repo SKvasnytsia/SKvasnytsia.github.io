@@ -5,7 +5,7 @@
   "scripts": {
     "start": "webpack-dev-server --port=4200",
     "build": "webpack",
-    "build--prod": "NODE_ENV='prod' webpack --optimize-minimize && npm run precache",
+    "build--prod": "NODE_ENV='prod' webpack --optimize-minimize",
     "test": "karma start ./karma.conf.js",
     "lint": "ng lint",
     "e2e": "protractor ./protractor.conf.js",

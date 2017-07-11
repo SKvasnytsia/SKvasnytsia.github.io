@@ -1,0 +1,24 @@
+{
+  "name": "My Budget",
+  "short_name": "MyBudget",
+  "description":"Displays statistics of spends in user-friendly manner",
+  "icons": [
+    {
+      "src": "assets/icon-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "assets/icon-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "assets/icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/",
+  "display": "fullscreen"
+}
