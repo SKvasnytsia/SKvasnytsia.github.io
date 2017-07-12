@@ -2,13 +2,6 @@
 @import '../../mixins.scss';
 
 scanner {
-    .section-header {
-        @include section-header($color1);
-        div.container {
-            background-color: $color1;
-            padding: 5px 0;
-        }
-    }
     .section-content {
         background-color: $color6;
         .container {

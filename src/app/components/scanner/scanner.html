@@ -1,13 +1,9 @@
-<div class="section-header nav-part">
-    <div class="container">
-        <a [routerLink]="['/categories']">Categories</a>
+<section-header [title]="title">
+    <div move-back>
+        <a (click)="backClicked()"><i class="material-icons">arrow_back</i></a>
     </div>
-</div>
-<div class="section-header">
-    <div class="container">        
-        {{title}}
-    </div>
-</div>
+    <div move-forward></div>
+</section-header>
 <div class="section-content">
     <div class="container">
         <form>

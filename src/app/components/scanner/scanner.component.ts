@@ -31,4 +31,8 @@ export class ScannerComponent {
     close() {
 
     }
+
+    backClicked() {
+        
+    }
 }

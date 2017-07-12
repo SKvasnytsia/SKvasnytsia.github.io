@@ -1,7 +1,7 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Location } from '@angular/common'
-import { MdDatepicker } from '@angular/material'
+
 
 import { 
     BudgetService,
@@ -17,7 +17,7 @@ import { BuyingItem, CATEGORIES } from '../../../common/models/index'
     styleUrls: ['./history.scss']
 })
 
-export class HistoryComponent implements OnInit{
+export class HistoryComponent{
     from: Date = new Date()
     to: Date = new Date()
     title: string
@@ -25,24 +25,16 @@ export class HistoryComponent implements OnInit{
     spends: any = []
     statisticsTranslation: any
 
-    @ViewChild('fromDate') fromDate: MdDatepicker<Date>
-    @ViewChild('toDate') toDate: MdDatepicker<Date>
-
     constructor(private budgetService: BudgetService, private _location: Location, private route: ActivatedRoute, private translationService: TranslationService) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
         this.title = this.category.value
         this.statisticsTranslation = translationService.getAllForComponent('statistics')
     }
 
-    ngOnInit() {
-        this.toDate.selectedChanged.subscribe(date => {
-            this.to = date
-            this.getAllSpendsPerPeriod()
-        })
-        this.fromDate.selectedChanged.subscribe(date => {
-            this.from = date
-            this.getAllSpendsPerPeriod()
-        })
+    dateUpdated($event) {
+        console.log($event)
+        this[$event.type] = $event.value
+        this.getAllSpendsPerPeriod()
     }
     //disable dates bigger or lower than  ---- smth like validate range
     getAllSpendsPerPeriod() : BuyingItem[] {

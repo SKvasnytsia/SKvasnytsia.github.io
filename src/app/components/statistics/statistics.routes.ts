@@ -1,11 +1,13 @@
 import { 
     HistoryComponent,
-    CurrentComponent
+    CurrentComponent,
+    AllComponent
 } from './index'
 
-import { AuthentificatedActivator, CategoryRouteActivator } from '../../services/routeActivators/index'
+import { CategoryRouteActivator } from '../../services/routeActivators/index'
 
 export const statisticsRoutes =  [
-    { path: 'history', component: HistoryComponent },
-    { path: '', component: CurrentComponent}
+    { path: 'history-all', component: AllComponent},
+    { path: ':category/history', component: HistoryComponent, canActivate: [CategoryRouteActivator] },
+    { path: ':category', component: CurrentComponent, canActivate: [CategoryRouteActivator]}
 ]

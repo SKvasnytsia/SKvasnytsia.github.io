@@ -3,21 +3,10 @@
 
 current {
     background-color: $color8;
-    
-    .section-header {
-        @include section-header($color1);
-        
-        
-        div.container {
-            background-color: $color1;
-            padding: 10px 25px;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-        }
-    }
-
+    position: relative;
     .section-content {
+        margin-top: 45px;
+        position: absolute;
         background-color: $color6;
         font-size: 0.8em;
         div.container {

@@ -1,0 +1,19 @@
+<section-header [title]="'History'">
+    <div move-back>
+        <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
+    </div>
+    <div move-forward></div>
+</section-header>
+
+<div class="category-content">
+    <div class="container">
+        <range-selector [from]="from" [to]="to" (dateUpdated)="dateUpdated($event)"></range-selector>
+        <div class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
+            <div class="category-name">{{category.value}}</div>
+            <span class="cost-info">Spent $10 per month</span>      
+        </div>
+    </div>
+</div>
+
+
+

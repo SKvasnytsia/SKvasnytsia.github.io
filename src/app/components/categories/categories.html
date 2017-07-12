@@ -1,9 +1,9 @@
-<div class="section-header">
-    <div class="container">
-        {{title}}
+<section-header [title]="title">
+    <div move-back></div>
+    <div class="history" move-forward>
+        <a [routerLink]="['/statistics/history-all']"><i class="material-icons">history</i></a>
     </div>
-    <diagram></diagram>
-</div>
+</section-header>
 
 <div class="category-content">
     <div class="container">

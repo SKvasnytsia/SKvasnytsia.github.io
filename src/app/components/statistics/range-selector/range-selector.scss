@@ -1,0 +1,10 @@
+.datepicker-container {
+    font-size: 0.8em;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    md-input-container {
+        width: 50%;
+    }
+}

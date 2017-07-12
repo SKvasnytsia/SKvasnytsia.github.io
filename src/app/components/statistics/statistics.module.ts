@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
-import { ExtendedMaterialModule } from '../../material/material.module'
+import { ExtendedMaterialModule, SharedModule } from '../../shared-modules/index'
 import {
     DateAdapter,
     MD_DATE_FORMATS
@@ -19,7 +19,9 @@ import {
     StatisticsComponent,
     StatisticsListComponent,
     HistoryComponent,
-    CurrentComponent
+    CurrentComponent,
+    AllComponent,
+    RangeSelectorComponent
 } from './index'
 
 @NgModule({
@@ -27,13 +29,17 @@ import {
         CommonModule,
         RouterModule.forChild(statisticsRoutes),
         ExtendedMaterialModule,
-        ExpansionPanelsModule       
+        ExpansionPanelsModule,
+        SharedModule       
     ],
     declarations: [
         StatisticsComponent,
         HistoryComponent,
         CurrentComponent,
-        StatisticsListComponent
+        StatisticsListComponent,
+        RangeSelectorComponent,
+
+        AllComponent
     ],
     providers: [
         { provide: DateAdapter, useClass: MdDateAdapter},

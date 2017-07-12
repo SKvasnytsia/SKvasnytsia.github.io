@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 //import { Logger } from "angular2-logger/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { ExtendedMaterialModule } from './material/material.module'
+import { ExtendedMaterialModule, SharedModule } from './shared-modules/index'
 //routes
 import { appRoutes } from './app.routes'
 
@@ -56,7 +56,8 @@ import {
     AngularFireAuthModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
-    ExtendedMaterialModule
+    ExtendedMaterialModule,
+    SharedModule
   ],
   providers: [
     AuthService,

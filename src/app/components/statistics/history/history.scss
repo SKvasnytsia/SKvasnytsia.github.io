@@ -3,30 +3,14 @@
 
 history {
     font-size: 0.8em;
-    .datepicker-container {
-        font-size: 0.8em;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: space-between;
-        margin-bottom: 15px;
-        md-input-container {
-            width: 50%;
-        }
-    }
+    position: relative;
     .spends-info {
         font-size: 0.8em;
     }
 
-    .section-header {
-        @include section-header($color1);
-        div.container {
-            background-color: $color1;
-            padding: 5px 0;
-            padding: 10px 25px;
-            display: flex;
-            flex-flow: row wrap;
-            justify-content: space-between;
-        }
+    .section-content {
+        margin-top: 45px;
+        position: absolute;
     }
 }
 

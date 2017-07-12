@@ -1,14 +1,11 @@
-<div class="section-header">
-    <div class="container">
-        <div class="moveBack">
-            <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
-        </div>
-        <div class="title">{{title}}</div>
-        <div class="history">
-            <a [routerLink]="['history']"><i class="material-icons">history</i></a>
-        </div>
+<section-header [title]="title">
+    <div move-back>
+        <a [routerLink]="['/categories']"><i class="material-icons">arrow_back</i></a>
     </div>
-</div>
+    <div move-forward>
+        <a [routerLink]="['history']"><i class="material-icons">history</i></a>
+    </div>
+</section-header>
 <div class="section-content">
     <div class="container">
         <md-tab-group>
