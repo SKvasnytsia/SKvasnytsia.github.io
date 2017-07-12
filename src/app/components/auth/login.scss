@@ -6,8 +6,11 @@ login {
     flex-flow: column wrap;
     justify-content: center;
     align-content: space-around;
-    padding: 10%;
-    top: 25%;
+    padding: 15px;
+
+    .main-img {
+        object-fit: scale-down;
+    }
     
     .sign-in-section {
         margin: 10% 0;
@@ -18,11 +21,11 @@ login {
             border: 1px solid $color9;
             background-color: $color8;
             margin: 5px;
-            height: 70px;
+            height: 50px;
             .google-icon,
             .facebook-icon {
                 position: absolute;
-                max-height: 50px;
+                max-height: 40px;
                 left: 5%;
                 top: 15%;
             }
@@ -39,15 +42,15 @@ login {
 /*Update css for medium and big screens*/
     /* Medium screens */
     @media only screen and (min-width: 768px) {
-        top: 5%;
-        left: 10%;
+        position: static;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     /* Laptops screens */
-    @media only screen and (min-width: 1224px) {
-        left:23%;
-        top: 5%;
-    }
+    // @media only screen and (min-width: 1224px) {
+    //     position: static;
+    // }
 
     /* Large screens ----------- */
     // @media only screen 

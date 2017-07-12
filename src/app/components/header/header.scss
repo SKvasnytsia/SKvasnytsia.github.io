@@ -3,17 +3,25 @@
 header {
     display: none;
     
-     /* Medium screens */
-    @media all and (min-width: 700px) {
+/*Update css for medium and big screens*/
+    /* Medium screens */
+    @media only screen and (min-width: 768px) {
         background-color: lighten($color4, 5%);
         display: flex;
         justify-content: center;
         div.container {
+            width:  100%;
             background-color: $color4; 
-            margin: 0;
-            padding: 10px;
+            margin: 0px;
+            padding: 0 10px;
         }
     }
 
+    /* Laptops screens */
+     @media only screen and (min-width: 1224px) {
+         div.container {
+             width: 75%;
+         }
+     }
     
 }
