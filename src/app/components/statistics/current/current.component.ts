@@ -56,7 +56,7 @@ export class CurrentComponent {
         if (this.category === null) return []
         const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
         this.cacheService.getCache(from, to).then(cache => {
-            if(cache.target.result.value)
+            if(cache.target.result && cache.target.result.value)
                 getSpendsResultCaller([].concat(cache.target.result.value), this.category.value)
             else 
                 this._getSpendsCaller(from, to, this.category.value, this.spendsForCurrentMonth, getSpendsResultCaller)
@@ -71,7 +71,7 @@ export class CurrentComponent {
         if (this.category === null) return []
         const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date()))
         this.cacheService.getCache(from, to).then(cache => {
-            if(cache.target.result.value)
+            if(cache.target.result && cache.target.result.value)
                 getSpendsResultCaller([].concat(cache.target.result.value), this.category.value)
             else 
                 this._getSpendsCaller(from, to, this.category.value, this.spendsForPreviousMonth, getSpendsResultCaller)
