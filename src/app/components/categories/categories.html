@@ -9,7 +9,7 @@
     <div class="container">
         <div class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
             <div class="category-name">{{category.value}}</div>
-            <span class="cost-info">Spent $10 per month</span>
+            <span class="cost-info">Total: $10/month</span>
             
         </div>
     </div>

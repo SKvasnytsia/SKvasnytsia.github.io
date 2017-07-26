@@ -67,14 +67,14 @@ export class HistoryComponent implements OnInit {
         Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(responses => {
-              let noDataFound = responses.some(x => !x.target.result)
+              let noDataFound = responses.some(x => !x.target.result.value)
               if (noDataFound) {
                 this.budgetService.getAllSpends(this.from, this.to).on('value', result => {
                   this.spends = this._getValidSpendsArray(result.val(), this.category.value)
                   this.cacheService.addOrUpdateCacheForRanges(this.spends, this.from, this.to)
                 })
               } else {
-                this.spends = this._getValidSpendsArray([].concat.apply([], responses.map(x => x.target.result)), this.category.value)
+                this.spends = this._getValidSpendsArray([].concat.apply([], responses.map(x => x.target.result.value)), this.category.value)
               }
           })
     }

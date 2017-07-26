@@ -9,7 +9,8 @@ statistics-all {
     background-color: $color6;
     position: relative;
     .category-content {
-        margin-top: 15%;
+        margin-top: 15px;
+        padding-top: 20px;
         background-color: $color6;
         overflow-y: scroll;
         font-size: 0.7em;

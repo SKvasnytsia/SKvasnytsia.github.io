@@ -8,21 +8,24 @@ categories {
     justify-content: center;
     background-color: $color6;
     position: relative;
+
     .category-content {
-        margin-top: 15%;
-        margin-bottom: 50px;
+        padding: 3em 1em 1.5em 1em;
+        line-height: 100%;
         background-color: $color6;
-        overflow-y: scroll;
-        font-size: 0.8em;
+        font-size: 0.7em;
         display:flex;
+        flex-flow: column wrap;
         justify-content: center;
         .container {
-            width: 75%;
+            width: 100%;
             .category {
                 border-top: 1px solid $color8;
-                margin: 5px 0;
-                padding: 10px 5px;
+                //border-bottom: 1px solid $color8;
+                box-shadow: 1px 0px 3px lighten($color9, 30%);
+                padding: 25px 5px;
                 clear: both;
+                margin: 10px 0;
 
                 /* highlighted, hover should work */
                 &.highlighted,
@@ -31,6 +34,7 @@ categories {
                 }
                 .category-name {
                     width: 100%;
+                    padding-bottom: 10px;
                 }
                 .cost-info {
                     font-size: 0.6em;

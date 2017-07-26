@@ -2,7 +2,8 @@
 @import './assets/theme.scss';
 
 body {
-    font-size: 1.8em
+    font-size: 1.8em;
+    font-family: 'Roboto', "Helvetica Neue", sans-serif;
 }
 div.container {            
     @media (min-width: 1000px) {

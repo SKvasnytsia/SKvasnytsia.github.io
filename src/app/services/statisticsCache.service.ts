@@ -36,7 +36,8 @@ export class StatisticsCacheService {
             return new Promise((resolve, reject) => {
                 let dataRequest: IDBRequest = store
                 .index('range')
-                .getAll(`${from.toLocaleDateString('en-US')}-${to.toLocaleDateString('en-US')}`)
+                .openCursor(`${from.toLocaleDateString('en-US')}-${to.toLocaleDateString('en-US')}`)
+                
                 dataRequest.onsuccess = resolve
                 dataRequest.onerror = reject
             })
