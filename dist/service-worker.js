@@ -1,49 +1,10 @@
-/**
- * Copyright 2016 Google Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
-*/
-
-// DO NOT EDIT THIS GENERATED OUTPUT DIRECTLY!
-// This file should be overwritten as part of your build process.
-// If you need to extend the behavior of the generated service worker, the best approach is to write
-// additional code and include it using the importScripts option:
-//   https://github.com/GoogleChrome/sw-precache#importscripts-arraystring
-//
-// Alternatively, it's possible to make changes to the underlying template file and then use that as the
-// new base for generating output, via the templateFilePath option:
-//   https://github.com/GoogleChrome/sw-precache#templatefilepath-string
-//
-// If you go that route, make sure that whenever you update your sw-precache dependency, you reconcile any
-// changes made to this original template file with your modified copy.
-
-// This generated service worker JavaScript will precache your site's resources.
-// The code needs to be saved in a .js file at the top-level of your site, and registered
-// from your pages in order to be used. See
-// https://github.com/googlechrome/sw-precache/blob/master/demo/app/js/service-worker-registration.js
-// for an example of how you can register this script and handle various service worker events.
-
-/* eslint-env worker, serviceworker */
-/* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["0.a6a14f4fe6e6048376dc.chunk.js","8a494b2ae16afb5ed1c9d8c5aba57255"],["assets/chek.png","af9e3733a9f7457cf1efc02d1991405a"],["assets/facebook_logo.png","c5e934f6c9ff24f1661ea8aa70e36f2c"],["assets/google_logo.png","e35ce358113a078d7cd38e05c35d4124"],["assets/icon-1x.png","f8c764e84bf66266455a624e02ad1707"],["assets/icon-2x.png","24397bfda4e2797d7cb7297a943b1b6d"],["assets/icon-4x.png","e10fd3ba0543483ff9334f2ba1826398"],["index.html","ed92501b61b2b12c8bbfa23f128cc569"],["main.aae93acff697333ae860.bundle.min.js","3396d886ac8a5cce249cc8f964916e84"],["polyfills.b5f4543574b19a0fc0f3.bundle.min.js","1a03963533d573fc28d219bb511f0196"],["service-worker-registration.js","167af1085802ab5ba406ff62f233f437"],["styles.47a589feafe00f3d6bd3.bundle.min.js","3c0e07bbab8a118de0caec83b02513e9"],["vendor.26e97cf9a24249072324.bundle.min.js","f586568af6c5b34ead6ab2baf05b26ee"]];
+var precacheConfig = []
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
 var ignoreUrlParametersMatching = [/^utm_/];
-
-
 
 var addDirectoryIndex = function (originalUrl, index) {
     var url = new URL(originalUrl);
@@ -229,7 +190,7 @@ self.addEventListener('fetch', function(event) {
 
     // If shouldRespond is still false, check to see if this is a navigation
     // request, and if so, whether the URL matches navigateFallbackWhitelist.
-    var navigateFallback = '/index.html';
+    var navigateFallback = '';
     if (!shouldRespond &&
         navigateFallback &&
         (event.request.mode === 'navigate') &&

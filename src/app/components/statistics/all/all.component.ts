@@ -1,12 +1,14 @@
-import { Component, ViewEncapsulation, EventEmitter, Input, Output, Injectable } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, ViewEncapsulation, EventEmitter, Input, Output, OnInit } from '@angular/core'
+import { Router, ActivatedRoute } from '@angular/router'
 
 import { 
     BudgetService,
-    TranslationService
+    TranslationService,
+    StatisticsCacheService
  } from "../../../services/index"
 
-import { BuyingItem, CATEGORIES } from '../../../common/models/index'
+import { BuyingItem, CATEGORIES, CacheItem } from '../../../common/models/index'
+import { DateCalculationHelper } from '../../../common/index'
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -15,20 +17,43 @@ import { BuyingItem, CATEGORIES } from '../../../common/models/index'
   styleUrls: ['./all.scss']
 })
 
-export class AllComponent {
+export class AllComponent implements OnInit{
 
   public list: Array<string> = CATEGORIES
   public title: string
   public category: string
   public from: Date
-  public to: Date
+  public  to: Date
   private activeCategory: string
   private key: string = 'categories'
+  public spends: any
  
-  constructor (private budgetService: BudgetService, private translationService: TranslationService, private router: Router){
+  constructor (private budgetService: BudgetService, 
+      private translationService: TranslationService, 
+      private cacheService: StatisticsCacheService,
+      private router: Router,
+      private activated: ActivatedRoute){
     const translations = translationService.getAllForComponent(this.key)
     
     this.title = translations.title
+    this.currentMonthSpendsSetup()
+  }
+
+  ngOnInit() {
+    let fromString = this.activated.snapshot.paramMap.get('from')
+    let toString = this.activated.snapshot.paramMap.get('to')
+
+    if (fromString) 
+      this.from = new Date(fromString)
+    if (toString)
+      this.to = new Date(toString)
+  }
+
+  currentMonthSpendsSetup() {
+    const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
+    this.from = from
+    this.to = to
+    this.getAllSpendsPerPeriod()
   }
 
   getStatistics(category: string) {
@@ -37,19 +62,86 @@ export class AllComponent {
   }
 
   dateUpdated($event) {
-        console.log($event)
         this[$event.type] = $event.value
         this.getAllSpendsPerPeriod()
   }
 
   getAllSpendsPerPeriod() : BuyingItem[] {
-        console.log('getAllSpendsPerPeriod', this.from, this.to, this.category)
-        if (this.category === null) return []
-        if (!this.from || !this.to) return []
+    const spendsHandler = res => {
+          let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to)
+          let groupped = this._groupByCategories(res)
+          return this._updateCategorizedDataPerDateRange(groupped, dateRanges)
+         
+    }
+    if (!this.from || !this.to) return []
+    let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to, false)
+    const result = []
+    Promise.all([...dateRanges.map(range => 
+          this.cacheService.getCache(range.from, range.to))])
+          .then(responses => {
+              let noDataFound = responses.some(x => !x.target.result)
+              if (noDataFound) {
+                this.budgetService.getAllSpends(this.from, this.to).on('value', result => {
+                  this.spends = spendsHandler(result.val().filter(x => x))
+                  this.cacheService.addOrUpdateCacheForRanges(this.spends, this.from, this.to)
+                })
+              } else {
+                this.spends = spendsHandler([].concat.apply([], responses.map(x => x.target.result)))
+              }
+          })
+  }
 
-        //console.log('getAllSpendsPerPeriod')
-        // this.budgetService.getAllSpends(this.category.value, this.from, this.to).on('value', result => {
-        //      this.spends = this._getValidSpendsArray(result.val())
-        // })
+  _groupByCategories(value) {
+    return value ? value
+      .map(x => {
+            x.dateString =  new Date(x.date).toLocaleDateString()
+            return x
+      })
+      .reduce((prev, current) => {
+          if (!prev[current.group])
+            prev[current.group] = {}
+          
+          let array = prev[current.group].array ? prev[current.group].array : [],
+                totals = prev[current.group].totals ? prev[current.group].totals : 0
+          
+          
+          totals += parseFloat(current.price)
+          prev[current.group].array = [...array, current]
+          prev[current.group].totals = totals
+          return prev
+      }, {})
+    : []       
+  }
+
+  _updateCategorizedDataPerDateRange(categorized, dateRanges) {
+    for(let group in categorized) {
+      categorized[group].items = 
+        this._separateArrayPerRange(categorized[group].array, dateRanges)
+    }
+    return categorized
+  }
+
+  _separateArrayPerRange(array, dateRanges) {
+    const arrayInRangeCaller = (array, from: Date, to: Date) => {
+      return array.filter(item => item.date >= from && item.date <= to)
+    } 
+    return dateRanges.map(range => {
+      const rangedArray = arrayInRangeCaller(array, range.from, range.to)
+      
+      range.totals = rangedArray.reduce((prev, item) => {
+        prev += parseFloat(item.price)        
+        return prev
+      },0)
+      range.fromString = range.from.toLocaleDateString()
+      range.toString = range.to.toLocaleDateString()
+      range.array = rangedArray
+      return {...range}
+    })
+  }
+
+  details(category, fromString, toString) {
+    this.router.navigate([`/statistics/${category.value}/history`, 
+        { from:fromString, to: toString}])
   }
 }
+

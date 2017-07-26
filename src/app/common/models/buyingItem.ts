@@ -2,6 +2,7 @@ export class BuyingItem {
     public id: string
     public picture: string
     public dateString: string
+    public group: string
     
     constructor(public price: string,
                 public date?: Date ) {
@@ -13,4 +14,5 @@ export class BuyingItem {
         }
 
     }
+    
 }

@@ -21,7 +21,6 @@ export class StatisticsListComponent {
     @Input() totalLabel: string
 
     constructor(){
-        console.log('StatisticsListComponent', this.spends)
     }
 
 

@@ -14,7 +14,6 @@ export class AuthentificatedActivator implements CanActivate {
     }
 
     canActivate(): Observable<boolean> {
-        console.log(this.auth) 
         let authenticatedSubject = this.auth.authState
             .take(1)
             .map(user => !!user)

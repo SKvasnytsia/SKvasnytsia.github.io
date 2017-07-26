@@ -43,7 +43,7 @@ import {
     ],
     providers: [
         { provide: DateAdapter, useClass: MdDateAdapter},
-        { provide: MD_DATE_FORMATS, useValue: DATE_FORMATS},
+        { provide: MD_DATE_FORMATS, useValue: DATE_FORMATS}
     ]
 })
 

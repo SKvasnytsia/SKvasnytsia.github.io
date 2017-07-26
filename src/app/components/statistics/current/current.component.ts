@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router'
 
 import { 
     BudgetService,
-    TranslationService
+    TranslationService,
+    StatisticsCacheService
  } from "../../../services/index"
 
 import { BuyingItem, CATEGORIES } from '../../../common/models/index'
+import { DateCalculationHelper } from '../../../common/index'
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -24,7 +26,10 @@ export class CurrentComponent {
     previousSpendTotals: number
     statisticsTranslation: any
 
-    constructor(private budgetService: BudgetService, private route: ActivatedRoute, private translationService: TranslationService) {
+    constructor(private budgetService: BudgetService, 
+        private cacheService: StatisticsCacheService,
+        private route: ActivatedRoute, 
+        private translationService: TranslationService) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
         this.title = this.category.value
         this.statisticsTranslation = translationService.getAllForComponent('statistics')
@@ -34,28 +39,42 @@ export class CurrentComponent {
         this.getAllSpendsPerCurrentMonth()
         this.getAllSpendsPerPreviousMonth()
     }
-
-    getAllSpendsPerCurrentMonth() : BuyingItem[] {
-        if (this.category === null) return []
-        const { from, to } = this._getStartAndEndDatesPerMonth(new Date())
-
-        this.budgetService.getAllSpends(this.category.value, from, to).on('value', result => {
+    private _getSpendsCaller (from, to, group, spends, spendResultCaller) {
+        this.budgetService.getAllSpends(from, to).on('value', result => {
             const value = result.val()
-
-            this.spendsForCurrentMonth = this._getValidSpendsArray(value)
+            spendResultCaller(value, group)
+            this.cacheService.addOrUpdateCache(spends, from, to, group)
+        })
+    }
+  
+    getAllSpendsPerCurrentMonth() : BuyingItem[] {
+        const getSpendsResultCaller = (value, group) => {
+            this.spendsForCurrentMonth = this._getValidSpendsArray(value, group)
             this.currentSpendTotals = this._getTotals(this.spendsForCurrentMonth)
+        }
+
+        if (this.category === null) return []
+        const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
+        this.cacheService.getCache(from, to).then(cache => {
+            if(cache.target.result)
+                getSpendsResultCaller([].concat(cache.target.result), this.category.value)
+            else 
+                this._getSpendsCaller(from, to, this.category.value, this.spendsForCurrentMonth, getSpendsResultCaller)
         })
     }
 
     getAllSpendsPerPreviousMonth() : BuyingItem[] {
-        if (this.category === null) return []
-        const { from, to } = this._getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date()))
-
-        this.budgetService.getAllSpends(this.category.value, from, to).on('value', result => {
-            const value = result.val()
-
-            this.spendsForPreviousMonth = this._getValidSpendsArray(value)
+        const getSpendsResultCaller = (value, group) => {
+            this.spendsForPreviousMonth = this._getValidSpendsArray(value, group)
             this.previousSpendTotals = this._getTotals(this.spendsForPreviousMonth)
+        }
+        if (this.category === null) return []
+        const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date()))
+        this.cacheService.getCache(from, to).then(cache => {
+            if(cache.target.result)
+                getSpendsResultCaller([].concat(cache.target.result), this.category.value)
+            else 
+                this._getSpendsCaller(from, to, this.category.value, this.spendsForPreviousMonth, getSpendsResultCaller)
         })
     }
 
@@ -64,27 +83,15 @@ export class CurrentComponent {
         +current.price, 0)
     }
 
-    private _getValidSpendsArray(value) {
+    private _getValidSpendsArray(value, categoryValue) {
         return value ? value
-            .filter(x => x && x.group.toLowerCase() === this.category.value.toLowerCase())
+            .filter(x => x && x.group.toLowerCase() === categoryValue.toLowerCase())
             .map(x => {
                 x.dateString =  new Date(x.date).toLocaleDateString()
                 return x
             }) : []       
     }
 
-    //add test to this method
-    _getStartAndEndDatesPerMonth(date: Date) {
-        const year = date.getFullYear(),
-            month = date.getMonth()
-
-        return { 
-            from : new Date(year, month, 1), 
-            to: new Date(year, month + 1, 0) 
-        }
-    }
-
-    //add test to this method
     _getPreviousMonthDate(date: Date) {
         date.setDate(1)
         date.setMonth(date.getMonth() - 1)

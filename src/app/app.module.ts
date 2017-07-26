@@ -1,8 +1,8 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule } from '@angular/core'
 import { RouterModule } from '@angular/router'
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms'
+import { HttpModule } from '@angular/http'
 //import { Logger } from "angular2-logger/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ExtendedMaterialModule, SharedModule } from './shared-modules/index'
@@ -32,7 +32,9 @@ import {
   BudgetService,
   TranslationService,
   AuthentificatedActivator,
-  CategoryRouteActivator
+  CategoryRouteActivator,
+  DbService,
+  StatisticsCacheService
  } from './services/index'
 
 @NgModule({
@@ -66,6 +68,8 @@ import {
 
     AuthentificatedActivator,
     CategoryRouteActivator,
+    DbService,
+    StatisticsCacheService
 
   //  Logger
   ],

@@ -21,11 +21,10 @@ export class BudgetService {
         // })
     }
 
-    //todo: get spends per user that is authorized
-    //filtering
+    //TODO: get spends per user that is authorized
 
-    getAllSpends(group: string, dateFrom: Date, dateTo: Date){
-        console.log('getAllSpends',this.uid)
+
+    getAllSpends(dateFrom: Date, dateTo: Date){
         let ref =  this.af.app.database().ref(`/users/yKxxSL7CRVVPr3TwmKj0eeikIiO2/spends`)
         let query = ref.orderByChild('date').startAt(dateFrom.getTime()).endAt(dateTo.getTime())
     

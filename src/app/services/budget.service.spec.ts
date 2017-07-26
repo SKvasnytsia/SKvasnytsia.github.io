@@ -15,7 +15,7 @@ describe('BudgetService', () => {
     //todo: chain functions <= how to test
     describe('getAllSpends', () => {
         it('should get all the spends per group', () => {
-            const groupName = 'fakeGroup'
+
             mockFireBase.app = {
                 database: function () { 
                     return {
@@ -35,7 +35,7 @@ describe('BudgetService', () => {
                     }
                 }
             }
-            const result = budgetService.getAllSpends(groupName, new Date(), new Date())
+            const result = budgetService.getAllSpends(new Date(), new Date())
 
             expect(result).toBe(void 0)
         })

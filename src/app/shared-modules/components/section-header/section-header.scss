@@ -3,19 +3,25 @@
 .section-header {
     @include section-header($color1);  
     position: fixed;
+    justify-content: center;
+    display: flex;
     top: 0;
     left: 0;
     width: 100%;
     div.container {
         background-color: $color1;
-        padding: 10px 25px;
+        padding: 10px ;
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
+        width: 100%;
     }
 
     @media only screen and (min-width: 768px) {
         position:static;
+        div.container {
+            width: 75%;
+        }
     }
 }
         

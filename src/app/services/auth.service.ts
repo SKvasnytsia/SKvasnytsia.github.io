@@ -6,15 +6,20 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class AuthService {
     authenticated: boolean
-    uid: string
+    private _uid: Observable<string> = Observable.of('')
 
   constructor(public afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
       this.authenticated = !!user
-console.log('auth');
-
-      this.uid = user ? user.uid : null
+      const result = user ? user.uid : null
+      this.uid = Observable.of(result)
     })
+  }
+  set uid(value) {
+    this._uid = value
+  }
+  get uid() {
+    return this._uid
   }
 
   isLoggedIn() {
@@ -26,7 +31,6 @@ console.log('auth');
         .then(result => {
           let token = result.credential.accessToken
           let user = result.uid
-          console.log('logged in', result)
         })
         .catch(error => console.error('AuthService#signIn() :', error));
   }

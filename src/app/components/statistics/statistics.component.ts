@@ -1,5 +1,11 @@
-import { Component, ViewEncapsulation, Injectable, Input } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router'
+
+import { 
+    DbService
+ } from "../../services/index"
+ import { CacheItem } from '../../common/models/index'
+
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -9,7 +15,4 @@ import { Router } from '@angular/router'
 })
 
 export class StatisticsComponent {
-  constructor(){
-  
-  }
 }

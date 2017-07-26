@@ -1,0 +1,17 @@
+@import '~@angular/material/_theming.scss';
+
+@import './palletes/palette1.scss';
+@import './palletes/palette2.scss';
+@import './palletes/palette3.scss';
+@import './palletes/palette4.scss';
+@import './palletes/palette5.scss';
+
+@include mat-core();
+
+$custom-theme-primary: mat-palette($md-mcgpalette2);
+$custom-theme-accent: mat-palette($md-mcgpalette3, A200, A100, A400);
+$custom-theme-warn: mat-palette($md-mcgpalette4);
+
+$theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@include angular-material-theme($theme);

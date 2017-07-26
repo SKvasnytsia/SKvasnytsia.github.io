@@ -17,6 +17,6 @@
                 <statistics-list [spends]="spendsForPreviousMonth" [totals]="previousSpendTotals" [totalLabel]="statisticsTranslation.total"></statistics-list>
             </md-tab>
         </md-tab-group>        
-        <button class="add-spent" md-button type="button" [routerLink]="['/add']"><em>{{statisticsTranslation.addNew}}</em></button>
+        <button class="add-spent" md-raised-button color="primary" [routerLink]="['/add']"><em>{{statisticsTranslation.addNew}}</em></button>
     </div>
 </div>
