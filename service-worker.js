@@ -1,6 +1,11 @@
 'use strict';
 
-var precacheConfig = []
+var precacheConfig = [
+  '/',
+  '/assets/chek.png',
+  '/assets/facebook_logo.png',
+  'assets/google_logo.png'
+]
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
 
