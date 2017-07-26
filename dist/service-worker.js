@@ -106,6 +106,58 @@ var urlsToCacheKeys = new Map(
   })
 );
 
+var getStartAndEndDatesPerMonth = function(date) {
+    const year = date.getFullYear(),
+        month = date.getMonth()
+
+    return { 
+        from : new Date(year, month, 1), 
+        to: new Date(year, month + 1, 0) 
+    }
+}
+
+var separateToMonthlyRanges = function(from, to, isOriginRange = true) {
+  const _getRange = (start, finish, currentYear) => {
+  const array = []
+
+  for (let i = start; i <= finish; i++) {
+      let {from: f, to: t} = 
+      this.getStartAndEndDatesPerMonth(new Date(fromYear, i))
+      if (isOriginRange) {
+      if (i === start && currentYear === fromYear) f = from
+      if (i === finish && currentYear === toYear) t = to
+      }
+      array.push({from: f, to: t})
+  }
+  return array
+  }
+
+  let objRange = []
+  let fromMonth = from.getMonth()
+  let fromYear = from.getFullYear()
+  let toMonth = to.getMonth()
+  let toYear = to.getFullYear()
+
+  if (fromMonth === toMonth && fromYear === toYear) 
+  return [{ from, to }]
+  
+  if (fromYear === toYear && fromMonth < toMonth){
+  return _getRange(fromMonth, toMonth, fromYear)
+  }
+
+  if (fromYear < toYear) {
+  for (let j = fromYear; j <= toYear; j++) {
+      let i = fromMonth
+      let monthlyEnd = 12
+      if (j > fromYear) i = 1
+      if (j === toYear) monthlyEnd = toMonth
+      objRange = objRange.concat(_getRange(i, monthlyEnd, j))
+  }
+  return objRange
+  }
+  
+}
+
 function setOfCachedUrls(cache) {
   return cache.keys().then(function(requests) {
     return requests.map(function(request) {
@@ -183,6 +235,7 @@ self.addEventListener('fetch', function(event) {
     // First, remove all the ignored parameters and hash fragment, and see if we
     // have that URL in our cache. If so, great! shouldRespond will be true.
     var url = stripIgnoredUrlParameters(event.request.url, ignoreUrlParametersMatching);
+    console.log('fetch', urlsToCacheKeys, url)
     shouldRespond = urlsToCacheKeys.has(url);
 
     // If shouldRespond is false, check again, this time with 'index.html'
