@@ -5,13 +5,28 @@
   <title>My budget</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c19fc3">
   <link rel="manifest" href="manifest.json">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/assets/theme.scss" rel="styleshhet"/>
+  <link rel="icon" sizes="48x48" href="./assets/icon-1x.png">
+  <link rel="icon" sizes="96x96" href="./assets/icon-2x.png">
   <link rel="icon" sizes="192x192" href="./assets/icon-4x.png">
+  <link rel="icon" sizes="512x512" href="./assets/icon-512px.png">
+
 </head>
 <body>
   <app-root>Loading...</app-root> 
 </body>
-<script src="service-worker-registration.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+      .register('/service-worker.js')
+      .then(function(registration) {
+        console.log('Service Worker registered');
+      }).catch(function(err) {
+        console.log('Service Worker registration failed: ', err);
+      });
+  }
+</script>
 </html>
