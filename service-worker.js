@@ -1,10 +1,10 @@
 'use strict';
 
 var precacheConfig = [
-  '/my-budget/',
-  '/my-budget/assets/chek.png',
-  '/my-budget/assets/facebook_logo.png',
-  '/my-budget/assets/google_logo.png'
+  '/',
+  '/assets/chek.png',
+  '/assets/facebook_logo.png',
+  'assets/google_logo.png'
 ]
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
@@ -260,6 +260,7 @@ self.addEventListener('fetch', function(event) {
     // If shouldRespond was set to true at any point, then call
     // event.respondWith(), using the appropriate cache key.
     if (shouldRespond) {
+      
       event.respondWith(
         caches.open(cacheName).then(function(cache) {
           return cache.match(urlsToCacheKeys.get(url)).then(function(response) {
