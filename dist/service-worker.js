@@ -1,10 +1,10 @@
 'use strict';
 
 var precacheConfig = [
-  '/',
-  '/assets/chek.png',
-  '/assets/facebook_logo.png',
-  'assets/google_logo.png'
+  '/my-budget/',
+  '/my-budget/assets/chek.png',
+  '/my-budget/assets/facebook_logo.png',
+  '/my-budget/assets/google_logo.png'
 ]
 var cacheName = 'sw-precache-v3-sw-precache-' + (self.registration ? self.registration.scope : '');
 
