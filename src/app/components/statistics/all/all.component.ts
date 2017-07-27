@@ -79,9 +79,7 @@ export class AllComponent implements OnInit{
     Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(responses => {
-            console.log(responses)
               let noDataFound = responses.some(x => !x.target.result || !x.target.result.value)
-              console.log('noDataFound',noDataFound, responses)
               if (noDataFound) {
                 this.budgetService.getAllSpends(this.from, this.to).on('value', result => {
                   this.spends = spendsHandler(result.val().filter(x => x))

@@ -14,7 +14,6 @@ export class StatisticsCacheService {
         })
     }
     public addOrUpdateCacheForRanges(dataGroupedByRange:any, originalFrom, originalTo) {
-        console.log(dataGroupedByRange)
         for (let group in dataGroupedByRange) {
             dataGroupedByRange[group].items.forEach(x => {
                 this.addOrUpdateCache(x.array, x.from, x.to, group)

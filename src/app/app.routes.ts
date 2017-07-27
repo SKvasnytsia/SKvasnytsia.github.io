@@ -16,9 +16,9 @@ export const appRoutes : Routes = [
   { path: 'categories', component: CategoryComponent, canActivate: [AuthentificatedActivator] },
   { path: 'add', component: ScannerComponent, canActivate: [AuthentificatedActivator] },
   { path: '404', component: Error404Component },
-  { path: '', redirectTo: '/categories', pathMatch:'full'},
   { 
     path: 'statistics', 
     loadChildren: 'app/components/statistics/statistics.module#StatisticsModule', 
-    canActivate: [AuthentificatedActivator] }
+    canActivate: [AuthentificatedActivator] },
+  { path: '', redirectTo: '/categories', pathMatch:'full'},
 ]
