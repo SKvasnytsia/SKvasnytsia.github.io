@@ -62,6 +62,20 @@ const separateToMonthlyRanges = function(from, to, isOriginRange = true) {
   
 }
 
+self.addEventListener('beforeinstallprompt', function(event) {
+   event.userChoice.then(function(choiceResult) {
+
+    console.log(choiceResult.outcome);
+
+    if(choiceResult.outcome == 'dismissed') {
+      console.log('User cancelled home screen install');
+    }
+    else {
+      console.log('User added to home screen');
+    }
+  });
+});
+
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('v1').then(function(cache) {
@@ -71,17 +85,8 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function (cachesNames) {
-      console.log("Delete " + document.defaultView.location.origin + " caches");
-      return Promise.all(cachesNames.map(function (cacheName) {
-        return caches.delete(cacheName).then(function () {
-          console.log("Cache with name " + cacheName + " is deleted");
-        });
-      }))
-    })
-  )
-})
+
+});
 
 self.addEventListener('fetch', function(event) {
   if (event.request.method === 'GET') {
@@ -101,8 +106,7 @@ self.addEventListener('fetch', function(event) {
             cache.put(event.request, responseClone);
           });
           return response;
-        }).catch(function (error) {
-          console.warn('fetch', error)
+        }).catch(function () {
           //return caches.match('/sw-test/gallery/myLittleVader.jpg');
         });
       }
