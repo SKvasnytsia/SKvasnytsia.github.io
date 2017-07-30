@@ -30,7 +30,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./my-budget/",
+  "start_url": "./",
   "display": "fullscreen",
   "orientation":"portrait",
   "theme_color":"#536878",
