@@ -6,7 +6,7 @@
   <base href="/my-budget/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#c19fc3">
-  <link rel="manifest" href="/manifest.json">
+  <link rel="manifest" href="/my-budget/manifest.json">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="assets/theme.scss" rel="styleshhet"/>
   <link rel="icon" sizes="48x48" href="assets/icon-1x.png">
@@ -22,7 +22,7 @@
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/service-worker.js', { scope: '/my-budget/'})
+      .register('/my-budget/service-worker.js', { scope: '/my-budget/'})
       .then(function(registration) {
         console.log('Service Worker registered');
       }).catch(function(err) {
