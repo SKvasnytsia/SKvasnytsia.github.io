@@ -214,6 +214,7 @@ self.addEventListener('activate', function(event) {
       return cache.keys().then(function(existingRequests) {
         return Promise.all(
           existingRequests.map(function(existingRequest) {
+            console.log(existingRequest)
             if (!setOfExpectedUrls.has(existingRequest.url)) {
               return cache.delete(existingRequest);
             }
@@ -227,7 +228,6 @@ self.addEventListener('activate', function(event) {
     })
   );
 });
-
 
 self.addEventListener('fetch', function(event) {
   if (event.request.method === 'GET') {
