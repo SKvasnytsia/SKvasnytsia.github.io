@@ -6,22 +6,23 @@
   <base href="/my-budget/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#c19fc3">
-  <link rel="manifest" href="manifest.json">
+  <link rel="manifest" href="/manifest.json">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="assets/theme.scss" rel="styleshhet"/>
   <link rel="icon" sizes="48x48" href="assets/icon-1x.png">
   <link rel="icon" sizes="96x96" href="assets/icon-2x.png">
+  <link rel="icon" sizes="144x144" href="assets/icon-144px.png">
   <link rel="icon" sizes="192x192" href="assets/icon-4x.png">
   <link rel="icon" sizes="512x512" href="assets/icon-512px.png">
 
 </head>
 <body>
   <app-root>Loading...</app-root> 
-<script type="text/javascript" src="polyfills.b5f4543574b19a0fc0f3.bundle.min.js"></script><script type="text/javascript" src="styles.02e3e4ab94509fefc11a.bundle.min.js"></script><script type="text/javascript" src="vendor.b0e64267b6fb240f77a1.bundle.min.js"></script><script type="text/javascript" src="main.170a717c5ae24476fac6.bundle.min.js"></script></body>
+<script type="text/javascript" src="polyfills.b5f4543574b19a0fc0f3.bundle.min.js"></script><script type="text/javascript" src="styles.02e3e4ab94509fefc11a.bundle.min.js"></script><script type="text/javascript" src="vendor.1d7484f9e9f8b690c52f.bundle.min.js"></script><script type="text/javascript" src="main.a1d8b0009dc4e887170c.bundle.min.js"></script></body>
 <script>
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
-      .register('/my-budget/service-worker.js')
+      .register('/service-worker.js', { scope: '/my-budget/'})
       .then(function(registration) {
         console.log('Service Worker registered');
       }).catch(function(err) {
