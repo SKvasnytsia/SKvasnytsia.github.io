@@ -71,8 +71,17 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
-
-});
+  event.waitUntil(
+    caches.keys().then(function (cachesNames) {
+      console.log("Delete " + document.defaultView.location.origin + " caches");
+      return Promise.all(cachesNames.map(function (cacheName) {
+        return caches.delete(cacheName).then(function () {
+          console.log("Cache with name " + cacheName + " is deleted");
+        });
+      }))
+    })
+  )
+})
 
 self.addEventListener('fetch', function(event) {
   if (event.request.method === 'GET') {
@@ -92,7 +101,8 @@ self.addEventListener('fetch', function(event) {
             cache.put(event.request, responseClone);
           });
           return response;
-        }).catch(function () {
+        }).catch(function (error) {
+          console.warn('fetch', error)
           //return caches.match('/sw-test/gallery/myLittleVader.jpg');
         });
       }
