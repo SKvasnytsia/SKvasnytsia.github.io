@@ -2,10 +2,10 @@
 
 var precacheConfig = [
   '0.chunk.js',
-  'polyfills.bundle.js',
-  'styles.bundle.js',
-  'vendor.bundle.js',
-  'main.bundle.js',
+  'polyfills.bundle.min.js',
+  'styles.bundle.min.js',
+  'vendor.bundle.min.js',
+  'main.bundle.min.js',
   'assets/*.png',
   'assets/chek.png',
   'index.html'

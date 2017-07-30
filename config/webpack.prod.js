@@ -31,9 +31,9 @@ module.exports = function (env) {
     devtool: false,
     output: {
       path: helpers.root('dist'),
-      filename: '[name].[chunkhash].bundle.min.js',
+      filename: '[name].bundle.min.js',
       sourceMapFilename: '[file].map',
-      chunkFilename: '[name].[chunkhash].chunk.js'
+      chunkFilename: '[name].chunk.js'
     },
     plugins: [
         new DefinePlugin({
