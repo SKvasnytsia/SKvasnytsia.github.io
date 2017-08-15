@@ -29,8 +29,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "./",
-  "display": "fullscreen",
+  "start_url": "./?utm_source=launcher",
+  "display": "standalone",
   "orientation":"portrait",
   "theme_color":"#536878",
   "background_color":"#000"
