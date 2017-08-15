@@ -3,7 +3,7 @@ export class CacheItem {
         public id: string, 
         public picture: string,
         public price: string,
-        public date: Date,
+        public date: number,
         public userId: string,
         public group: string,
         public range: string) {

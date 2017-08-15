@@ -6,13 +6,15 @@
 </section-header>
 
 <div class="category-content">
-    <div class="container">
-        <div class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
-            <div class="category-name">{{category.value}}</div>
-            <span class="cost-info">Total: $10/month</span>
+    <ul>
+        <li class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
+            <div class="category-name">{{category.value}}
+                <a class="add" (click)="add(category.value)"><i class="material-icons">add</i></a>
+            </div>
+            <span class="cost-info">Total: {{totalsPerCurrentMonth[category.value]}}</span>
             
-        </div>
-    </div>
+        </li>
+    </ul>
 </div>
 <section class="add-spent-container">
     <button md-raised-button type="button" color="primary" [routerLink]="['/add']"><i>Add spent</i></button>

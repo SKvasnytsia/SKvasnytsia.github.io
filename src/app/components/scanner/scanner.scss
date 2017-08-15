@@ -2,31 +2,51 @@
 @import '../../mixins.scss';
 
 scanner {
-    .section-content {
+    .content {
+        margin: 15% 10px;
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
         background-color: $color6;
-        .container {
-            background-color: $color8;
-            height: 100%;
-
-            form {
-                padding: 25px 25px 10px 20px;
+        position: relative;
+        md-input-container,
+        md-select {
+            font-size: 0.5em;
+            width: 100%;
+            text-align: left;
+            & .mat-select-placeholder.ng-trigger {
+                font-size: 0.9em;
             }
-            ul {
-                flex-flow: row wrap;
-                display: flex;
-                padding:0;
-                justify-content: center;
+        }
+     
+        .btn-submit{
+            position: fixed;
+            bottom: 0;
+            left:0;
+            width: 100%;
+        }
 
-                li {
-                    @include items-to-select($border-color: lighten(grey, 35%), $background-color:$color1, $text-color: $color7);
-                    font-size: 12px;
-                    display: flex;     
-                    &:active, &:focus {
-                        background-color: $color5;
-                        color: $color6;
-                    }
+        .img-container {
+            img {
+                max-height: 128px;
+            }
+            cursor: pointer;
+            margin: 15px;
+            padding: 15px;
+            box-shadow: 2px 2px 5px grey;
+        }
+
+        @media only screen and (min-width: 768px) {
+            margin: 0;
+            
+            form {
+                margin: 0 20%;
+
+                .btn-submit {
+                    margin-top: 15px; 
+                    position: static;
                 }
             }
         }
-    }    
+    } 
 }

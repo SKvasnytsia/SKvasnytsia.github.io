@@ -6,7 +6,8 @@ import {
     MdButtonModule,
     MdSelectModule,
     MdDatepickerModule,
-    MdNativeDateModule
+    MdNativeDateModule,
+    MdProgressSpinnerModule
 } from '@angular/material'
 
 @NgModule({
@@ -17,6 +18,7 @@ import {
         MdSelectModule,
         MdDatepickerModule,
         MdNativeDateModule,
+        MdProgressSpinnerModule
      ],
     exports: [ 
         MaterialModule,
@@ -25,6 +27,7 @@ import {
         MdSelectModule,
         MdDatepickerModule,
         MdNativeDateModule,
+        MdProgressSpinnerModule
      ]
 })
 

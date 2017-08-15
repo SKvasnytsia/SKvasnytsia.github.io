@@ -8,20 +8,17 @@ export class StatisticsCacheService {
     private tableName: string = 'statistics'
     private userId: string
         
-    constructor(private dbService: DbService, private authService: AuthService) {
-        authService.uid.subscribe(value => {
-            this.userId = value
-        })
+    constructor(private dbService: DbService) {
     }
-    public addOrUpdateCacheForRanges(dataGroupedByRange:any, originalFrom, originalTo) {
+    public addOrUpdateCacheForRanges(dataGroupedByRange:any, originalFrom, originalTo, id) {
         for (let group in dataGroupedByRange) {
             dataGroupedByRange[group].items.forEach(x => {
-                this.addOrUpdateCache(x.array, x.from, x.to, group)
+                this.addOrUpdateCache(x.array, x.from, x.to, group, id)
             })
         }
     }
-    public addOrUpdateCache(data: any, from: Date, to: Date, group: string) {
-        const items = this._mapToCacheItem(data, from, to, group)
+    public addOrUpdateCache(data: any, from: Date, to: Date, group: string, id: string) {
+        const items = this._mapToCacheItem(data, from, to, group, id)
         this.dbService.getObjectStore(this.tableName).then(store => {
             this.objStore = store
             items.forEach(item => {
@@ -31,13 +28,23 @@ export class StatisticsCacheService {
        
     }
     public getCache(from: Date, to: Date): Promise<any> {
+        let results = []
         const cacheRequestPromiseCaller = (store) => {
             return new Promise((resolve, reject) => {
                 let dataRequest: IDBRequest = store
                 .index('range')
                 .openCursor(`${from.toLocaleDateString('en-US')}-${to.toLocaleDateString('en-US')}`)
                 
-                dataRequest.onsuccess = resolve
+                dataRequest.onsuccess = (e: any) => {
+                    let cursor = e.target.result
+                    if (cursor) {
+                        results.push(cursor.value) 
+                        cursor.continue()
+                    } else {
+                        resolve(results)
+                    }
+
+                }
                 dataRequest.onerror = reject
             })
         }
@@ -47,14 +54,14 @@ export class StatisticsCacheService {
         })
     }
 
-    private _mapToCacheItem(items: BuyingItem[], from: Date, to: Date, group: string): CacheItem[] {
+    private _mapToCacheItem(items: BuyingItem[], from: Date, to: Date, group: string, id: string): CacheItem[] {
         return items.map(item => 
             new CacheItem(
                 item.id, 
                 item.picture, 
                 item.price, 
                 item.date, 
-                this.userId.toString(), 
+                id, 
                 group, 
                 `${from.toLocaleDateString('en-US')}-${to.toLocaleDateString('en-Us')}`))
     }

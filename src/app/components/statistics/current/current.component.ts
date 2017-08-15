@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 
 import { 
     BudgetService,
@@ -25,10 +25,12 @@ export class CurrentComponent {
     currentSpendTotals: number
     previousSpendTotals: number
     statisticsTranslation: any
+    public loading:boolean = false
 
     constructor(private budgetService: BudgetService, 
         private cacheService: StatisticsCacheService,
         private route: ActivatedRoute, 
+        private defaultRouter: Router,
         private translationService: TranslationService) {
         this.category = CATEGORIES.find(category => category.value.toLowerCase() === route.snapshot.params['category'].toLowerCase())
         this.title = this.category.value
@@ -40,24 +42,30 @@ export class CurrentComponent {
         this.getAllSpendsPerPreviousMonth()
     }
     private _getSpendsCaller (from, to, group, spends, spendResultCaller) {
-        this.budgetService.getAllSpends(from, to).on('value', result => {
-            const value = result.val()
-            spendResultCaller(value, group)
-            this.cacheService.addOrUpdateCache(spends, from, to, group)
+        this.budgetService.getAllSpends(from, to).subscribe(res =>{
+            res.query.on('value', result => {
+                const value = result.val()
+
+                spendResultCaller(value, group)
+                this.cacheService.addOrUpdateCache(spends, from, to, group, res.id)
+            })
         })
+        
     }
   
     getAllSpendsPerCurrentMonth() : BuyingItem[] {
         const getSpendsResultCaller = (value, group) => {
             this.spendsForCurrentMonth = this._getValidSpendsArray(value, group)
             this.currentSpendTotals = this._getTotals(this.spendsForCurrentMonth)
+            this.loading = false
         }
 
         if (this.category === null) return []
         const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
+        this.loading = true
         this.cacheService.getCache(from, to).then(cache => {
-            if(cache.target.result && cache.target.result.value)
-                getSpendsResultCaller([].concat(cache.target.result.value), this.category.value)
+            if(cache.length)
+                getSpendsResultCaller(cache, this.category.value)
             else 
                 this._getSpendsCaller(from, to, this.category.value, this.spendsForCurrentMonth, getSpendsResultCaller)
         })
@@ -71,8 +79,8 @@ export class CurrentComponent {
         if (this.category === null) return []
         const { from, to } = DateCalculationHelper.getStartAndEndDatesPerMonth(this._getPreviousMonthDate(new Date()))
         this.cacheService.getCache(from, to).then(cache => {
-            if(cache.target.result && cache.target.result.value)
-                getSpendsResultCaller([].concat(cache.target.result.value), this.category.value)
+            if(cache.length)
+                getSpendsResultCaller(cache, this.category.value)
             else 
                 this._getSpendsCaller(from, to, this.category.value, this.spendsForPreviousMonth, getSpendsResultCaller)
         })
@@ -84,6 +92,7 @@ export class CurrentComponent {
     }
 
     private _getValidSpendsArray(value, categoryValue) {
+        console.log(value)
         return value ? value
             .filter(x => x && x.group.toLowerCase() === categoryValue.toLowerCase())
             .map(x => {
@@ -96,5 +105,9 @@ export class CurrentComponent {
         date.setDate(1)
         date.setMonth(date.getMonth() - 1)
         return date
+    }
+
+    add() {
+        this.defaultRouter.navigate(['/add', { category:this.category.value}])
     }
 }

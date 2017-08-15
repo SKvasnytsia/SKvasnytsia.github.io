@@ -32,7 +32,7 @@ export class DbService {
                 resolve(event)
             }
             request.onupgradeneeded = (event) => {
-                this._createObjectStore(event.target.result, 'statistics', new CacheItem('','','',new Date(),'','',''))
+                this._createObjectStore(event.target.result, 'statistics', new CacheItem('','','',new Date().getTime(),'','',''))
             }
         })    
     }

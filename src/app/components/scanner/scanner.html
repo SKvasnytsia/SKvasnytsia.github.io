@@ -4,3 +4,45 @@
     </div>
     <div move-forward></div>
 </section-header>
+<div class="content">
+    <form (ngSubmit)="saveBuyingItem()"  #goodsForm="ngForm" >
+        <div class="img-container">
+            <label>
+                <img *ngIf="!item.picture" src="assets/chek.png"/>
+                <img *ngIf="item.picture" [src]="item.picture"/>
+                <input 
+                    id="picture" 
+                    name="picture" 
+                    hidden 
+                    type="file"
+                    accept="image/*"
+                    (change)="onFileUpload($event)"/>
+            </label>
+        </div>
+        <md-input-container>
+            <input mdInput 
+                name="price"
+                placeholder="Price" 
+                required 
+                type="number" 
+                step="any" 
+                min="0" 
+                [(ngModel)]="item.price"
+                [value]="item.price"/>
+            
+        </md-input-container>
+        <md-input-container>
+            <input mdInput name="datePicker" [(ngModel)]="item.date" [mdDatepicker]="picker" required placeholder="Date" [value]="item.date">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+        </md-input-container>
+        <md-datepicker #picker ></md-datepicker>
+
+        <md-select name="group" placeholder="Category" [(ngModel)]="item.group" required>
+            <md-option *ngFor="let category of list" [value]="category.value">
+                {{ category.value }}
+            </md-option>
+        </md-select>
+
+        <button md-raised-button color="accent" class="btn-submit" [disabled]="!goodsForm.form.valid" md-button type="submit">Save</button>
+    </form>
+</div>

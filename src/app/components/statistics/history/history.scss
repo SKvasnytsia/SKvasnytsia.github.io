@@ -12,6 +12,12 @@ history {
         margin-top: 45px;
         position: absolute;
         width: 100%;
+        @media only screen and (min-width: 768px) { 
+            margin: 0 auto;
+            position: static;
+            width: 75%;
+
+        }
     }
 }
 

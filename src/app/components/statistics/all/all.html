@@ -6,34 +6,32 @@
 </section-header>
 
 <div class="category-content">
-    <div class="container">
-        <range-selector [from]="from" [to]="to" (dateUpdated)="dateUpdated($event)"></range-selector>
-        <expansion-panels-container *ngIf="list.length && spends">
-            <expansion-panel  class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list">
-                <expansion-panel-title>         
-                    <div class="category-name">{{category.value}}</div>
-                    <span class="cost-info">Total: {{spends[category.value] ? spends[category.value].totals : 0}}</span>     
-                </expansion-panel-title>
-                <expansion-panel-content>
-                    <div *ngIf="spends[category.value] && spends[category.value].items">
-                        <ul class="grouped-list">
-                            <li *ngFor="let item of spends[category.value].items" 
-                                (click)="details(category, item.fromString, item.toString)">
-                                <div class="date-range">{{item.fromString}} - {{item.toString}}</div>
-                                <div class="cost-info">Total: {{item.totals}}</div> 
-                                <a></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="data-empty" *ngIf="!spends[category.value]">
-                        No data found for selected range
-                    </div>
-            
-                </expansion-panel-content>
-            </expansion-panel>
+    <range-selector [from]="from" [to]="to" (dateUpdated)="dateUpdated($event)"></range-selector>
+    <expansion-panels-container *ngIf="list.length && spends">
+        <expansion-panel  class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list">
+            <expansion-panel-title>         
+                <div class="category-name">{{category.value}}</div>
+                <span class="cost-info">Total: {{spends[category.value] ? spends[category.value].totals : 0}}</span>     
+            </expansion-panel-title>
+            <expansion-panel-content>
+                <div *ngIf="spends[category.value] && spends[category.value].items">
+                    <ul class="grouped-list">
+                        <li *ngFor="let item of spends[category.value].items" 
+                            (click)="details(category, item.fromString, item.toString)">
+                            <div class="date-range">{{item.fromString}} - {{item.toString}}</div>
+                            <div class="cost-info">Total: {{item.totals}}</div> 
+                            <a></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="data-empty" *ngIf="!spends[category.value]">
+                    No data found for selected range
+                </div>
+        
+            </expansion-panel-content>
+        </expansion-panel>
 
-        </expansion-panels-container>
-    </div>
+    </expansion-panels-container>
 </div>
 
 

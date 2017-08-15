@@ -4,7 +4,7 @@
 current {
     background-color: $color8;
     position: relative;
-    .section-content {
+    div.section-content {
         margin-top: 45px;
         position: absolute;
         background-color: $color6;
@@ -13,10 +13,11 @@ current {
         display: flex;
         justify-content: center;
 
-        @media only screen and (min-width: 768px) {
-            margin-top: inherit;
+        @media only screen and (min-width: 768px) { 
+            margin: 0 auto;
             position: static;
-            width: 100%;
+            width: 75%;
+
         }
         div.container {
             position: relative;

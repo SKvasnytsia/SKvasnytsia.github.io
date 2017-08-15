@@ -1,6 +1,6 @@
 export const TRANSLATE: Object = {
     'title': 'My budget',
-    'addGoods': 'Add good\'s information',
+    'addGoods': 'Add new item',
     'login': {
         'title': 'Calculate your personal budget',
         'signInInfo': 'Please sign in with',
@@ -13,7 +13,7 @@ export const TRANSLATE: Object = {
     'statistics': {
         'current': 'Current Month',
         'previous': 'Previous Month',
-        'loading': 'Getting data from database...',
+        'noDataFound': 'No costs spent for current month...',
         'addNew': 'Add new spent item',
         'total': 'Total',
         'spend-title': 'Here is a list of spends:'

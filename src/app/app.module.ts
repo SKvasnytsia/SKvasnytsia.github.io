@@ -10,6 +10,7 @@ import { ExtendedMaterialModule, SharedModule } from './shared-modules/index'
 //routes
 import { appRoutes } from './app.routes'
 
+import 'fileReader'
 import 'hammerjs'
 
 import {
@@ -35,8 +36,10 @@ import {
   AuthentificatedActivator,
   CategoryRouteActivator,
   DbService,
-  StatisticsCacheService
+  StatisticsCacheService,
+  FILE_READER_TOKEN
  } from './services/index'
+
 
 @NgModule({
   declarations: [
@@ -71,7 +74,8 @@ import {
     AuthentificatedActivator,
     CategoryRouteActivator,
     DbService,
-    StatisticsCacheService
+    StatisticsCacheService,
+    { provide: FILE_READER_TOKEN, useValue: FileReader}
 
   //  Logger
   ],

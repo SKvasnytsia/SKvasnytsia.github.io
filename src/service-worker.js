@@ -63,6 +63,7 @@ const separateToMonthlyRanges = function(from, to, isOriginRange = true) {
 }
 
 self.addEventListener('beforeinstallprompt', function(event) {
+  console.log('beforeinstallprompt', event.userChoice)
    event.userChoice.then(function(choiceResult) {
 
     console.log(choiceResult.outcome);

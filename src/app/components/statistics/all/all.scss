@@ -2,11 +2,6 @@
 @import '../../../mixins.scss';
 
 statistics-all {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: $color6;
     position: relative;
     .category-content {
         margin-top: 15px;
@@ -14,73 +9,76 @@ statistics-all {
         background-color: $color6;
         overflow-y: scroll;
         font-size: 0.7em;
-        display:flex;
+        display: flex;
+        flex-direction: column;
         justify-content: center;
-        .container {
-            width: 90%;
+        .category {
+            .cost-info {
+                font-size: 0.6em;
+                float: right;
+            }
 
-            .category {
-                .cost-info {
-                    font-size: 0.6em;
-                    float: right;
-                }
+            &.hp .expansion-panel{
+                @include set-category-border-color($color1);
+            }
+            &.gr .expansion-panel{
+                @include set-category-border-color($color2);
+            }
+            &.eq .expansion-panel{
+                @include set-category-border-color($color3);
+            }
+            &.hb .expansion-panel{
+                @include set-category-border-color($color4);
+            }
+            &.pt .expansion-panel{
+                @include set-category-border-color($color5);
+            }
 
-                &.hp .expansion-panel{
-                    @include set-category-border-color($color1);
+            .layout-column {
+                &.expansion-panel__description {
+                    display: none;
                 }
-                &.gr .expansion-panel{
-                    @include set-category-border-color($color2);
+                &.expansion-panel__arrow-down {
+                    flex: initial;
                 }
-                &.eq .expansion-panel{
-                    @include set-category-border-color($color3);
-                }
-                &.hb .expansion-panel{
-                    @include set-category-border-color($color4);
-                }
-                &.pt .expansion-panel{
-                    @include set-category-border-color($color5);
-                }
-
-                .layout-column {
-                    &.expansion-panel__description {
-                        display: none;
-                    }
-                    &.expansion-panel__arrow-down {
-                        flex: initial;
-                    }
-                }
-               
-               .data-empty {
-                   font-size: 0.5em;
-               }
-               .expansion-panel__content {
-                   margin: 0;
-
-                   .grouped-list {
-                        font-size: 0.7em;
-                        padding: 0;
-                        list-style: none;
-
-                        li {
-                            padding: 15px;
-                            box-shadow: 0px 3px 5px grey;
-                        }
-                    }
-               } 
             }
             
-        }
+            .data-empty {
+                font-size: 0.5em;
+            }
+            .expansion-panel__content {
+                margin: 0;
+
+                .grouped-list {
+                    font-size: 0.7em;
+                    padding: 0;
+                    list-style: none;
+
+                    li {
+                        padding: 15px;
+                        box-shadow: 0px 3px 5px grey;
+                    }
+                }
+            } 
+        }  
                 /* Medium screens */
         @media only screen and (min-width: 768px) {
-            margin-top: 10%;
-            .container .category {
-                width: 45%;
-                margin: 5px;
-                border: 1px solid $color8;
-                float: left;
-                clear: none;
-                padding: 25px 5px;
+            margin: 0 auto;
+            position: static;
+            width: 75%;
+            .expansion-panels-container {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: space-between;
+
+                .category {
+                    width: 45%;
+                    margin: 5px 0;
+                    border: 1px solid $color8;
+                    padding: 5px;
+                }
             }
+            
         }
     }
 

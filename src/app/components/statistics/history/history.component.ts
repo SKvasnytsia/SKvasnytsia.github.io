@@ -66,16 +66,17 @@ export class HistoryComponent implements OnInit {
         let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to)
         Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
-          .then(responses => {
-              let noDataFound = responses.some(x => !x.target.result || !x.target.result.value)
-              if (noDataFound) {
-                this.budgetService.getAllSpends(this.from, this.to).on('value', result => {
-                  this.spends = this._getValidSpendsArray(result.val(), this.category.value)
-                  
-                  this.cacheService.addOrUpdateCache(this.spends, this.from, this.to, this.category.value)
+          .then(results => {
+              if (!results.length) {
+                this.budgetService.getAllSpends(this.from, this.to).subscribe(res => {
+                    res.query.on('value', result => {
+                        this.spends = this._getValidSpendsArray(result.val(), this.category.value)
+                        this.cacheService.addOrUpdateCache(this.spends, this.from, this.to, this.category.value, res.id)
+                    })
                 })
+                
               } else {
-                this.spends = this._getValidSpendsArray([].concat.apply([], responses.map(x => x.target.result.value)), this.category.value)
+                this.spends = this._getValidSpendsArray(results, this.category.value)
               }
           })
     }
