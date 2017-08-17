@@ -3,6 +3,9 @@
 
 statistics-all {
     position: relative;
+    .section-header .container {
+        @include material-icons-color($color8, $color7);
+    }
     .category-content {
         margin-top: 15px;
         padding-top: 20px;
@@ -15,7 +18,6 @@ statistics-all {
         .category {
             .cost-info {
                 font-size: 0.6em;
-                float: right;
             }
 
             &.hp .expansion-panel{

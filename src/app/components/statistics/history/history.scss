@@ -4,6 +4,9 @@
 history {
     font-size: 0.8em;
     position: relative;
+    .section-header .container {
+        @include material-icons-color($color8, $color7);
+    }
     .spends-info {
         font-size: 0.8em;
     }

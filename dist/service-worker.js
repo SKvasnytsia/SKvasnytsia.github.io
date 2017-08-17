@@ -110,3 +110,21 @@ self.addEventListener('fetch', function(event) {
     }));
   }
 });
+
+self.addEventListener('push', function(event) {
+  //event.data.json()
+  if (event.data) {
+    console.log('This push event has data: ', event.data.text());
+  } else {
+    console.log('This push event has no data.');
+  }
+});
+
+self.addEventListener('sync', function(event) {
+  //event.data.json()
+  if (event.data) {
+    console.log('This sync event has data: ', event.data.text());
+  } else {
+    console.log('This sync event has no data.');
+  }
+});

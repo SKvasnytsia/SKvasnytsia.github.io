@@ -1,14 +1,14 @@
 'use strict';
 
 const cacheList = [
-  '0.chunk.js',
-  'polyfills.bundle.js',
-  'styles.bundle.js',
-  'vendor.bundle.js',
-  'main.bundle.js',
-  'assets/icon-1x.png',
-  'assets/chek.png',
-  'index.html'
+  // '0.chunk.js',
+  // 'polyfills.bundle.js',
+  // 'styles.bundle.js',
+  // 'vendor.bundle.js',
+  // 'main.bundle.js',
+  // 'assets/icon-1x.png',
+  // 'assets/chek.png',
+  // 'index.html'
 ]
 const getStartAndEndDatesPerMonth = function(date) {
     const year = date.getFullYear(),
@@ -112,5 +112,23 @@ self.addEventListener('fetch', function(event) {
         });
       }
     }));
+  }
+});
+
+self.addEventListener('push', function(event) {
+  //event.data.json()
+  if (event.data) {
+    console.log('This push event has data: ', event.data.text());
+  } else {
+    console.log('This push event has no data.');
+  }
+});
+
+self.addEventListener('sync', function(event) {
+  //event.data.json()
+  if (event.data) {
+    console.log('This sync event has data: ', event.data.text());
+  } else {
+    console.log('This sync event has no data.');
   }
 });

@@ -7,13 +7,34 @@
     border-radius: 2px;
 }
 
-@mixin section-header($color) {
-    background-color: lighten($color, 5%);
-    font-size: 20px;
-    margin-bottom: 2px;
-    width: 100%;
-}
-
 @mixin set-category-border-color($color) {
     border-left: 3px solid $color;
+    &.highlighted,
+    &.hover {
+        color:$color;
+    }
+}
+
+@mixin material-icon-wrapper($color) {
+    border-radius: 50%;
+    border: 1px solid $color;
+    color: $color;
+    margin: 5px;
+    padding: 5px;
+    max-height: 24px;
+}
+
+@mixin material-icons-color($color1, $color2) {
+    [move-back],
+    [move-forward] {
+        & i.material-icons {
+            color: $color1;
+
+            @media only screen and (min-width: 768px) { 
+                color: $color2;
+            }
+
+        }
+    }
+
 }

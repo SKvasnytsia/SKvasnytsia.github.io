@@ -1,7 +1,8 @@
 <section-header [title]="title">
     <div move-back></div>
     <div class="history" move-forward>
-        <a [routerLink]="['/statistics/history-all']"><i class="material-icons">history</i></a>
+        <a class="history-link" [routerLink]="['/statistics/history-all']"><i class="material-icons">history</i></a>
+        <a (click)="signOut()"><i class="material-icons">&#xE879;</i></a>
     </div>
 </section-header>
 
@@ -11,7 +12,7 @@
             <div class="category-name">{{category.value}}
                 <a class="add" (click)="add(category.value)"><i class="material-icons">add</i></a>
             </div>
-            <span class="cost-info">Total: {{totalsPerCurrentMonth[category.value]}}</span>
+            <div class="cost-info">Total: {{totalsPerCurrentMonth[category.value]}}</div>
             
         </li>
     </ul>

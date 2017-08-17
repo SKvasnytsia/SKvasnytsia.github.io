@@ -2,6 +2,9 @@
 @import '../../mixins.scss';
 
 scanner {
+    .section-header .container {
+        @include material-icons-color($color8, $color7);
+    }
     .content {
         margin: 15% 10px;
         display: flex;

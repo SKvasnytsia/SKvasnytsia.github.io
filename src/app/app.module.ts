@@ -18,7 +18,6 @@ import {
   HeaderComponent,
   CategoryComponent,
   ScannerComponent,
-  TakePictureComponent,
   DiagramComponent,
   AuthComponent,
   Error404Component
@@ -48,7 +47,6 @@ import {
     HeaderComponent,
     CategoryComponent,
     ScannerComponent,
-    TakePictureComponent,
     DiagramComponent,
     AuthComponent,
     Error404Component

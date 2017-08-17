@@ -86,6 +86,7 @@ export class HistoryComponent implements OnInit {
     }
 
     private _getValidSpendsArray(value, activeCategoryValue) {
+        console.log('_getValidSpendsArray', value)
         return value ? value
             .filter(x => x && x.group.toLowerCase() === activeCategoryValue.toLowerCase())
             .map(x => {

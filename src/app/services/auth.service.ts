@@ -26,6 +26,20 @@ export class AuthService {
     return this.authenticated
   }
 
+  signInWithEmailAndPassword(email: string, password: string) {
+    return  this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    .then(result => {
+      let token = result.credential.accessToken
+      let user = result.uid
+    })
+    .catch(error => console.error('AuthService#signInWithEmailAndPassword() :', error));
+  }
+
+  signInAnonymously() {
+    return  this.afAuth.auth.signInAnonymously()
+    .catch(error => console.error('AuthService#signInAnonymously() :', error));
+  }
+
   signIn(provider): firebase.Promise<any> {
         return this.afAuth.auth.signInWithPopup(provider)
         .then(result => {

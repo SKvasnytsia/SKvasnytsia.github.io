@@ -2,6 +2,14 @@
 @import '../../mixins.scss';
 
 categories {
+    .history .history-link i {
+        color: $color8;
+        padding: 0 10px;
+
+        @media only screen and (min-width: 768px) {
+            color: $color7;
+        }
+    }
     .category-content {
         padding: 3em 1em 1.5em 1em;
         line-height: 100%;
@@ -10,7 +18,6 @@ categories {
         display:flex;
         flex-flow: column wrap;
         justify-content: center;
-        width: 100%;
         ul{
             list-style-type: none;
             padding: 0;
@@ -19,15 +26,12 @@ categories {
             border-top: 1px solid $color8;
             //border-bottom: 1px solid $color8;
             box-shadow: 1px 0px 3px lighten($color9, 30%);
-            padding: 25px 5px;
+            padding: 10px 5px;
             clear: both;
             margin: 10px 0;
 
             /* highlighted, hover should work */
-            &.highlighted,
-            &.hover {
-                color:red;
-            }
+            
             .category-name {
                 width: 100%;
                 padding-bottom: 10px; 
@@ -37,7 +41,6 @@ categories {
             }
             .cost-info {
                 font-size: 0.6em;
-                float: right;
             }
 
             &.hp {
@@ -61,6 +64,7 @@ categories {
         
                 /* Medium screens */
         @media only screen and (min-width: 768px) {
+            padding: 0;
             margin: 0 auto;
             position: static;
             width: 75%;
@@ -76,7 +80,11 @@ categories {
     
                     .add {
                         display: initial;
-                        float: right
+                        float: right;
+                        .material-icons {
+                            @include material-icon-wrapper($primary);  
+                            margin: 0;
+                        }
                     }
                 }
             }  
@@ -88,11 +96,13 @@ categories {
         position: fixed;
         display: flex;
         justify-content: center;
+        
         bottom: 0;
         left:0;
         &, 
         button {
             width: 100%;
+            font-size: 0.8em;
         }
                 /* Medium screens */
         @media only screen and (min-width: 768px) {

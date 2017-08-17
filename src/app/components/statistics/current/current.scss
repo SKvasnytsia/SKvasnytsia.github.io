@@ -4,6 +4,9 @@
 current {
     background-color: $color8;
     position: relative;
+    .section-header .container {
+        @include material-icons-color($color8, $color7);
+    }
     div.section-content {
         margin-top: 45px;
         position: absolute;
@@ -12,6 +15,10 @@ current {
         width: 100%;
         display: flex;
         justify-content: center;
+
+        md-spinner {
+            margin: 10 auto;
+        }
 
         @media only screen and (min-width: 768px) { 
             margin: 0 auto;
@@ -44,6 +51,8 @@ current {
         position: fixed;
         height: 50px;
         bottom: 0;
+
+        font-size: 0.8em;
         left: 0;
         @media only screen and (min-width: 768px) {
             margin-top: 25px;

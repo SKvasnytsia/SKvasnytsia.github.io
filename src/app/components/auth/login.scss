@@ -1,7 +1,7 @@
 @import '../../variables.scss';
+@import '../../mixins.scss';
 
 login {
-    position: absolute;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
@@ -11,23 +11,39 @@ login {
     .main-img {
         object-fit: scale-down;
     }
+    h3 + sub {
+        margin-bottom: 15px;
+    }
+
+    .user-form {
+        font-size: 0.5em;
+        .email-container,
+        .pass-container {
+            flex-flow: row nowrap;
+            display: flex;
+            .mat-input-container {
+                width: 100%;
+            }
+        }
+        i.material-icons {
+            @include material-icon-wrapper($primary);  
+        }
+    }
     
-    .sign-in-section {
+    .sign-in-mobile-section {
+        padding-top: 5px;
         margin: 10% 0;
-        font-size: 0.8em;
-        button {
-            position:relative;
-            width: 100%;
-            border: 1px solid $color9;
+        font-size: 0.7em;
+        flex-flow: row wrap;
+        justify-content: center;
+        button.mat-fab.mat-accent {
+            min-height: 50px;
+            margin: 10px 5px;
             background-color: $color8;
-            margin: 5px;
-            height: 50px;
             .google-icon,
             .facebook-icon {
-                position: absolute;
                 max-height: 40px;
-                left: 5%;
-                top: 15%;
+                vertical-align: middle;
             }
             em {
                 margin-left: 40px;
@@ -38,6 +54,9 @@ login {
             color: $color9;
         }
     }
+    .sign-in-desktop-section {
+        display: none;
+    }
 
 /*Update css for medium and big screens*/
     /* Medium screens */
@@ -45,16 +64,29 @@ login {
         position: static;
         margin-left: auto;
         margin-right: auto;
+
+        .main-header ,
+        .sign-in-mobile-section {
+            display: none;
+        }
+    
+        .sign-in-desktop-section {
+            display: initial;
+            font-size: 0.5em;
+            button {
+                min-height: 50px;
+            }
+            
+            .section-info {
+                padding: 10px;
+                color: $color9;
+            }
+            .google-icon,
+            .facebook-icon {
+                padding: 10px 0;
+                max-height: 40px;
+                vertical-align: middle;
+            }
+        }
     }
-
-    /* Laptops screens */
-    // @media only screen and (min-width: 1224px) {
-    //     position: static;
-    // }
-
-    /* Large screens ----------- */
-    // @media only screen 
-    // and (min-width : 1824px) {
-    // /* Styles */
-    // }
 }

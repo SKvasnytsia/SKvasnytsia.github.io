@@ -3,7 +3,7 @@ export const TRANSLATE: Object = {
     'addGoods': 'Add new item',
     'login': {
         'title': 'Calculate your personal budget',
-        'signInInfo': 'Please sign in with',
+        'signInInfo': 'Or sign in with',
         'googleSignIn': 'Sign in with Google',
         'facebookSignIn': 'Sign in with Facebook'
     },

@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, EventEmitter, Input, Output, Injectable, 
 import { Router } from '@angular/router'
 
 import { 
+    AuthService,
     StatisticsCacheService,
     BudgetService,
     TranslationService
@@ -27,6 +28,7 @@ export class CategoryComponent implements OnInit{
   public totalsPerCurrentMonth: Object = {}
  
   constructor (
+        private authService: AuthService,
         private cacheService: StatisticsCacheService,
         private budgetService: BudgetService,
         private translationService: TranslationService, 
@@ -46,9 +48,7 @@ export class CategoryComponent implements OnInit{
   }
 
   private _getTotalsForCurrentMonth(spendsArray) {
-    console.log(spendsArray)
     const _getTotals = (group) => {
-
       return spendsArray.reduce((prev, current) => {
           return current.group === group 
             ? prev + current.price 
@@ -56,7 +56,7 @@ export class CategoryComponent implements OnInit{
       }, 0)
     }
     this.totalsPerCurrentMonth = this.list.reduce((prev, current: any) => {
-      prev[current.value] = _getTotals(current.value)
+      prev[current.value] = spendsArray ? _getTotals(current.value) : 0
       return prev
     }, {})
   }
@@ -84,5 +84,10 @@ export class CategoryComponent implements OnInit{
 
   add(categoryValue) {
     this.router.navigate(['/add', { category:categoryValue}])
+  }
+
+  signOut() {
+    this.authService.signOut()
+    this.router.navigate(['/login'])
   }
 }

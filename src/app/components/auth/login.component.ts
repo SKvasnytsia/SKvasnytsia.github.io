@@ -13,6 +13,10 @@ import { AuthService, TranslationService } from '../../services/index'
 export class AuthComponent {
     private key = 'login'
     public login: any
+    public loginData = {
+        email: '',
+        password: ''
+    }
 
     constructor(public router: Router, public auth: AuthService, public translationService: TranslationService, private firebaseAuth: AngularFireAuth) {
         this.login = translationService.getAllForComponent(this.key)
@@ -32,6 +36,15 @@ export class AuthComponent {
 
     signOut() {
         this.auth.signOut()
+    }
+
+    signInWithEmailAndPassword() {
+        debugger;
+        this.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
+    }
+
+    signInAnonymously() {
+        this.auth.signInAnonymously()
     }
 
 }

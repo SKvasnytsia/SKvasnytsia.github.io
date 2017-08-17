@@ -10,7 +10,7 @@
     <div class="container">
         <md-tab-group>
             <md-tab label="{{statisticsTranslation.current}}">
-                <md-spinner  *ngIf="loading"></md-spinner>
+                <md-spinner *ngIf="loading"  value="primary"></md-spinner>
                 <sub class="loading-info" *ngIf="!loading && !spendsForCurrentMonth.length">{{statisticsTranslation.noDataFound}}</sub>
                 <statistics-list [spends]="spendsForCurrentMonth" [totals]="currentSpendTotals" [totalLabel]="statisticsTranslation.total"></statistics-list>
             </md-tab>

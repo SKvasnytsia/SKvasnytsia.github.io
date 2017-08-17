@@ -30,7 +30,7 @@
     }
   ],
   "start_url": "./?utm_source=launcher",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation":"portrait",
   "theme_color":"#536878",
   "background_color":"#000"

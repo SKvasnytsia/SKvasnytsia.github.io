@@ -1,13 +1,45 @@
-<h3 class="main-header">{{login.title | uppercase}}</h3>
-<img class="main-img" src="assets/icon-4x.png"/>
-<section class="sign-in-section">
+<div class="budget-info">
+    <h3 class="main-header">MY BUDGET </h3>
+    <img class="main-img" src="assets/icon-144px.png"/>
+</div>
+<div class="user-form">
+    <form  #loginForm="ngForm">
+        <div class="email-container">
+            <i class="material-icons">&#xE8A6;</i>
+            <md-input-container color="primary">
+                <input mdInput type="email" name="email" [(ngModel)]="loginData.email" placeholder="Enter your email" required>
+            </md-input-container>
+        </div>
+        <div class="pass-container">
+            <i class="material-icons">&#xE899;</i>
+            <md-input-container color="primary">
+                <input mdInput name="password" type="password" [(ngModel)]="loginData.password" placeholder="Enter your password" required>
+            </md-input-container>
+        </div>
+        <div>
+            <button md-raised-button color="primary" [disabled]="true" type="submit" (ngSubmit)="signInWithEmailAndPassword()">Sign in</button>
+            <button md-raised-button (click)="signInAnonymously()" type="button">Anonymous</button>
+        </div>
+    </form>
+</div>
+<section class="sign-in-mobile-section">
     <div class="section-info"><em>{{login.signInInfo}}</em></div>
-    <button md-button type="button" (click)="signInWithGoogle()">
-        <img class="google-icon" src="assets/google_logo.png"/>
-        <em>{{login.googleSignIn}}</em>
+    <button md-fab (click)="signInWithGoogle()">
+        <img class="google-icon" src="assets/google_logo.png" alt="G"/>
     </button>
-    <button md-button type="button" (click)="signInWithFacebook()">
-        <img class="facebook-icon" src="assets/facebook_logo.png"/> 
-        <em>{{login.facebookSignIn}}</em>
+    <button md-fab (click)="signInWithFacebook()">        
+        <img class="facebook-icon" src="assets/facebook_logo.png" alt="F"/> 
     </button>
 </section>
+
+<section class="sign-in-desktop-section">
+        <div class="section-info"><em>{{login.signInInfo}}</em></div>
+        <button md-raised-button (click)="signInWithGoogle()">
+            <img class="google-icon" src="assets/google_logo.png" alt="G"/>
+            Sign in with Google
+        </button>
+        <button md-raised-button (click)="signInWithFacebook()">        
+            <img class="facebook-icon" src="assets/facebook_logo.png" alt="F"/> 
+            Sign in with Facebook
+        </button>
+    </section>
