@@ -34,7 +34,6 @@ export class ScannerComponent implements OnInit {
 
     ngOnInit() {
         let activeCategory = this.route.snapshot.paramMap.get('category')
-        console.log(activeCategory)
         if (activeCategory)
             this.category = CATEGORIES.find(c => c.value.toLowerCase() === activeCategory.toLowerCase()) || {}
         this.item.group = this.category.value       

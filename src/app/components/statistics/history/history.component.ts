@@ -67,7 +67,7 @@ export class HistoryComponent implements OnInit {
         Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(results => {
-              if (!results.length) {
+              if (!results.length && results.every(x => !x.length)) {
                 this.budgetService.getAllSpends(this.from, this.to).subscribe(res => {
                     res.query.on('value', result => {
                         this.spends = this._getValidSpendsArray(result.val(), this.category.value)
@@ -76,7 +76,7 @@ export class HistoryComponent implements OnInit {
                 })
                 
               } else {
-                this.spends = this._getValidSpendsArray(results, this.category.value)
+                this.spends = this._getValidSpendsArray([].concat(...results), this.category.value)
               }
           })
     }
@@ -86,7 +86,7 @@ export class HistoryComponent implements OnInit {
     }
 
     private _getValidSpendsArray(value, activeCategoryValue) {
-        console.log('_getValidSpendsArray', value)
+
         return value ? value
             .filter(x => x && x.group.toLowerCase() === activeCategoryValue.toLowerCase())
             .map(x => {

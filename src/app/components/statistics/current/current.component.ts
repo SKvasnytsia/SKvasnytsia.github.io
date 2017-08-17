@@ -44,10 +44,11 @@ export class CurrentComponent {
     private _getSpendsCaller (from, to, group, spends, spendResultCaller) {
         this.budgetService.getAllSpends(from, to).subscribe(res =>{
             res.query.on('value', result => {
-                const value = result.val()
+                const value = result.val(),
+                    arr = DateCalculationHelper.transformObjectToArray(value)
 
-                spendResultCaller(value, group)
-                this.cacheService.addOrUpdateCache(spends, from, to, group, res.id)
+                spendResultCaller(arr, group)
+                this.cacheService.addOrUpdateCache(arr, from, to, group, res.id)
             })
         })
         
@@ -92,7 +93,6 @@ export class CurrentComponent {
     }
 
     private _getValidSpendsArray(value, categoryValue) {
-        console.log(value)
         return value ? value
             .filter(x => x && x.group.toLowerCase() === categoryValue.toLowerCase())
             .map(x => {

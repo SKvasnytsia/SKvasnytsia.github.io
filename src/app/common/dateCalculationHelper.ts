@@ -50,4 +50,16 @@ export class DateCalculationHelper {
         }
         
     }
+
+    public static transformObjectToArray(obj) {
+        const arr = []
+
+        if (!obj) return arr
+        
+        for(var i in obj) {
+            arr.push(obj[i])
+        }
+
+        return arr
+    }
 }

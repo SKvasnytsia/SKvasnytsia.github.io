@@ -63,17 +63,13 @@ const separateToMonthlyRanges = function(from, to, isOriginRange = true) {
 }
 
 self.addEventListener('beforeinstallprompt', function(event) {
-  console.log('beforeinstallprompt', event.userChoice)
    event.userChoice.then(function(choiceResult) {
-
-    console.log(choiceResult.outcome);
-
-    if(choiceResult.outcome == 'dismissed') {
+   if(choiceResult.outcome == 'dismissed') {
       console.log('User cancelled home screen install');
     }
     else {
       console.log('User added to home screen');
-    }
+   }
   });
 });
 

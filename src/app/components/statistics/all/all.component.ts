@@ -76,14 +76,16 @@ export class AllComponent implements OnInit{
     if (!this.from || !this.to) return []
     let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to, false)
     const result = []
+
     Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(results => {
-              if (!results.length) {
+              if (!results.length || result.every(x => !x.length)) {
                 this.budgetService.getAllSpends(this.from, this.to).subscribe(res => {
                     res.query.on('value', result => {
-                        this.spends = spendsHandler(result.val().filter(x => x))
-                        console.log(this.spends)
+                        const arr = DateCalculationHelper.transformObjectToArray(result.val())
+
+                        this.spends = spendsHandler(arr)
                         this.cacheService.addOrUpdateCacheForRanges(this.spends, this.from, this.to, res.id)
                     })
                 })

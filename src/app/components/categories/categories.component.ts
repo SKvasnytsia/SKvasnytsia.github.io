@@ -64,9 +64,10 @@ export class CategoryComponent implements OnInit{
   private _getSpendsCaller (from, to) {
     this.budgetService.getAllSpends(from, to).subscribe(res =>{
         res.query.on('value', result => {
-            const value = result.val()
+            const value = result.val(),
+              arr = DateCalculationHelper.transformObjectToArray(value)
 
-            this._getTotalsForCurrentMonth(value)
+            this._getTotalsForCurrentMonth(arr)
         })
     })
   }
