@@ -2,6 +2,17 @@
 @import '../../mixins.scss';
 
 categories {
+    .desktop-version {
+        display:none;
+        @media only screen and (min-width: 768px) {
+            display: initial;
+        }
+    }
+    .mobile-version {
+        @media only screen and (min-width: 768px) {
+            display: none;
+        }
+    }
     .history .history-link i {
         color: $color8;
         padding: 0 10px;
@@ -11,13 +22,14 @@ categories {
         }
     }
     .category-content {
-        padding: 3em 1em 1.5em 1em;
-        line-height: 100%;
+        overflow: scroll;
+        margin: 3em 1em 1.5em 1em;
         background-color: $color6;
         font-size: 0.7em;
         display:flex;
         flex-flow: column wrap;
         justify-content: center;
+
         ul{
             list-style-type: none;
             padding: 0;
@@ -60,8 +72,21 @@ categories {
             }
             
         }
-            
+        .diagram-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            flex-flow: column wrap;
+            height: 200px;
+            width: 100%;
         
+            .totals-container {
+                position: absolute;
+                color: grey;
+                width: 100%;
+            }
+        }
                 /* Medium screens */
         @media only screen and (min-width: 768px) {
             padding: 0;

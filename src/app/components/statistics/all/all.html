@@ -7,6 +7,7 @@
 
 <div class="category-content">
     <range-selector [from]="from" [to]="to" (dateUpdated)="dateUpdated($event)"></range-selector>
+    <md-spinner *ngIf="loading" value="primary"></md-spinner>
     <expansion-panels-container *ngIf="list.length && spends">
         <expansion-panel  class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list">
             <expansion-panel-title>         

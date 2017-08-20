@@ -74,7 +74,6 @@ import {
     DbService,
     StatisticsCacheService,
     { provide: FILE_READER_TOKEN, useValue: FileReader}
-
   //  Logger
   ],
   bootstrap: [AppComponent]

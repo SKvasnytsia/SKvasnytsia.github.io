@@ -27,7 +27,8 @@ export class AllComponent implements OnInit{
   private activeCategory: string
   private key: string = 'categories'
   public spends: any
- 
+  public loading = false
+
   constructor (private budgetService: BudgetService, 
       private translationService: TranslationService, 
       private cacheService: StatisticsCacheService,
@@ -70,27 +71,28 @@ export class AllComponent implements OnInit{
     const spendsHandler = res => {
           let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to)
           let groupped = this._groupByCategories(res)
+          this.loading = false
           return this._updateCategorizedDataPerDateRange(groupped, dateRanges)
          
     }
     if (!this.from || !this.to) return []
     let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to, false)
     const result = []
-
+    this.loading = true
+    
     Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(results => {
-              if (!results.length || result.every(x => !x.length)) {
+              if (!results.length || results.every(x => !x.length)) {
                 this.budgetService.getAllSpends(this.from, this.to).subscribe(res => {
                     res.query.on('value', result => {
                         const arr = DateCalculationHelper.transformObjectToArray(result.val())
-
                         this.spends = spendsHandler(arr)
                         this.cacheService.addOrUpdateCacheForRanges(this.spends, this.from, this.to, res.id)
                     })
                 })
               } else {
-                this.spends = spendsHandler(results)
+                this.spends = spendsHandler([].concat(...results))
               }
           })
   }

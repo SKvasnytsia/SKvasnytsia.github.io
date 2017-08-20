@@ -1,12 +1,17 @@
-<section-header [title]="title">
+<section-header [title]="title" class="desktop-version">
     <div move-back></div>
     <div class="history" move-forward>
         <a class="history-link" [routerLink]="['/statistics/history-all']"><i class="material-icons">history</i></a>
         <a (click)="signOut()"><i class="material-icons">&#xE879;</i></a>
     </div>
 </section-header>
-
 <div class="category-content">
+    <div class="diagram-container">
+        <diagram *ngIf="dataTotals" [data]="dataTotals"></diagram>
+        <div *ngIf="totals" class="totals-container">
+            ${{totals}} spent
+        </div>
+    </div>
     <ul>
         <li class="category" [ngClass]="(category.alias + ' ' + (activeCategory === category.value ? 'highlighted' : ''))" *ngFor="let category of list" (click)="getStatistics(category.value)">
             <div class="category-name">{{category.value}}
@@ -17,6 +22,13 @@
         </li>
     </ul>
 </div>
+<section-header [title]="title" class="mobile-version">
+    <div move-back></div>
+    <div class="history" move-forward>
+        <a class="history-link" [routerLink]="['/statistics/history-all']"><i class="material-icons">history</i></a>
+        <a (click)="signOut()"><i class="material-icons">&#xE879;</i></a>
+    </div>
+</section-header>
 <section class="add-spent-container">
     <button md-raised-button type="button" color="primary" [routerLink]="['/add']"><i>Add spent</i></button>
 </section>

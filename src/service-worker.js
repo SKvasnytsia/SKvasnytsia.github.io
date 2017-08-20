@@ -1,14 +1,14 @@
 'use strict';
 
 const cacheList = [
-  // '0.chunk.js',
-  // 'polyfills.bundle.js',
-  // 'styles.bundle.js',
-  // 'vendor.bundle.js',
-  // 'main.bundle.js',
-  // 'assets/icon-1x.png',
-  // 'assets/chek.png',
-  // 'index.html'
+  '0.chunk.js',
+  'polyfills.bundle.js',
+  'styles.bundle.js',
+  'vendor.bundle.js',
+  'main.bundle.js',
+  'assets/icon-1x.png',
+  'assets/chek.png',
+  'index.html'
 ]
 const getStartAndEndDatesPerMonth = function(date) {
     const year = date.getFullYear(),

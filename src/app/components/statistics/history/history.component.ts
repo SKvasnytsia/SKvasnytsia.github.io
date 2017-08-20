@@ -26,6 +26,7 @@ export class HistoryComponent implements OnInit {
     category: any
     spends: any = []
     statisticsTranslation: any
+    loading = false
 
     constructor(private budgetService: BudgetService,
             private cacheService: StatisticsCacheService, 
@@ -64,6 +65,7 @@ export class HistoryComponent implements OnInit {
         if (this.category === null) return []
         if (!this.from || !this.to) return []
         let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to)
+        this.loading = true
         Promise.all([...dateRanges.map(range => 
           this.cacheService.getCache(range.from, range.to))])
           .then(results => {
@@ -86,7 +88,7 @@ export class HistoryComponent implements OnInit {
     }
 
     private _getValidSpendsArray(value, activeCategoryValue) {
-
+        this.loading = false
         return value ? value
             .filter(x => x && x.group.toLowerCase() === activeCategoryValue.toLowerCase())
             .map(x => {

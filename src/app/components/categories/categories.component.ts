@@ -26,6 +26,8 @@ export class CategoryComponent implements OnInit{
   private activeCategory: string
   private key: string = 'categories'
   public totalsPerCurrentMonth: Object = {}
+  public dataTotals: any[]
+  public totals: number = 0
  
   constructor (
         private authService: AuthService,
@@ -55,10 +57,17 @@ export class CategoryComponent implements OnInit{
             : prev 
       }, 0)
     }
-    this.totalsPerCurrentMonth = this.list.reduce((prev, current: any) => {
-      prev[current.value] = spendsArray ? _getTotals(current.value) : 0
+
+    this.dataTotals = this.list.map(x => {
+      const totals = spendsArray ? _getTotals(x.value) : 0
+      this.totals += totals
+      return [ x.value, totals ]
+    })
+    this.totalsPerCurrentMonth = this.dataTotals.reduce((prev, current) => {
+      prev[current[0]] = current[1]
       return prev
     }, {})
+    
   }
 
   private _getSpendsCaller (from, to) {
