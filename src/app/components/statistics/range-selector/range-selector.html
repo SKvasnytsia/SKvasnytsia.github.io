@@ -14,4 +14,7 @@
     <md-datepicker #toDate                 
         startView="month">
     </md-datepicker>     
+    <div *ngIf="showError" class="validation-message">
+        Error! `From` date has to be less than `to` date
+    </div>
 </div>

@@ -75,7 +75,7 @@ export class AllComponent implements OnInit{
           return this._updateCategorizedDataPerDateRange(groupped, dateRanges)
          
     }
-    if (!this.from || !this.to) return []
+    if (!this.from || !this.to || this.to.getTime() < this.from.getTime()) return []
     let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to, false)
     const result = []
     this.loading = true

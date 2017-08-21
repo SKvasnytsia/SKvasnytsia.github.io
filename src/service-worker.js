@@ -74,9 +74,12 @@ self.addEventListener('beforeinstallprompt', function(event) {
 });
 
 self.addEventListener('install', function(event) {
+  var offlineRequest = new Request('offline.html');
   event.waitUntil(
-    caches.open('v1').then(function(cache) {
-      return cache.addAll(cacheList);
+    fetch(offlineRequest).then(function(response) {
+      return caches.open('offline').then(function(cache) {
+        return cache.put(offlineRequest, response);
+      });
     })
   );
 });

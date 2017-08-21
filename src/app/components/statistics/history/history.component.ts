@@ -63,7 +63,7 @@ export class HistoryComponent implements OnInit {
     //disable dates bigger or lower than  ---- smth like validate range
     getAllSpendsPerPeriod() : BuyingItem[] {
         if (this.category === null) return []
-        if (!this.from || !this.to) return []
+        if (!this.from || !this.to || this.to.getTime() < this.from.getTime()) return []
         let dateRanges = DateCalculationHelper.separateToMonthlyRanges(this.from, this.to)
         this.loading = true
         Promise.all([...dateRanges.map(range => 
