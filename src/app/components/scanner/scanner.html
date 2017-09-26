@@ -6,18 +6,9 @@
 </section-header>
 <div class="content">
     <form (ngSubmit)="saveBuyingItem()"  #goodsForm="ngForm" >
+        
         <div class="img-container">
-            <label>
-                <img *ngIf="!item.picture" src="assets/chek.png"/>
-                <img *ngIf="item.picture" [src]="item.picture"/>
-                <input 
-                    id="picture" 
-                    name="picture" 
-                    hidden 
-                    type="file"
-                    accept="image/*"
-                    (change)="onFileUpload($event)"/>
-            </label>
+            <take-picture [picture]="item.picture" (fileUpload)="onFileUpload(data)"></take-picture>
         </div>
         <md-input-container>
             <input mdInput 

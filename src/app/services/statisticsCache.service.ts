@@ -10,6 +10,7 @@ export class StatisticsCacheService {
         
     constructor(private dbService: DbService) {
     }
+    
     public addOrUpdateCacheForRanges(dataGroupedByRange:any, originalFrom, originalTo, id) {
         for (let group in dataGroupedByRange) {
             dataGroupedByRange[group].items.forEach(x => {

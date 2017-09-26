@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-
 import { CacheItem } from '../common/models/index'
 
 function getWindow (): any {

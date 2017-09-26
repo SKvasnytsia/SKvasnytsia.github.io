@@ -6,39 +6,35 @@ import { BuyingItem } from '../common/models/index'
 describe('BudgetService', () => {
     let budgetService: BudgetService,
         mockFireBase,
+        mockAuthFireBase,
+        app,
         mockAuthService: AuthService
 
     beforeEach(() => {
-        mockFireBase = jasmine.createSpyObj('mockFireBase', ['app.database'])
+        //afAuth.authState.subscribe
+        mockAuthFireBase = jasmine.createSpy('mockAuthFireBase')
+        mockAuthFireBase.authState = jasmine.createSpyObj('mockAuthFireBase.authState',['subscribe'])
+        mockFireBase = jasmine.createSpy('mockFireBase')
+        app = jasmine.createSpyObj('app', ['database', 'ref', 'orderByChild', 'startAt', 'endAt'])
+        mockAuthService = new AuthService(mockAuthFireBase)
         budgetService = new BudgetService(mockFireBase, mockAuthService)
     })
 
     //todo: chain functions <= how to test
     describe('getAllSpends', () => {
         it('should get all the spends per group', () => {
-            mockAuthService.uid = Observable.of("")
-            mockFireBase.app = {
-                database: function () { 
-                    return {
-                        ref: function() {
-                            return {
-                                orderByChild: function() {
-                                    return {
-                                        startAt: function() {
-                                            return {
-                                                endAt : function() {}
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            const result = budgetService.getAllSpends(new Date(), new Date())
+            mockAuthService.uid = Observable.of('')
+            app.database.and.returnValue(app)
+            app.ref.and.returnValue(app)
+            app.orderByChild.and.returnValue(app)
+            app.startAt.and.returnValue(app)
+            app.endAt.and.returnValue(app)
+            mockFireBase.app = app
+                
+            budgetService.getAllSpends(new Date(), new Date()).subscribe(obj  =>{
+                expect(obj.id).toBe('')
+            })
 
-            expect(result).toBe(Observable.of({}))
         })
     })
 

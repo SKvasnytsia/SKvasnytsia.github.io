@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation, OnInit, Inject } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 ///////models///////
 import { BuyingItem, CATEGORIES } from '../../common/models/index'
 import { DateCalculationHelper } from '../../common/index'
-import { BudgetService, TranslationService, StatisticsCacheService, FILE_READER_TOKEN } from '../../services/index'
+import { BudgetService, TranslationService, StatisticsCacheService } from '../../services/index'
 
 @Component({
     encapsulation: ViewEncapsulation.None,
@@ -26,8 +26,7 @@ export class ScannerComponent implements OnInit {
             private route:ActivatedRoute, 
             private translateService: TranslationService,  
             private budgetService: BudgetService,
-            private cacheService: StatisticsCacheService,
-            @Inject(FILE_READER_TOKEN) private FileReader: any) {
+            private cacheService: StatisticsCacheService) {
         this.title = translateService.get(this.key)
         this.item = new BuyingItem('', new Date().getTime())
     }
@@ -40,25 +39,18 @@ export class ScannerComponent implements OnInit {
    }
 
     saveBuyingItem() {
-        debugger;
         this.budgetService.addItem(this.item).subscribe(res => {
-            const item = res.item
-            const {from, to} = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
+            const item = res.item,
+                {from, to} = DateCalculationHelper.getStartAndEndDatesPerMonth(new Date())
+            
             this.cacheService.addOrUpdateCache([item], from, to, item.group, res.id)
-            this.router.navigate([`/statistics/${item.group}`])
+    
+            this.router.navigate([`/statistics/${this.item.group}`])
+            
         })
-        
     }
 
-    onFileUpload($event) {
-        if ($event.target.files && $event.target.files[0]) {
-            const reader = this.FileReader,
-                readerInstance = new reader()
-            
-            readerInstance.onload = (event) => {
-                this.item.picture = event.target.result;
-            }
-            readerInstance.readAsDataURL($event.target.files[0]);
-        }
+    onFileUpload(data){
+        this.item.picture = data
     }
 }

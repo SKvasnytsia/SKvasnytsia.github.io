@@ -13,6 +13,7 @@ import { AuthService, TranslationService } from '../../services/index'
 export class AuthComponent {
     private key = 'login'
     public login: any
+    public error: string
     public loginData = {
         email: '',
         password: ''
@@ -39,8 +40,15 @@ export class AuthComponent {
     }
 
     signInWithEmailAndPassword() {
-        debugger;
+        this.error = 'Attempting to sign in'
         this.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
+        .then(data => {
+            this.error = ''
+        })
+        .catch(e => {
+            console.log(e)
+            this.error = e.message
+        })
     }
 
     signInAnonymously() {

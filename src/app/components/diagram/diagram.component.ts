@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core'
-import * as d3 from 'd3'
-
+import * as d3 from './d3index'
 import { COLORS } from '../../common/models/index'
 
 @Component({
@@ -27,9 +26,8 @@ export class DiagramComponent implements AfterViewInit, OnChanges {
 
   ngAfterViewInit() {
     this.createChart()
-    if (this.data) {
+    if (this.data)
       this.updateChart()
-    }
   }
 
   ngOnChanges() {

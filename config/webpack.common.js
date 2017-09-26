@@ -359,7 +359,8 @@ module.exports = function(options) {
             "assets",
             "manifest.json",
             "service-worker-registration.js",
-            "service-worker.js"
+            "service-worker.js",
+            "offline.html"
         ],
         "globOptions": {
             "cwd": path.join(process.cwd(), "src"),

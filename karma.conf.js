@@ -1,42 +1,147 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/0.13/config/configuration-file.html
+/**
+ * @author: @AngularClass
+ */
 
 module.exports = function (config) {
   var testWebpackConfig = require('./config/webpack.test.js')({ env: 'test' });
 
-  config.set({
+  var configuration = {
+
+    /**
+     * Base path that will be used to resolve all patterns (e.g. files, exclude).
+    */
     basePath: '',
+
+    /**
+     * Frameworks to use
+     *
+     * available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+     */
     frameworks: ['jasmine'],
-    plugins: [
-      require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-jasmine-html-reporter'),
-      require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
-    ],
-    client:{
-      clearContext: false // leave Jasmine Spec Runner output visible in browser
+
+    /**
+     * List of files to exclude.
+    */
+    exclude: [],
+
+    client: {
+      captureConsole: false
     },
+
+    /**
+     * List of files / patterns to load in the browser
+     *
+     * we are building the test environment in ./spec-bundle.js
+     */
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './config/spec-bundle.js', watched: false },
+      { pattern: './src/assets/**/*', watched: false, included: false, served: true, nocache: false }
     ],
-    preprocessors: {
-      './src/test.ts': ['@angular/cli']
+
+    /**
+     * By default all assets are served at http://localhost:[PORT]/base/
+     */
+    proxies: {
+      "/assets/": "/base/src/assets/"
     },
-    mime: {
-      'text/x-typescript': ['ts','tsx']
-    },
-    coverageIstanbulReporter: {
-      reports: [ 'html', 'lcovonly' ],
-      fixWebpackSourcePaths: true
-    },
+
+    /**
+     * Preprocess matching files before serving them to the browser
+     * available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+     */
+    preprocessors: { './config/spec-bundle.js': ['coverage', 'webpack', 'sourcemap'] },
+
+    /**
+     * Webpack Config at ./webpack.test.js
+     */
     webpack: testWebpackConfig,
-    reporters: ['progress', 'coverage-istanbul'],
+
+    coverageReporter: {
+      type: 'in-memory'
+    },
+
+    remapCoverageReporter: {
+      'text-summary': null,
+      json: './coverage/coverage.json',
+      html: './coverage/html'
+    },
+
+    /**
+     * Webpack please don't spam the console when running in karma!
+     */
+    webpackMiddleware: {
+      /**
+       * webpack-dev-middleware configuration
+       * i.e.
+       */
+      noInfo: true,
+      /**
+       * and use stats to turn off verbose output
+       */
+      stats: {
+        /**
+         * options i.e.
+         */
+        chunks: false
+      }
+    },
+
+    /**
+     * Test results reporter to use
+     *
+     * possible values: 'dots', 'progress'
+     * available reporters: https://npmjs.org/browse/keyword/karma-reporter
+     */
+    reporters: ['mocha', 'coverage', 'remap-coverage'],
+
+    /**
+     * Web server port.
+     */
     port: 9876,
+
+    /**
+     * enable / disable colors in the output (reporters and logs)
+     */
     colors: true,
-    logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
+
+    /**
+     * Level of logging
+     * possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+     */
+    logLevel: config.LOG_WARN,
+
+    /**
+     * enable / disable watching file and executing tests whenever any file changes
+     */
+    autoWatch: false,
+
+    /**
+     * start these browsers
+     * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+     */
+    browsers: [
+      'Chrome'
+    ],
+
+    customLaunchers: {
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
+
+    /**
+     * Continuous Integration mode
+     * if true, Karma captures browsers, runs the tests and exits
+     */
     singleRun: true
-  });
-};
+  };
+
+  if (process.env.TRAVIS) {
+    configuration.browsers = [
+      'ChromeTravisCi'
+    ];
+  }
+
+  config.set(configuration);
+}

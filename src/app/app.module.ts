@@ -20,7 +20,8 @@ import {
   ScannerComponent,
   DiagramComponent,
   AuthComponent,
-  Error404Component
+  Error404Component,
+  TakePictureComponent
 } from './index';
 
 import { firebaseConfig } from './firebase.config'
@@ -49,7 +50,8 @@ import {
     ScannerComponent,
     DiagramComponent,
     AuthComponent,
-    Error404Component
+    Error404Component,
+    TakePictureComponent
   ],
   imports: [
     BrowserModule,

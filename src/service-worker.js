@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 const cacheList = [
   '0.chunk.js',
@@ -8,7 +8,8 @@ const cacheList = [
   'main.bundle.js',
   'assets/icon-1x.png',
   'assets/chek.png',
-  'index.html'
+  'index.html',
+  'https://fonts.googleapis.com/icon?family=Material+Icons'
 ]
 const getStartAndEndDatesPerMonth = function(date) {
     const year = date.getFullYear(),
@@ -62,6 +63,12 @@ const separateToMonthlyRanges = function(from, to, isOriginRange = true) {
   
 }
 
+const authenticatedRequests = function() {
+  firebase.prototype.auth.currentUser.getToken(true).then(token =>{
+    console.log(token)
+  })
+}
+
 self.addEventListener('beforeinstallprompt', function(event) {
    event.userChoice.then(function(choiceResult) {
    if(choiceResult.outcome == 'dismissed') {
@@ -85,21 +92,25 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('activate', function(event) {
+  console.log('activate')
+  //authenticatedRequests()
 
 });
 
 self.addEventListener('fetch', function(event) {
+  
+  console.log('fetch', event.request)
   if (event.request.method === 'GET') {
     event.respondWith(caches.match(event.request).then(function(response) {
       // caches.match() always resolves
       // but in case of success response will have value
-      if (response !== undefined) {
+      if (response) {
         return response;
       } else {
         return fetch(event.request).then(function (response) {
-          // response may be used only once
-          // we need to save clone to put one copy in cache
-          // and serve second one
+          if(!response || response.status !== 200 || response.type !== 'basic'){
+              return response
+          }
           let responseClone = response.clone();
           
           caches.open('v1').then(function (cache) {
@@ -107,27 +118,8 @@ self.addEventListener('fetch', function(event) {
           });
           return response;
         }).catch(function () {
-          //return caches.match('/sw-test/gallery/myLittleVader.jpg');
         });
       }
     }));
-  }
-});
-
-self.addEventListener('push', function(event) {
-  //event.data.json()
-  if (event.data) {
-    console.log('This push event has data: ', event.data.text());
-  } else {
-    console.log('This push event has no data.');
-  }
-});
-
-self.addEventListener('sync', function(event) {
-  //event.data.json()
-  if (event.data) {
-    console.log('This sync event has data: ', event.data.text());
-  } else {
-    console.log('This sync event has no data.');
   }
 });

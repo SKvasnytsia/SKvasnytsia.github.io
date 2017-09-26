@@ -1,0 +1,26 @@
+<div class="img-desktop-container">
+    <label>
+        <img *ngIf="!picture" src="assets/chek.png"/>
+        <img *ngIf="picture" [src]="picture"/>
+        <input 
+            id="picture" 
+            name="picture" 
+            hidden 
+            type="file"
+            accept="image/*"
+            (change)="onFileUpload($event)"/>
+    </label>
+</div>
+<div class="img-mobile-container">
+    <label>
+        <img *ngIf="!picture" src="assets/chek.png"/>
+        <img *ngIf="picture" [src]="picture"/>
+        <input 
+            id="picture" 
+            name="picture" 
+            capture="camera"
+            type="file"
+            accept="image/*"
+            (change)="onFileUpload($event)"/>
+    </label>
+</div>

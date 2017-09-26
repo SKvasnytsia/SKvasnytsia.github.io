@@ -1,0 +1,12 @@
+.img-desktop-container {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .img-desktop-container {
+        display: initial;
+    }
+    .img-mobile-container {
+        display: none;
+    }
+}

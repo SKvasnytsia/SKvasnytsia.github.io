@@ -27,12 +27,25 @@ export class AuthService {
   }
 
   signInWithEmailAndPassword(email: string, password: string) {
-    return  this.afAuth.auth.signInWithEmailAndPassword(email, password)
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password)
     .then(result => {
       let token = result.credential.accessToken
       let user = result.uid
     })
-    .catch(error => console.error('AuthService#signInWithEmailAndPassword() :', error));
+    .catch(error => {
+      console.error('AuthService#signInWithEmailAndPassword() :', error)
+      return error
+    });
+  }
+
+  signUpWithEmailAndPassword(email: string, password: string) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
+    .then(result => {
+      let token = result.credential.accessToken
+      let user = result.uid
+    })
+    .catch(error => console.error('AuthService#signUpWithEmailAndPassword() :', error));
+
   }
 
   signInAnonymously() {

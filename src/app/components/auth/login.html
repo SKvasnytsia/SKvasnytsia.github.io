@@ -3,7 +3,8 @@
     <img class="main-img" src="assets/icon-144px.png"/>
 </div>
 <div class="user-form">
-    <form  #loginForm="ngForm">
+    <form  #loginForm="ngForm" (ngSubmit)="signInWithEmailAndPassword()">
+        <em>Sign in with firebase account</em>
         <div class="email-container">
             <i class="material-icons">&#xE8A6;</i>
             <md-input-container color="primary">
@@ -17,9 +18,12 @@
             </md-input-container>
         </div>
         <div>
-            <button md-raised-button color="primary" [disabled]="true" type="submit" (ngSubmit)="signInWithEmailAndPassword()">Sign in</button>
+            <button md-raised-button color="primary"  type="submit" [disabled]="loginForm.form.invalid">Sign in or Sign up</button>
             <button md-raised-button (click)="signInAnonymously()" type="button">Anonymous</button>
         </div>
+        <em>
+            {{error}}
+        </em>
     </form>
 </div>
 <section class="sign-in-mobile-section">
