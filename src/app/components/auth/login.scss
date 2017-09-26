@@ -33,9 +33,11 @@ login {
         padding-top: 5px;
         margin: 10% 0;
         font-size: 0.7em;
-        flex-flow: row wrap;
-        justify-content: center;
-        display: flex;
+        .social-network-sign-in {
+            flex-flow: row wrap;
+            justify-content: center;
+            display: flex;
+        }
         button.mat-fab.mat-accent {
             min-height: 50px;
             margin: 10px 5px;
