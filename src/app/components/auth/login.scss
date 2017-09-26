@@ -2,7 +2,6 @@
 @import '../../mixins.scss';
 
 login {
-    display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-content: space-around;
@@ -36,6 +35,7 @@ login {
         font-size: 0.7em;
         flex-flow: row wrap;
         justify-content: center;
+        display: flex;
         button.mat-fab.mat-accent {
             min-height: 50px;
             margin: 10px 5px;
